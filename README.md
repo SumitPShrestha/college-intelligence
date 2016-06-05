@@ -40,4 +40,3 @@ cd target
 java -jar ng-spring-boot-1.0.0.jar
 ```
 
-yiz3B2UecQ8XU/mLiDMyEUV6NINYNGxcNYMJ4EIRSHLPXHut5eozeZx/GkQTBWxe37RK+FiSUERHjOR2E4AVJ6+7o+pa/kGpjdYllkhkmoX75uk2YpglCIGI3A84HoUWCMX2hQ==
