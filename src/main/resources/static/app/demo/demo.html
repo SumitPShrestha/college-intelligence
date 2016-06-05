@@ -1,0 +1,27 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
+                    <div class="widget-content user">
+
+                        <!--<tree-grid tree-cms="vm.tree_data"></tree-grid>-->
+
+                        <tree-grid tree-data="vm.tree_data"
+                                   tree-control="vm.my_tree"
+                                   col-defs="vm.col_defs"
+                                   expand-on="vm.expanding_property"
+                                   expand-level="2"
+                                   icon-leaf="glyphicon glyphicon-globe">
+
+                        </tree-grid>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
