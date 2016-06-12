@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/auth/login").permitAll()
                 .antMatchers("foos/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/**").permitAll().and().logout();
+                .antMatchers("/**").permitAll();
         // @formatter:on
 
         final SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(userDetailsServiceBean());
