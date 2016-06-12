@@ -6,9 +6,9 @@
         .controller('home', home);
 
     /* @ngInject */
-    home.$inject = ['$scope', '$rootScope', 'logger', 'LoginService'];
+    home.$inject = ['$scope', '$rootScope', 'logger', 'LoginService','AUTH_EVENTS','$cookieStore'];
 
-    function home($scope, $rootScope, logger, LoginService) {
+    function home($scope, $rootScope, logger, LoginService,AUTH_EVENTS,$cookieStore) {
         /*jshint validthis: true */
         var vm = this;
         vm.home = [];
@@ -17,7 +17,11 @@
         function Login(credentials) {
             LoginService.login(credentials).$promise.then(
                 function (responseUser) {
+                    $rootScope.userAuth = responseUser;
+                    $cookieStore.put('user', responseUser);
                     logger.info("Login Success!!!!")
+
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                 }, function (response) {
                     logger.info("Login Failed!!!!")
                 }

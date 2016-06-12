@@ -21,7 +21,8 @@
                     controller: 'home',
                     controllerAs: 'vm',
                     title: 'home',
-                    sidebar:false
+                    sidebar:false,
+                    role:'ALL'
                 }
             }
         ];

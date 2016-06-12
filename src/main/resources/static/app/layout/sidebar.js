@@ -13,6 +13,7 @@
         var routes = routehelper.getRoutes();
 
         vm.isCurrent = isCurrent;
+        vm.isAuthorisedNav = isAuthorisedNav;
         //vm.sidebarReady = function(){console.log('done animating menu')}; // example
 
         activate();
@@ -33,6 +34,22 @@
             }
             var menuName = route.title;
             return $route.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
+        }
+
+        function isAuthorisedNav(r) {
+            var a = false;
+            angular.forEach(r.roles,function(role) {
+
+                if ($rootScope.userAuth.roles.indexOf(role)!=-1) {
+                    a= true;
+               return false;
+
+                }else {
+                    return true;
+                }
+
+            })
+            return a;
         }
 
     }

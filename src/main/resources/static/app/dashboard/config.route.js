@@ -26,7 +26,8 @@
                     settings: {
                         nav: 1,
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
-                    }
+                    },
+                    roles:['ROLE_ADMIN','ROLE_USER']
                 }
             }
         ];
