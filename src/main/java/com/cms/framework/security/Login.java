@@ -1,19 +1,21 @@
 package com.cms.framework.security;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 /**
  * Created by i82298 on 6/5/2016.
  */
 public class Login {
 
-    private String userName;
+    private String username;
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -23,4 +25,7 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
 }

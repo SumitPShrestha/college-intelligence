@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by Nirmal on 3/22/2016.
  */
-@Configuration
+//@Configuration
 public class DataSourceConfiguration {
 
  /*   @Value("${datasource.oracle.url}")
