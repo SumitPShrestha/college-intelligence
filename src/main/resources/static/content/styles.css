@@ -3,7 +3,10 @@
 /*For Bootstrap 3*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-
+a[ng-click] {
+    /* Styles for anchors without href but WITH ng-click */
+    cursor: pointer;
+}
 body {
     background-color: #FFF;
 }

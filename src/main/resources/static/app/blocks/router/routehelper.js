@@ -52,7 +52,10 @@
                     angular.extend(route.config.resolve || {}, routehelperConfig.config.resolveAlways);
                 $routeProvider.when(route.url, route.config);
             });
-            $routeProvider.otherwise({redirectTo: '/home'});
+            $routeProvider.when('/logout', {
+                redirectTo: '/home'
+
+            }).otherwise({redirectTo: '/home'});
         }
 
         function handleRoutingErrors() {
@@ -106,7 +109,7 @@
                     handlingRouteChangeError = false;
                     var title = routehelperConfig.config.docTitle + ' ' + (current.title || '');
                     $rootScope.title = title; // cms bind to <title>
-                    $rootScope.sideBar = current.sidebar == false ? false : true;
+
 
 
                 }

@@ -1,6 +1,5 @@
 package com.cms.framework.security;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Created by i82298 on 6/5/2016.
@@ -25,6 +24,7 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 
 

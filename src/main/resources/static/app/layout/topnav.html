@@ -21,7 +21,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://developer.marvel.com/" target="_blank">SUMIT API</a>
+                    <a ng-show="isLoggedIn()" href="#/logout" >Logout</a>
+                    <a ng-show="!isLoggedIn()" href="#" >Login</a>
                 </li>
             </ul>
         </div>
