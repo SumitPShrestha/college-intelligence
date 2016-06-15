@@ -11,21 +11,18 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_info")
+@Table(name = "member")
 
-public class UserInfo implements Serializable {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue
     private int id;
 
 
-    private String userType;
+    private MemberType memberType;
 
-    @OneToOne
-    @JsonIgnore
-    @JoinColumn(name = "user_id")
-    private User user;
+
 
     private String firstName;
 
@@ -53,5 +50,10 @@ public class UserInfo implements Serializable {
     private long mobileNumber;
 
     private String email;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "training_id")
+    private Training  training;
 
 }

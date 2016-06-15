@@ -8,7 +8,7 @@ import java.io.Serializable;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "role 	"/*,
+@Table(name = "role "/*,
     uniqueConstraints = @UniqueConstraint(
 		columnNames = { "role", "user_id" })*/)
 public class Role implements Serializable {
@@ -16,9 +16,9 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id",
-            unique = true, nullable = false)
+    @Column(name = "id",unique = true, nullable = false)
     private Integer id;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
