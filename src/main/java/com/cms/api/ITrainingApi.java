@@ -6,6 +6,5 @@ import org.springframework.stereotype.Service;
 /**
  * Created by amit on 6/16/16.
  */
-@Service
-public class ITrainingApi {
+public interface ITrainingApi {
 }

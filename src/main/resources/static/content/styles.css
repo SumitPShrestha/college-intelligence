@@ -51,15 +51,6 @@ body {
         background-color: #333;
     }
 
-.sidebar-filler {
-    z-index: -1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: #333;
-    width: 230px;
-}
 
 /*#endregion */
 
@@ -507,9 +498,6 @@ a {
 /*#region Responsive */
 
 @media (max-width: 979px) {
-    .sidebar-filler {
-        width: 200px;
-    }
 
     .nav-collapse {
         clear: none;

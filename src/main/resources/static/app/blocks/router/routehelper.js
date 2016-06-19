@@ -90,6 +90,7 @@
         }
 
         function getRoutes() {
+            routes=[];    //checking
             for (var prop in $route.routes) {
                 if ($route.routes.hasOwnProperty(prop)) {
                     var route = $route.routes[prop];
