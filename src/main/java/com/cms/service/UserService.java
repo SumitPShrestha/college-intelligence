@@ -20,8 +20,8 @@ public class UserService implements IUserService {
     IUserApi userApi;
 
 
-    public String createApplicationUser(UserDTO dto) {
-        User user = userApi.createAppUser(dto);
+    public String createOrEditApplicationUser(UserDTO dto) {
+        User user = userApi.createOrEditAppUser(dto);
         if (user != null) {
             return String.valueOf(user.getId());
         }
@@ -37,4 +37,11 @@ public class UserService implements IUserService {
     public String deleteUser(Integer id) {
         return userApi.deleteUser(id);
     }
+
+    @Override
+    public UserDTO getUser(Integer id) {
+        return ConvertUtils.convertToUserDTO(userApi.getUserById(id));
+    }
+
+
 }

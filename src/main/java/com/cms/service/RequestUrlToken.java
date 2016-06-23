@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 public class RequestUrlToken {
 
-    public static final String CREATE_USER = "/user";
-    public static final String UPDATE_USER = "/user/{id}";
+    public static final String CREATE_USER = "/users";
+    public static final String UPDATE_USER = "/users";
+    public static final String GET_USER = "/user/{id}";
+    public static final String DELETE_USER = "/user/{id}";
+    public static final String GET_USERS = "/users";
 
-    public static final String GET_USER = "/user{id}";
-    public static final String DELETE_USER = "/user{id}";
-    public static final String USERS = "/users";
 
 }

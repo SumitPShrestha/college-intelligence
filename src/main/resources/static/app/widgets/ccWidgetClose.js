@@ -27,7 +27,7 @@
 
             function closeEl(e) {
                 e.preventDefault();
-                element.parent().parent().parent().hide(100);
+                element.parent().parent().hide(100);
             }
         }
     }
