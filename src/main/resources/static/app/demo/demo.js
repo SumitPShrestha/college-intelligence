@@ -63,6 +63,19 @@
             vm.showCreatePanel = true;
         }
 
+        $scope.submitFormss=function(isValid){
+            if(isValid){
+            $scope.eitherCreateOrEdit();
+            }
+
+        }
+
+        $scope.deleteTheUser=function(userId){
+            userservice.deleteUser({id: userId}).$promise.then(function (data) {
+                findAll();
+            });
+
+        }
 
         vm.title = 'User Create Panel';
 
@@ -77,6 +90,7 @@
 
         function createOrEditUser(x) {
             userservice.addUsers(x).$promise.then(function (data) {
+                findAll();
                 $scope.closeThePanel();
             });
 

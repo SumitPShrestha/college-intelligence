@@ -15,7 +15,7 @@
                 editUser: {method: "PUT"},
                 findAllUsers: {'method': 'GET', isArray: true},
                 addUsers: {'method': 'POST'},
-                deleteUser: {'method': 'DELETE','params': {id: '@id'}},
+                deleteUser: {'url':'/admin/user/:id','method': 'DELETE','params': {id: '@id'}},
                 getUser: {'url':'/admin/user/:id','method': 'GET','params': {id: '@id'}}
 
 

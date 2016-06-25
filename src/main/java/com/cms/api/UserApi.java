@@ -5,6 +5,7 @@ import com.cms.model.Status;
 import com.cms.model.User;
 import com.cms.repository.IUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +15,13 @@ import java.util.List;
  */
 
 @Service
+
 public class UserApi implements IUserApi {
 
     @Autowired
     IUserDao userDao;
+    @Autowired
+    PasswordEncoder encoder;
 
 
     @Override
@@ -30,7 +34,7 @@ public class UserApi implements IUserApi {
             user= new User();
         }
         user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
+        user.setPassword( getEncodedPassword(dto.getPassword()));
         user.setStatus(Status.APPROVED);
 
         return  userDao.save(user);
@@ -50,5 +54,9 @@ public class UserApi implements IUserApi {
     @Override
     public User getUserById(Integer id) {
         return userDao.findOne(id);
+    }
+
+    public String getEncodedPassword(String password) {
+        return encoder.encode(password);
     }
 }

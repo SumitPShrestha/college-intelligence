@@ -3,7 +3,14 @@
         margin-right: 18px;
         margin-top: 15px;
         bottom: -53px;
-        position:relative;
+        position: relative;
+    }
+    .form-group .help-block {
+        display: none;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
     }
 </style>
 <section class="mainbar">
@@ -24,29 +31,85 @@
                 <div class="widget wblue">
                     <div form-panel title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input data-ng-model="usermodel.username"  class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{vm.user.username}}" >
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input data-ng-model="usermodel.password" type="password" class="form-control" id="exampleInputPassword1" value="{{vm.user.password}}"
-                                       placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile">
-                                <p class="help-block">Example block-level help text here.</p>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Check me out and out and what is this again out
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-default" ng-click="eitherCreateOrEdit()">{{btnText}}</button>
-                        </form>
+                        <!-- <form>
+                             <div class="form-group">
+                                 <label for="exampleInputEmail1">Email address</label>
+                                 <input data-ng-model="usermodel.username"  class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{vm.user.username}}" >
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input data-ng-model="usermodel.password" type="password" class="form-control" id="exampleInputPassword1" value="{{vm.user.password}}"
+                                        placeholder="Password">
+                             </div>
+                             <div class="form-group">
+                                 <label for="exampleInputFile">File input</label>
+                                 <input type="file" id="exampleInputFile">
+                                 <p class="help-block">Example block-level help text here.</p>
+                             </div>
+                             <div class="checkbox">
+                                 <label>
+                                     <input type="checkbox"> Check me out and out and what is this again out
+                                 </label>
+                             </div>
+                             <button type="submit" class="btn btn-default" ng-click="eitherCreateOrEdit()">{{btnText}}</button>
+                         </form>-->
+                        <!--<ng-form name="pp">
+                            <formitemtextbox   hel="enter hero"   req="true" minimumlength="5"
+                                               label="hero" input="heroagain"></formitemtextbox>
 
+                            <formitemtextbox  hel="enter heroine"   label="heroine"  req="true"
+                                              patternkoname="number only" input="heroineagain"></formitemtextbox>
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(pp.$valid)">Submit</button>
+                        </ng-form>
+                        <li data-ng-show="pp.$valid">Showing valid</li>
+                        <li data-ng-show="pp.$valid">Showing valid</li>
+                        <li data-ng-show="pp.heroineagain.$valid">Showing valid</li>-->
+                        <form name="userForm" novalidate>
+                            <!--<div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">-->
+                                <!--<label>Name</label>-->
+                                <!--<input type="text" name="name" class="form-control" ng-model="usermodel.name" required>-->
+                                <!--<p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>-->
+                            <!--</div>-->
+
+                            <!-- USERNAME -->
+                           <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" ng-model="usermodel.username" ng-minlength="3" ng-maxlength="8" required>
+                                <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                                <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                                <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
+
+                            </div>-->
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                <label>Username</label>
+                                <input type="email" name="username" class="form-control" ng-model="usermodel.username"   required>
+                                <p ng-show="userForm.username.$error.maxlength" class="help-block">Enter valid email.</p>
+                                <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
+
+                            </div>
+
+                            <!-- EMAIL -->
+                            <!--<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >-->
+                                <!--<label>Email</label>-->
+                                <!--<input type="email" name="email" class="form-control" ng-model="user.email" required>-->
+                                <!--<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
+                                <!--<p ng-show="userForm.email.$error.required" class="help-block">Email is required.</p>-->
+
+                            <!--</div>-->
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }" >
+                                <label>Password</label>
+                                <input type="text" name="password" class="form-control" ng-model="usermodel.password" required>
+                                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Enter a valid password.</p>
+                                <p ng-show="userForm.password.$error.required" class="help-block">Password is required.</p>
+
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(userForm.$valid)">{{btnText}}</button>
+
+                            {{userForm.$valid}}
+                        </form>
                     </div>
 
                 </div>
@@ -97,13 +160,14 @@
                             <td title="'Password'" filter="{ age: 'text'}" sortable="'age'">
                                 {{user.password}}
                             </td>
-                            <td class="cursor-handss">
+                            <td class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(user.id)"></span>
                             </td>
                             <td>
-                                <a href="#" data-toggle="tooltip" title="Delete !">
-                                    <span class="glyphicon glyphicon-trash red"></span>
+                                <a data-toggle="tooltip" title="Delete !">
+                                    <span ng-click="deleteTheUser(user.id)"
+                                          class="glyphicon glyphicon-trash red"></span>
                                 </a>
                             </td>
 
