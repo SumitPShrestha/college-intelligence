@@ -5,12 +5,24 @@
         bottom: -53px;
         position: relative;
     }
+
     .form-group .help-block {
         display: none;
-    }
 
+    }
+    .error-block {
+        color: #a94442;
+
+    }
+.form-item-container{
+    height:85px;
+}
     .form-group.has-error .help-block {
         display: block;
+    }
+
+    .radiobox{
+        width:50px;
     }
 </style>
 <section class="mainbar">
@@ -31,6 +43,8 @@
                 <div class="widget wblue">
                     <div form-panel title="{{vm.title}}"></div>
                     <div class="widget-content user">
+
+
                         <!-- <form>
                              <div class="form-group">
                                  <label for="exampleInputEmail1">Email address</label>
@@ -67,46 +81,266 @@
                         <li data-ng-show="pp.heroineagain.$valid">Showing valid</li>-->
                         <form name="userForm" novalidate>
                             <!--<div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">-->
-                                <!--<label>Name</label>-->
-                                <!--<input type="text" name="name" class="form-control" ng-model="usermodel.name" required>-->
-                                <!--<p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>-->
+                            <!--<label>Name</label>-->
+                            <!--<input type="text" name="name" class="form-control" ng-model="usermodel.name" required>-->
+                            <!--<p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>-->
                             <!--</div>-->
 
                             <!-- USERNAME -->
-                           <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                                <label>Username</label>
-                                <input type="text" name="username" class="form-control" ng-model="usermodel.username" ng-minlength="3" ng-maxlength="8" required>
-                                <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
-                                <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
-                                <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
+                            <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                 <label>Username</label>
+                                 <input type="text" name="username" class="form-control" ng-model="usermodel.username" ng-minlength="3" ng-maxlength="8" required>
+                                 <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                                 <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                                 <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
 
-                            </div>-->
-                            <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                                <label>Username</label>
-                                <input type="email" name="username" class="form-control" ng-model="usermodel.username"   required>
-                                <p ng-show="userForm.username.$error.maxlength" class="help-block">Enter valid email.</p>
-                                <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
+                             </div>-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">User Security Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                            <label>Username :<span>*</span></label>
+                                            <input type="email" name="username" class="form-control"
+                                                   ng-model="usermodel.username" required>
+<!--&lt;!&ndash;-->
+                                            <!--(userForm.username.$error.required && !userForm.username.$pristine)|| -->
+<!--&ndash;&gt;-->
+                                        </div>
+                                            <p ng-show="userForm.username.$invalid && !userForm.username.$pristine " class="error-block">Enter
+                                                valid email.</p>
+                                            <p class="error-block" ng-show="(userForm.username.$error.required && !userForm.username.$pristine) ||( submitted  && userForm.username.$pristine)">Username
+                                                is required.</p>
+                                        {{submitted}}aa
+                                        {{userForm.username.$error.required}}
+
+                                    </div>
+
+                                    <!-- EMAIL -->
+                                    <!--<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >-->
+                                    <!--<label>Email</label>-->
+                                    <!--<input type="email" name="email" class="form-control" ng-model="user.email" required>-->
+                                    <!--<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
+                                    <!--<p ng-show="userForm.email.$error.required" class="help-block">Email is required.</p>-->
+
+                                    <!--</div>-->
+                                    <div class="col-md-6 form-item-container" >
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                                            <label>Password :<span>*</span></label>
+                                            <input type="text" name="password" class="form-control"
+                                                   ng-model="usermodel.password" required>
+                                        </div>
+                                            <p ng-show="userForm.password.$invalid && !userForm.password.$pristine"
+                                               class="help-block">Enter a valid password.</p>
+                                            <p ng-show="(userForm.password.$error.required && !userForm.password.$pristine) && submitted " class="error-block">Password
+                                                is required.</p>
+
+                                    </div>
+
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group">
+                                            <label>Roles:</label>
+
+                                             <div data-ng-repeat="role in roles">
+                                                 <label class="checkbox" style="width: auto" for="{{role.id}}">
+                                                     <input type="checkbox" ng-model="selection.ids[role.id]"
+                                                            name="group" id="{{role.id}}"/>
+
+                                                    <div class="col-md-3">{{role.name}}</div>
+                                                 </label>
+                                             </div>
+                                            {{selection}}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">User Information Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+                                            <label>First Name:<span>*</span></label>
+                                            <input type="text" name="firstName" class="form-control"
+                                                   ng-model="usermodel.firstName" required>
+
+                                        </div>
+                                            <p ng-show="userForm.firstName.$error.required" class="help-block">First Name
+                                                is required.</p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+                                            <label>Middle Name:</label>
+                                            <input type="text" name="middleName" class="form-control"
+                                                   ng-model="usermodel.middleName"  >
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+                                            <label>LastName :<span>*</span></label>
+                                            <input type="text" name="lastName" class="form-control"
+                                                   ng-model="usermodel.lastName" required>
+
+                                            <p ng-show="userForm.lastName.$error.required" class="help-block">Last Name
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group">
+
+                                            <label >Sex :<span>*</span></label>
+
+
+                                            <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="male">Male
+
+
+
+                                           <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="female">Female
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.dob.$invalid && !userForm.dob.$pristine }">
+                                            <label>Date Of Birth :<span>*</span></label>
+                                            <input type="date" name="dob" class="form-control"
+                                                   ng-model="usermodel.dob" required>
+
+                                            <p ng-show="userForm.dob.$invalid && !userForm.dob.$pristine" class="help-block">Enter
+                                                valid date.</p>
+                                            <p ng-show="userForm.dob.$error.required" class="help-block">Date of Birth
+                                                is required.
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine }">
+                                            <label>Landline Number : </label>
+                                            <input type="number" name="landlineNumber" class="form-control"
+                                                   ng-model="usermodel.landlineNumber" required>
+                                            <p ng-show="userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine" class="help-block">Enter
+                                                valid land-line number.</p>
+                                            <p ng-show="userForm.landlineNumber.$error.required" class="help-block">Land-line Number
+                                                is required.
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine }">
+                                            <label>Mobile Number : </label>
+                                            <input type="number" name="mobileNumber" class="form-control"
+                                                   ng-model="usermodel.mobileNumber">
+                                            <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="help-block">Enter
+                                                valid mobile number.</p>
+                                            <p ng-show="userForm.mobileNumber.$error.required" class="help-block">Mobile Number
+                                                is required.
+                                            </p>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Address Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.streetAddress.$invalid && !userForm.streetAddress.$pristine }">
+                                            <label>Tole :<span>*</span></label>
+                                            <input type="text" name="streetAddress" class="form-control"
+                                                   ng-model="usermodel.streetAddress" required>
+
+                                            <p ng-show="userForm.streetAddress.$error.required" class="help-block">Tole  Name
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.vdcOrMunicipality.$invalid && !userForm.vdcOrMunicipality.$pristine }">
+                                             <label>VDC/Municipality :<span>*</span></label>
+
+                                            <input type="text" name="vdcOrMunicipality" class="form-control"
+                                                   ng-model="usermodel.vdcOrMunicipality" required>
+
+                                            <p ng-show="userForm.vdcOrMunicipality.$error.required " class="help-block">VDC/Municipality
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.district.$invalid && !userForm.district.$pristine }">
+                                            <label>District :<span>*</span></label>
+                                            <input type="text" name="district" class="form-control"
+                                                   ng-model="usermodel.district" required>
+
+                                            <p ng-show="userForm.district.$error.required  " class="help-block">District
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.zone.$invalid && !userForm.zone.$pristine }">
+                                            <label>Zone :<span>*</span></label>
+                                            <input type="text" name="zone" class="form-control"
+                                                   ng-model="usermodel.zone" required>
+
+                                            <p ng-show="userForm.zone.$error.required " class="help-block">Zone
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : userForm.country.$invalid && !userForm.country.$pristine }">
+                                            <label>Country :<span>*</span></label>
+                                            <input type="text" name="country" class="form-control"
+                                                   ng-model="usermodel.country" required>
+
+                                            <p ng-show="userForm.country.$error.required " class="help-block">Country
+                                                is required.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
 
-                            <!-- EMAIL -->
-                            <!--<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >-->
-                                <!--<label>Email</label>-->
-                                <!--<input type="email" name="email" class="form-control" ng-model="user.email" required>-->
-                                <!--<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
-                                <!--<p ng-show="userForm.email.$error.required" class="help-block">Email is required.</p>-->
-
-                            <!--</div>-->
-                            <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }" >
-                                <label>Password</label>
-                                <input type="text" name="password" class="form-control" ng-model="usermodel.password" required>
-                                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Enter a valid password.</p>
-                                <p ng-show="userForm.password.$error.required" class="help-block">Password is required.</p>
-
-                            </div>
-
-
-                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(userForm.$valid)">{{btnText}}</button>
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(userForm.$valid)">
+                                {{btnText}}
+                            </button>
 
                             {{userForm.$valid}}
                         </form>

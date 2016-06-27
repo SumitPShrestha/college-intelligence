@@ -20,6 +20,7 @@ public   class ConvertUtils {
 			
 			userDTO.setFirstName(user.getUserInfo().getFirstName());
 			userDTO.setLastName(user.getUserInfo().getLastName());
+			userDTO.setMiddleName(user.getUserInfo().getMiddleName());
 			userDTO.setStreetAddress(user.getUserInfo().getStreetAddress());
 			userDTO.setVdcOrMunicipality(user.getUserInfo().getVdc());
 			userDTO.setDistrict(user.getUserInfo().getDistrict());
@@ -27,6 +28,7 @@ public   class ConvertUtils {
 			userDTO.setCountry(user.getUserInfo().getCountry());
 			userDTO.setEmail(user.getUserInfo().getEmail());
 			userDTO.setLandlineNumber(user.getUserInfo().getLandlineNumber());
+			userDTO.setMobileNumber(user.getUserInfo().getMobileNumber()	);
 			userDTO.setDob(user.getUserInfo().getDob().toString());
 			userDTO.setMale(user.getUserInfo().isMale());
 		}

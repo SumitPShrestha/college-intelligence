@@ -364,6 +364,13 @@ form input, form button, form textarea, form select {
 form label {
     font-size: 13px;
     line-height: 13px;
+    width:140px;
+}
+form label span {
+    color: red;
+    position: relative;
+    top: -5px;
+    left: 4px;
 }
 
 .form-inline button {
