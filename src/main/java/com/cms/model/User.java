@@ -25,7 +25,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Status status;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Role> roles;
     @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)

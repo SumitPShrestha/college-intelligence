@@ -1,10 +1,11 @@
 package com.cms.repository;
 
+import com.cms.model.Goal;
 import com.cms.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface IGoalDAO extends JpaRepository<Role, Integer>,
+public interface IGoalDAO extends JpaRepository<Goal, Integer>,
         JpaSpecificationExecutor<Role> {
 
 	/*

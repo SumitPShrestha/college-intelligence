@@ -1,21 +1,14 @@
 package com.cms.dto;
 
 import com.cms.model.Role;
-import com.cms.model.Status;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 import java.util.Set;
 
 /**
  * Created by amit on 6/16/16.
  */
 
-public class UserDTO {
+public class    UserDTO {
 
     private int id;
 
@@ -34,7 +27,7 @@ public class UserDTO {
 
     private String country;
 
-    private String VdcOrMunicipality;
+    private String vdcOrMunicipality;
     private String streetAddress;
 
     private String district;
@@ -49,6 +42,15 @@ public class UserDTO {
 
     private Set<Role> roles;
 
+    public String[] getRoless() {
+        return roless;
+    }
+
+    public void setRoless(String[] roless) {
+        this.roless = roless;
+    }
+
+    private String roless[];
     public String getPassword() {
         return password;
     }
@@ -130,11 +132,11 @@ public class UserDTO {
     }
 
     public String getVdcOrMunicipality() {
-        return VdcOrMunicipality;
+        return vdcOrMunicipality;
     }
 
     public void setVdcOrMunicipality(String vdcOrMunicipality) {
-        VdcOrMunicipality = vdcOrMunicipality;
+        this.vdcOrMunicipality = vdcOrMunicipality;
     }
 
     public String getStreetAddress() {
