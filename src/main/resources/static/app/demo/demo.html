@@ -358,30 +358,30 @@
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="false">
                         <tr ng-repeat="user in $data">
-                            <td title="'Username'" filter="{ name: 'text'}" sortable="'name'">
-                                {{user.username}}
+                            <td style="width: auto;text-align: center"title="'Username'" filter="{ name: 'text'}" sortable="'username'">
+                              <span>{{user.username}}</span>
                             </td>
 
-                            <td title="'Address'" filter="{ age: 'text'}" sortable="'address'">
-                                {{user.streetAddress}}, {{user.vdcOrMunicipality}}, {{user.district}},{{user.zone}}
+                            <td style="width: auto;text-align: center" title="'Address'" filter="{ age: 'text'}" sortable="'address'">
+                                <span>{{user.streetAddress}},{{user.vdcOrMunicipality}},{{user.district}},{{user.zone}}</span>
                             </td>
-                            <td title="'Name'" filter="{ age: 'text'}" sortable="'name'">
+                            <td title="'Name'" filter="{ age: 'text'}" sortable="'firstName'">
                                 {{user.firstName}}  {{user.middleName}} {{user.lastName}}
                             </td>
-                            <td title="'Date of Birth'" filter="{ age: 'text'}" sortable="'dob'">
+                            <td style="width: auto;text-align: center" title="'Date of Birth'" filter="{ age: 'text'}" sortable="'dob'">
                                 {{user.dob}}
                             </td>
-                            <td title="'Mobile Number'" filter="{ age: 'text'}" sortable="'mobileNumber'">
+                            <td style="width: auto;text-align: center" title="'Mobile Number'" filter="{ age: 'text'}" sortable="'mobileNumber'">
                                 {{user.mobileNumber}}
                             </td>
-                            <td title="'Landline Number'" filter="{ age: 'text'}" sortable="'landlineNumber'">
+                            <td style="width: auto;text-align: center" title="'Landline Number'" filter="{ age: 'text'}" sortable="'landlineNumber'">
                                 {{user.landlineNumber}}
                             </td>
-                            <td class="cursor-hands">
+                            <td style="width: auto;text-align: center" class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(user.id)"></span>
                             </td>
-                            <td>
+                            <td style="width: auto;text-align: center">
                                 <a data-toggle="tooltip" title="Delete !">
                                     <span ng-click="deleteTheUser(user.id)"
                                           class="glyphicon glyphicon-trash red"></span>

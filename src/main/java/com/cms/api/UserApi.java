@@ -1,14 +1,17 @@
 package com.cms.api;
 
+import com.cms.dto.EmailDTO;
 import com.cms.dto.UserDTO;
 import com.cms.model.*;
 import com.cms.repository.IRoleDao;
 import com.cms.repository.IUserDao;
 import com.cms.repository.IUserInfoDAO;
+import com.cms.service.MailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +49,14 @@ public class UserApi implements IUserApi {
     }
 
     private User editUser(UserDTO dto) {
+        try {
+            mailService.sendMail(new EmailDTO());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
         User user = userDao.findOne(dto.getId());
+        user.setUsername(dto.getUsername());
+        user.setPassword(getEncodedPassword(dto.getPassword()));
         user.getUserInfo().setFirstName(dto.getFirstName());
         user.getUserInfo().setLastName(dto.getLastName());
         user.getUserInfo().setMiddleName(dto.getMiddleName() + "");
@@ -58,6 +68,7 @@ public class UserApi implements IUserApi {
         user.getUserInfo().setDistrict(dto.getDistrict());
         user.getUserInfo().setCountry(dto.getCountry());
         user.getUserInfo().setMale(dto.isMale());
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 
 
@@ -112,8 +123,11 @@ public class UserApi implements IUserApi {
 
         return user;
     }
-
+    @Autowired
+    MailServiceImpl mailService;
     private User createUser(UserDTO dto) {
+
+
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(getEncodedPassword(dto.getPassword()));

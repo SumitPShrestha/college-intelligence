@@ -14,7 +14,6 @@ public interface IRoleDao extends JpaRepository<Role, Integer>,
 
 
 
-
     @Query("SELECT r FROM Role r WHERE r.user.id=:userid AND r.role=:rr ")
     Role findRoleByUserIdAndValue(@Param("rr") String role,@Param("userid") int userid);
 

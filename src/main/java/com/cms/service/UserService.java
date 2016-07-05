@@ -28,7 +28,9 @@ public class UserService implements IUserService {
         return "Error in creating user";
     }
 
+
     public List<UserDTO> getAllUsers() {
+
 
         return ConvertUtils.convertToUserDTOs(userApi.getAllUsers());
     }
