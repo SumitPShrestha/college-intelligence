@@ -3,8 +3,8 @@ package com.cms.api;
 import com.cms.dto.EmailDTO;
 import com.cms.dto.UserDTO;
 import com.cms.model.*;
-import com.cms.repository.IRoleDao;
-import com.cms.repository.IUserDao;
+import com.cms.repository.IRoleDAO;
+import com.cms.repository.IUserDAO;
 import com.cms.repository.IUserInfoDAO;
 import com.cms.service.MailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,9 @@ import java.util.Set;
 public class UserApi implements IUserApi {
 
     @Autowired
-    IUserDao userDao;
+    IUserDAO userDao;
     @Autowired
-    IRoleDao roleDao;
+    IRoleDAO roleDao;
     @Autowired
     IUserInfoDAO userInfoDao;
     @Autowired

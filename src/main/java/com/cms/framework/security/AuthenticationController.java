@@ -1,8 +1,8 @@
 package com.cms.framework.security;
 
 import com.cms.model.Role;
-import com.cms.repository.IRoleDao;
-import com.cms.repository.IUserDao;
+import com.cms.repository.IRoleDAO;
+import com.cms.repository.IUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,9 +33,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class AuthenticationController {
     @Resource
-    IUserDao userDao;
+    IUserDAO userDao;
     @Resource
-    IRoleDao roleDao;
+    IRoleDAO roleDao;
     private final TokenUtils tokenUtils = new TokenUtils();
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;

@@ -1,15 +1,12 @@
 package com.cms.model;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
-@Getter
-@Setter
+
 @Entity
 @Table(name = "training_center")
 public class TrainingCenter implements Serializable {
@@ -33,7 +30,65 @@ public class TrainingCenter implements Serializable {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "trainingCenter")
-    private Set<Goal> roles;
+    private List<ProgressActivity> progressActivities;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public TrainingCenter getParentTrainingCenter() {
+        return parentTrainingCenter;
+    }
+
+    public void setParentTrainingCenter(TrainingCenter parentTrainingCenter) {
+        this.parentTrainingCenter = parentTrainingCenter;
+    }
+
+    public List<ProgressActivity> getProgressActivities() {
+        return progressActivities;
+    }
+
+    public void setProgressActivities(List<ProgressActivity> progressActivities) {
+        this.progressActivities = progressActivities;
+    }
 }

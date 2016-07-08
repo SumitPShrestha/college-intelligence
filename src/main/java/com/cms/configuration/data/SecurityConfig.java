@@ -2,7 +2,7 @@ package com.cms.configuration.data;
 
 import com.cms.framework.security.XAuthTokenConfigurer;
 import com.cms.model.User;
-import com.cms.repository.IUserDao;
+import com.cms.repository.IUserDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,10 @@ import org.springframework.util.Assert;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static Logger log = LoggerFactory.getLogger(SecurityConfig.class);
-    private IUserDao userDao;
+    private IUserDAO userDao;
 
     @Autowired
-    public void setIUserDao(final IUserDao userDao) {
+    public void setIUserDao(final IUserDAO userDao) {
         Assert.notNull(userDao);
         this.userDao = userDao;
     }
@@ -88,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @return
      * @throws UsernameNotFoundException
      */
-    private UserDetailsService userDetailsService(final IUserDao userDaoo) throws UsernameNotFoundException {
+    private UserDetailsService userDetailsService(final IUserDAO userDaoo) throws UsernameNotFoundException {
         return (username) -> {
             final User adminUser = userDaoo.retrieveByName(username);
             if (adminUser == null) {
