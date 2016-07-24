@@ -30,7 +30,7 @@ public class TrainingCenter implements Serializable {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "trainingCenter")
-    private List<ProgressActivity> progressActivities;
+    private List<ActivityProgress> progressActivities;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -84,11 +84,11 @@ public class TrainingCenter implements Serializable {
         this.parentTrainingCenter = parentTrainingCenter;
     }
 
-    public List<ProgressActivity> getProgressActivities() {
+    public List<ActivityProgress> getProgressActivities() {
         return progressActivities;
     }
 
-    public void setProgressActivities(List<ProgressActivity> progressActivities) {
+    public void setProgressActivities(List<ActivityProgress> progressActivities) {
         this.progressActivities = progressActivities;
     }
 }

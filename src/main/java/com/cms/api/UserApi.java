@@ -49,11 +49,11 @@ public class UserApi implements IUserApi {
     }
 
     private User editUser(UserDTO dto) {
-        try {
+      /*  try {
             mailService.sendMail(new EmailDTO());
         } catch (MessagingException e) {
             e.printStackTrace();
-        }
+        }*/
         User user = userDao.findOne(dto.getId());
         user.setUsername(dto.getUsername());
         user.setPassword(getEncodedPassword(dto.getPassword()));
@@ -132,18 +132,18 @@ public class UserApi implements IUserApi {
         user.setUsername(dto.getUsername());
         user.setPassword(getEncodedPassword(dto.getPassword()));
         user.setStatus(Status.APPROVED);
-
-        user.getUserInfo().setFirstName(dto.getFirstName());
-        user.getUserInfo().setLastName(dto.getLastName());
-        user.getUserInfo().setMiddleName(dto.getMiddleName() + "");
-        user.getUserInfo().setLandlineNumber(dto.getLandlineNumber());
-        user.getUserInfo().setMobileNumber(dto.getMobileNumber());
-        user.getUserInfo().setStreetAddress(dto.getStreetAddress());
-        user.getUserInfo().setVdc(dto.getVdcOrMunicipality());
-        user.getUserInfo().setZone(dto.getZone());
-        user.getUserInfo().setDistrict(dto.getDistrict());
-        user.getUserInfo().setCountry(dto.getCountry());
-        user.getUserInfo().setMale(dto.isMale());
+        UserInfo userInfo= new UserInfo();
+        userInfo.setFirstName(dto.getFirstName());
+        userInfo.setLastName(dto.getLastName());
+        userInfo.setMiddleName(dto.getMiddleName() + "");
+        userInfo.setLandlineNumber(dto.getLandlineNumber());
+        userInfo.setMobileNumber(dto.getMobileNumber());
+        userInfo.setStreetAddress(dto.getStreetAddress());
+        userInfo.setVdc(dto.getVdcOrMunicipality());
+        userInfo.setZone(dto.getZone());
+        userInfo.setDistrict(dto.getDistrict());
+        userInfo.setCountry(dto.getCountry());
+        userInfo.setMale(dto.isMale());
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 
 
@@ -156,8 +156,8 @@ public class UserApi implements IUserApi {
         System.out.println(date);
         System.out.println(formatter.format(date));
 
-        user.getUserInfo().setDob(date);
-        user.setUserInfo(user.getUserInfo());
+        userInfo.setDob(date);
+        user.setUserInfo(userInfo);
 
 
         //user.setRoles(roles);

@@ -1,8 +1,6 @@
 package com.cms.repository;
 
-import com.cms.model.GoalActivity;
 import com.cms.model.Progress;
-import com.cms.model.ProgressActivity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

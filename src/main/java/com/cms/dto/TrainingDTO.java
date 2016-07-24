@@ -8,13 +8,23 @@ public class TrainingDTO {
 
     private String name;
 
-    private String address;
+    private String start;
 
-    private String zone;
+    private String end;
 
-    private String district;
+    private double budget;
 
-    private String parentTrainingCenter;
+    private  int target;
+
+    private int trainingCenterId;
+
+    public int getTrainingCenterId() {
+        return trainingCenterId;
+    }
+
+    public void setTrainingCenterId(int trainingCenterId) {
+        this.trainingCenterId = trainingCenterId;
+    }
 
     public Integer getId() {
         return id;
@@ -32,35 +42,35 @@ public class TrainingDTO {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStart() {
+        return start;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStart(String start) {
+        this.start = start;
     }
 
-    public String getZone() {
-        return zone;
+    public String getEnd() {
+        return end;
     }
 
-    public void setZone(String zone) {
-        this.zone = zone;
+    public void setEnd(String end) {
+        this.end = end;
     }
 
-    public String getDistrict() {
-        return district;
+    public double getBudget() {
+        return budget;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
-    public String getParentTrainingCenter() {
-        return parentTrainingCenter;
+    public int getTarget() {
+        return target;
     }
 
-    public void setParentTrainingCenter(String parentTrainingCenter) {
-        this.parentTrainingCenter = parentTrainingCenter;
+    public void setTarget(int target) {
+        this.target = target;
     }
 }

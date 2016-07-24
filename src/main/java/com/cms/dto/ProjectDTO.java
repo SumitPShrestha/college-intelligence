@@ -1,24 +1,11 @@
-package com.cms.model;
+package com.cms.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import com.cms.model.Activity;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-@Getter
-@Setter
-@Entity
-@Table(name = "project")
-
-public class Project implements Serializable {
-
-    @Id
-    @GeneratedValue
+/**
+ * Created by amit on 7/10/16.
+ */
+public class ProjectDTO {
     private Integer id;
 
 
@@ -33,8 +20,8 @@ public class Project implements Serializable {
     private String aidOrganisation;
 
     private double budget;
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "project")
-    private List<Activity> activities;
+
+    private Activity activityDTO;
 
     public Integer getId() {
         return id;
@@ -50,6 +37,14 @@ public class Project implements Serializable {
 
     public void setBudgetSubHeadNumber(String budgetSubHeadNumber) {
         this.budgetSubHeadNumber = budgetSubHeadNumber;
+    }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
     }
 
     public String getFiscalYear() {
@@ -74,13 +69,5 @@ public class Project implements Serializable {
 
     public void setBudget(double budget) {
         this.budget = budget;
-    }
-
-    public String getProjectCode() {
-        return projectCode;
-    }
-
-    public void setProjectCode(String projectCode) {
-        this.projectCode = projectCode;
     }
 }

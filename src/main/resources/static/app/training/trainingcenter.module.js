@@ -1,5 +1,5 @@
 (function () {
     'use strict';
 
-    angular.module('app.trainingcenter', ['treeGrid','ngTable','ngResource']);
+    angular.module('app.training', ['treeGrid','ngTable','ngResource']);
 })();

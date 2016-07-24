@@ -1,7 +1,11 @@
 package com.cms.service;
 
-import com.cms.dto.ProjectDTO;
-import com.cms.utility.ConvertUtils;
+import com.cms.api.IProjectWorkApi;
+import com.cms.api.ITrainingApi;
+import com.cms.dto.*;
+import com.cms.model.Activity;
+import com.cms.model.Goal;
+import com.cms.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +16,89 @@ import java.util.List;
  */
 
 @Service
-public class PriviligedService implements IAdminService {
+public class PriviligedService implements IPrivilegedService {
     @Autowired
     IProjectWorkApi projectWorkApi;
+    @Autowired
+    ITrainingApi trainingApi;
+
+
     @Override
-    public List<ProjectDTO> getAllProjectsByFiscalYear(String fiscalYear) {
-        return ConvertUtils.convertToProjectDTOs(projectWorkApi.getAllProjectsByFiscalYear(fiscalYear));
+    public List<Activity> getAllActivitiesByProjectId(Integer projectId) {
+        return projectWorkApi.getActivitiesByProjectId(projectId);
+    }
+    @Override
+    public List<Activity> getAllActivitiesByProjectCode(String code) {
+          Project project= projectWorkApi.getProjectByProjectCode(code);
+       return projectWorkApi.getActivitiesByProjectId(project.getId());
+
     }
 
     @Override
-    public String createOrEditProject(ProjectDTO dto) {
-        return projectWorkApi.createOrEditProject(dto);
+    public String createOrEditGoal(GoalDTO dto) {
+        return projectWorkApi.createOrEditGoal(dto);
     }
 
     @Override
-    public ProjectDTO getProject(Integer id) {
-        return projectWorkApi.getProjectById(id);
+    public List<Goal> getAllGoalsByActivityId(Integer activityId) {
+        return projectWorkApi.findGoalsByActivityId(activityId);
+    }
+
+
+    @Override
+    public String createOrEditActivity(Activity a) {
+        return projectWorkApi.createOrEditActivity(a);
     }
 
     @Override
-    public String deleteProject(Integer id) {
+    public Activity getActivity(Integer id) {
+        return projectWorkApi.getActivityById(id);
+    }
+
+    @Override
+    public String deleteActivity(Integer projectId, Integer activityId) {
         return null;
     }
+
+    @Override
+    public List<TrainingDTO> getTrainingsByTrainingCenterId(Integer id) {
+        return trainingApi.findTrainingsConductedByTrainingCenterId(id);
+    }
+
+    @Override
+    public String createOrEditTraining(TrainingDTO dto) {
+        return trainingApi.createOrEditTraining(dto);
+    }
+
+    @Override
+    public TrainingDTO getTraining(Integer id) {
+        return trainingApi.getSingleTraining(id);
+    }
+
+    @Override
+    public String createOrEditApplicationMember(MemberDTO dto) {
+        return trainingApi.createOrEditMember(dto);
+    }
+
+    @Override
+    public List<MemberDTO> getAllMembersByTrainingId(Integer trainingId) {
+        return trainingApi.findMembersByTrainingId(trainingId);
+    }
+
+    @Override
+    public MemberDTO getMemberByMemberId(Integer id) {
+        return trainingApi.getSingleMember(id);
+    }
+
+    @Override
+    public String deleteMember(Integer id) {
+        return trainingApi.deleteMember(id);
+    }
+
+    @Override
+    public String deleteTraining(Integer trainingId) {
+        return trainingApi.deleteTraining(trainingId);
+    }
+
+
 }

@@ -4,19 +4,20 @@
 (function () {
     'use strict';
     angular
-        .module('app.demo')
-        .factory('userservice', userservice);
+        .module('app.project')
+        .factory('projectservice', projectservice);
 
-    function userservice($resource) {
-        return $resource("/admin/users",
+    function projectservice($resource) {
+        return $resource("/all/projects",
             {Id: "@Id"},
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},
-                editUser: {method: "PUT"},
-                findAllUsers: {'method': 'GET', isArray: true},
-                addUsers: {'method': 'POST'},
-                deleteUser: {'url':'/admin/user/:id','method': 'DELETE','params': {id: '@id'}},
-                getUser: {'url':'/admin/user/:id','method': 'GET','params': {id: '@id'}}
+                editProject: {method: "PUT"},
+                findAllProjects: {'method': 'GET', isArray: true},
+                addProject: {'url':'/admin/projects','method': 'POST'},
+                deleteProject: {'url':'/admin/project/:id','method': 'DELETE','params': {id: '@id'}},
+                getProject: {'url':'/all/project/pid/:id','method': 'GET','params': {id: '@id'}},
+                getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
 
 
             }

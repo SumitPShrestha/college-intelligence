@@ -14,16 +14,46 @@
     function getRoutes() {
         return [
             {
-                url: '/demo',
+                url: '/project',
                 config: {
-                    templateUrl: 'app/demo/demo.html',
-                    controller: 'Demo',
+                    templateUrl: 'app/project/project.html',
+                    controller: 'Project',
                     controllerAs: 'vm',
-                    title: 'demo',
+                    title: 'project',
 
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-shield fa-rotate-270"></i> Demo'
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Project'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
+            },
+            {
+                url: '/activity/:code',
+                config: {
+                    templateUrl: 'app/project/project-activity/activity.html',
+                    controller: 'Activity',
+                    controllerAs: 'vm',
+                    title: 'project-activity',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Activities'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
+            },
+            {
+                url: '/progress/:activityId',
+                config: {
+                    templateUrl: 'app/project/activity-progress/progress.html',
+                    controller: 'Progress',
+                    controllerAs: 'vm',
+                    title: 'progress',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Progress'
                     },
                     roles:['ROLE_ADMIN']
                 }

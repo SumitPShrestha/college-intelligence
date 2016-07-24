@@ -5,18 +5,18 @@
     'use strict';
     angular
         .module('app.project')
-        .factory('projectservice', userservice);
+        .factory('activityservice', activityservice);
 
-    function userservice($resource) {
-        return $resource("/all/projects",
+    function activityservice($resource) {
+        return $resource("/privileged/activity",
             {Id: "@Id"},
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},
                 editProject: {method: "PUT"},
-                findAllProjects: {'method': 'GET', isArray: true},
+                findAllActivities: {'url':'/privileged/activity/code/:id','method': 'GET', isArray: true,'params': {id: '@id'}},
                 addProject: {'url':'/admin/projects','method': 'POST'},
-                deleteProject: {'url':'/all/project/:id','method': 'DELETE','params': {id: '@id'}},
-                getProject: {'url':'/all/project/pid/:id','method': 'GET','params': {id: '@id'}},
+                deleteActivity: {'url':'/all/project/:id','method': 'DELETE','params': {id: '@id'}},
+                getSingleActivity: {'url':'/privileged/activity/:id','method': 'GET','params': {id: '@id'}},
                 getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
 
 

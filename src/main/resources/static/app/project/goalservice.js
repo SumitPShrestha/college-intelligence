@@ -5,19 +5,16 @@
     'use strict';
     angular
         .module('app.project')
-        .factory('projectservice', userservice);
+        .factory('goalservice', goalservice);
 
-    function userservice($resource) {
+    function goalservice($resource) {
         return $resource("/all/projects",
             {Id: "@Id"},
             {
-               // editUser: {method: "PUT", 'params': {id: '@id'}},
-                editProject: {method: "PUT"},
-                findAllProjects: {'method': 'GET', isArray: true},
-                addProject: {'url':'/admin/projects','method': 'POST'},
-                deleteProject: {'url':'/all/project/:id','method': 'DELETE','params': {id: '@id'}},
-                getProject: {'url':'/all/project/pid/:id','method': 'GET','params': {id: '@id'}},
-                getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
+
+                addGoal: {url:'/privileged/activity-goal','method': 'POST'},
+                editGoal: {url:'/privileged/activity-goal','method': 'GET','params': {id: '@id'}},
+                getGoalsByActivityId: {'url':'/privileged/activity-goal/:id','method': 'GET', isArray: true,'params': {id: '@id'}},
 
 
             }

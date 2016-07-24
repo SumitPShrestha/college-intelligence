@@ -13,8 +13,8 @@
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},
                 editUser: {method: "PUT"},
-                findAllUsers: {'method': 'GET', isArray: true},
-                addUsers: {'method': 'POST'},
+                findAllUsers: {url:'/admin/users/','method': 'GET', isArray: true},
+                addUsers: {url:'/admin/user/',method: 'POST'},
                 deleteUser: {'url':'/admin/user/:id','method': 'DELETE','params': {id: '@id'}},
                 getUser: {'url':'/admin/user/:id','method': 'GET','params': {id: '@id'}}
 

@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <button type="button" class="btn btn-primary btn-lg right"
-                        ng-click="initCreatePanel()">Create Training Center
+                        ng-click="initCreatePanel()">Create Training
                 </button>
             </div>
             <div ng-show="vm.showCreatePanel" class="row" id="hero">
@@ -58,7 +58,7 @@
                     <div class="widget-content user">
 
 
-                        <form name="tcForm" novalidate>
+                        <form name="tForm" novalidate>
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -68,12 +68,12 @@
 
                                     <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : tcForm.name.$invalid && !tcForm.name.$pristine }">
+                                             ng-class="{ 'has-error' : tForm.name.$invalid && !tForm.name.$pristine }">
                                             <label>Name :<span>*</span></label>
                                             <input type="text" name="name" class="form-control"
-                                                   ng-model="tcmodel.name" required>
+                                                   ng-model="tmodel.name" required>
 
-                                            <p ng-show="(tcForm.country.$error.required && !tcForm.country.$pristine) ||( submitted  && tcForm.country.$pristine)"
+                                            <p ng-show="(tForm.country.$error.required && !tForm.country.$pristine) ||( submitted  && tForm.country.$pristine)"
                                                class="error-block">Name
                                                 is required.</p>
 
@@ -81,13 +81,13 @@
                                     </div>
                                     <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : tcForm.address.$invalid && !tcForm.address.$pristine }">
-                                            <label>Address :<span>*</span></label>
-                                            <input type="text" name="address" class="form-control"
-                                                   ng-model="tcmodel.address" required>
+                                             ng-class="{ 'has-error' : tForm.budget.$invalid && !tForm.budget.$pristine }">
+                                            <label>Budget :<span>*</span></label>
+                                            <input type="text" name="budget" class="form-control"
+                                                   ng-model="tmodel.budget" required>
 
-                                            <p ng-show="(tcForm.address.$error.required && !tcForm.address.$pristine) ||( submitted  && tcForm.address.$pristine)"
-                                               class="error-block">Address
+                                            <p ng-show="(tForm.budget.$error.required && !tForm.budget.$pristine) ||( submitted  && tForm.budget.$pristine)"
+                                               class="error-block">Budget
                                                 is required.</p>
 
                                         </div>
@@ -95,55 +95,57 @@
 
                                     <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : tcForm.district.$invalid && !tcForm.district.$pristine }">
-                                            <label>District :<span>*</span></label>
-                                            <input type="text" name="district" class="form-control"
-                                                   ng-model="tcmodel.district" required>
+                                             ng-class="{ 'has-error' : tForm.start.$invalid && !tForm.start.$pristine }">
+                                            <label>Start Date :<span>*</span></label>
+                                            <input type="date" name="start" class="form-control"
+                                                   ng-model="tmodel.start" required>
 
                                         </div>
-                                        <p ng-show="(tcForm.district.$error.required && !tcForm.district.$pristine) ||( submitted  && tcForm.district.$pristine)"
-                                           class="error-block">District
-                                            is required.</p>
+                                        <p ng-show="tForm.start.$invalid && !tForm.start.$pristine" class="error-block">Enter
+                                            valid date.</p>
+                                        <p ng-show="(tForm.start.$error.required && !tForm.start.$pristine) ||( submitted  && tForm.start.$pristine)" class="error-block">Date of Birth
+                                            is required.
+                                        </p>
 
                                     </div>
                                     <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : tcForm.zone.$invalid && !tcForm.zone.$pristine }">
-                                            <label>Zone :<span>*</span></label>
-                                            <input type="text" name="zone" class="form-control"
-                                                   ng-model="tcmodel.zone" required>
-
-                                            <p ng-show="(tcForm.zone.$error.required && !tcForm.zone.$pristine) ||( submitted  && tcForm.zone.$pristine)"
-                                               class="error-block">Zone
-                                                is required.</p>
+                                             ng-class="{ 'has-error' : tForm.end.$invalid && !tForm.end.$pristine }">
+                                            <label>End Date :<span>*</span></label>
+                                            <input type="date" name="end" class="form-control"
+                                                   ng-model="tmodel.end" required>
 
                                         </div>
+                                        <p ng-show="tForm.end.$invalid && !tForm.end.$pristine" class="error-block">Enter
+                                            valid date.</p>
+                                        <p ng-show="(tForm.end.$error.required && !tForm.end.$pristine) ||( submitted  && tForm.end.$pristine)" class="error-block">Date of Birth
+                                            is required.
+                                        </p>
+
                                     </div>
                                     <div class="col-md-4 form-item-container">
-                                        <div class="dropdown">
-                                            <label style="width: auto;">Parent Training Center :<span>*</span></label>
-                                            <button class="btn btn-default dropdown-toggle" type="button"
-                                                    id="dropdownMenu1" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="true">
-                                                {{selectedTrainingCenterItem}}
-                                                <span class="caret"></span>
-                                            </button>
-
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li ng-repeat="oneYear in trainingCenter"><a
-                                                        ng-click="trainingCenterDropboxitemselected(oneYear)">{{oneYear}}</a></li>
-                                            </ul>
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.target.$invalid && !tForm.target.$pristine }">
+                                            <label>Targeted Member : </label>
+                                            <input type="number" name="target" class="form-control"
+                                                   ng-model="tmodel.target" required>
                                         </div>
+                                        <p ng-show="tForm.target.$invalid && !tForm.target.$pristine" class="error-block">Enter
+                                            valid  number.</p>
+                                        <p ng-show="(tForm.target.$error.required && !tForm.target.$pristine) ||( submitted  && tForm.target.$pristine)" class="error-block">Targetted member
+                                            is required.
+                                        </p>
+
                                     </div>
                                 </div>
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(tcForm.$valid)">
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(tForm.$valid)">
                                 {{btnText}}
                             </button>
 
-                            {{tcForm.valid}}
+                            {{tForm.valid}}
                         </form>
                     </div
                     >
@@ -153,40 +155,46 @@
 
             <div class="row">
                 <div class="widget wblue">
-                    <div data-cc-widget-header title="User View Panel"></div>
+                    <div data-cc-widget-header title="Trainings View Panel"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="false">
-                        <tr ng-repeat="tc in $data">
+                        <tr ng-repeat="tg in $data">
                             <td title="'Name'" filter="{ age: 'text'}" sortable="'name'">
-                                <a href="/#/trainingCenter/{{tc.name}}">{{tc.name}}</a>
+                                <a href="/#/trainingCenter/{{tc.name}}">{{tg.name}}</a>
                             </td>
 
-                            <td style="width: auto;text-align: center" title="'Address'" filter="{ name: 'text'}"
-                                sortable="'address'">
-                                <span>{{tc.address}}</span>
+                            <td style="width: auto;text-align: center" title="'budget'" filter="{ name: 'text'}"
+                                sortable="'budget'">
+                                <span>{{tg.budget}}</span>
                             </td>
-                            <td style="width: auto;text-align: center" title="'District'" filter="{ name: 'text'}"
-                                sortable="'district'">
-                                <span>{{tc.address}}</span>
+                            <td style="width: auto;text-align: center" title="'Start date'" filter="{ name: 'text'}"
+                                sortable="'start'">
+                                <span>{{tg.start}}</span>
                             </td>
-                            <td style="width: auto;text-align: center" title="'Zone'" filter="{ name: 'text'}"
-                                sortable="'zone'">
-                                <span>{{tc.address}}</span>
+                            <td style="width: auto;text-align: center" title="'End date'" filter="{ name: 'text'}"
+                                sortable="'end'">
+                                <span>{{tg.end}}</span>
                             </td>
-                            <td style="width: auto;text-align: center" title="'Parent Training Center'"
-                                filter="{ name: 'text'}" sortable="'address'">
-                                <span>{{tc.parentTrainingCenter}}</span>
+                            <td style="width: auto;text-align: center" title="'Target'"
+                                filter="{ name: 'text'}" sortable="'target'">
+                                <span>{{tg.target}}</span>
                             </td>
 
 
                             <td style="width: auto;text-align: center" class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(tc.id)"></span>
+                                      ng-click="initEditPanel(tg.id)"></span>
                             </td>
                             <td style="width: auto;text-align: center">
                                 <a data-toggle="tooltip" title="Delete !">
-                                    <span ng-click="deleteTheUser(tc.id)"
+                                    <span ng-click="deleteTheTraining(tg.id)"
                                           class="glyphicon glyphicon-trash red"></span>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a data-toggle="tooltip" title="View All Training Members !" href="/#/training/{{tg.id}}">
+                                    <i class="fa fa-eye blue" aria-hidden="true"></i>
                                 </a>
                             </td>
 

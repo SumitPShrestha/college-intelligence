@@ -1,11 +1,10 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('app.training')
         .run(appRun);
 
-    // appRun.$inject = ['routehelper'];
 
     /* @ngInject */
     function appRun(routehelper) {
@@ -15,17 +14,46 @@
     function getRoutes() {
         return [
             {
-                url: '/training',
+                url: '/trainingCenter',
                 config: {
-                    templateUrl: 'app/training/create.html',
-                    controller: 'training',
+                    templateUrl: 'app/training/trainingcenter.html',
+                    controller: 'TrainingCenter',
                     controllerAs: 'vm',
                     title: 'training',
-                    sidebar:true,
 
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-training"></i> Training'
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Training Center'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
+            },
+            {
+                url: '/trainingCenter/:id',
+                config: {
+                    templateUrl: 'app/training/training.html',
+                    controller: 'Training',
+                    controllerAs: 'vm',
+                    title: 'training',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Training  '
+                    },
+                    roles:['ROLE_ADMIN']
+                }
+            },
+            {
+                url: '/training/:id',
+                config: {
+                    templateUrl: 'app/training/member.html',
+                    controller: 'Member',
+                    controllerAs: 'vm',
+                    title: 'training',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Training  '
                     },
                     roles:['ROLE_ADMIN']
                 }

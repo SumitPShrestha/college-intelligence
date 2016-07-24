@@ -1,5 +1,6 @@
 package com.cms.repository;
 
+import com.cms.model.Goal;
 import com.cms.model.GoalActivity;
 import com.cms.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,10 @@ import java.util.List;
 
 public interface IGoalActivity extends JpaRepository<GoalActivity, Integer>,
         JpaSpecificationExecutor<GoalActivity> {
+
+
+    @Query("SELECT u.goal FROM GoalActivity u WHERE u.activity.id=:activityId")
+    List<Goal> getAllGoalsByActivityId(@Param("activityId")Integer activityId);
 
 
 

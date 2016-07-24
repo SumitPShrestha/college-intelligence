@@ -1,7 +1,8 @@
 package com.cms.controller;
 
+import com.cms.dto.ProjectDTO;
 import com.cms.dto.UserDTO;
-import com.cms.service.IUserService;
+import com.cms.service.IAdminService;
 import com.cms.service.RequestUrlToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,55 +16,23 @@ import java.util.List;
 @Controller
 /*@Secured("ROLE_ADMIN")*/
 
-@RequestMapping("/admin")
+@RequestMapping("/all")
 public class DefaultController {
 
     @Autowired
-    private IUserService userService;
+    private IAdminService adminService;
 
-    @RequestMapping(value = RequestUrlToken.CREATE_USER, method = RequestMethod.POST)
+    @RequestMapping(value = RequestUrlToken.GET_PROJECTS_BY_FISCAL_YEAR, method = RequestMethod.GET)
     @ResponseBody
-    public String edit(@RequestBody UserDTO dto)
-            throws JsonProcessingException {
-        String userId = userService.createOrEditApplicationUser(dto);
-        ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  created successfully");
-        return val;
+    public List<ProjectDTO> showAllProjects(@PathVariable String fiscalYear)  throws JsonProcessingException {
+        List<ProjectDTO> pjs = adminService.getAllProjectsByFiscalYear(fiscalYear);
+        return pjs;
     }
-    @RequestMapping(value = RequestUrlToken.UPDATE_USER, method = RequestMethod.PUT)
+    @RequestMapping(value = RequestUrlToken.GET_PROJECT, method = RequestMethod.GET)
     @ResponseBody
-    public String saveUser(@RequestBody UserDTO dto)
-            throws JsonProcessingException {
-        String userId = userService.createOrEditApplicationUser(dto);
-        ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  edited successfully");
-        return val;
-    }
-
-    @RequestMapping(value = RequestUrlToken.GET_USERS, method = RequestMethod.GET)
-    @ResponseBody
-    public List<UserDTO> showAllUsers()
-            throws JsonProcessingException {
-        List<UserDTO> ss = userService.getAllUsers();
-        return ss;
-    }
-    @RequestMapping(value = RequestUrlToken.GET_USER, method = RequestMethod.GET)
-    @ResponseBody
-    public UserDTO getSingleUser(@PathVariable Integer id)
+    public ProjectDTO getSingleProject(@PathVariable Integer id)
             throws JsonProcessingException {
 
-        return userService.getUser(id);
+        return adminService.getProject(id);
     }
-    @RequestMapping(value = RequestUrlToken.DELETE_USER, method = RequestMethod.DELETE)
-    @ResponseBody
-    public String deleteExam(@PathVariable Integer id)
-            throws JsonProcessingException {
-
-        String userId=userService.deleteUser(id);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId);
-        return val;
-    }
-
 }

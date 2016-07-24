@@ -5,10 +5,10 @@
     'use strict';
     angular
         .module('app.project')
-        .factory('activityservice', activityservice);
+        .factory('progressservice', progressservice);
 
-    function activityservice($resource) {
-        return $resource("/privileged/activity",
+    function progressservice($resource) {
+        return $resource("/privileged/progress",
             {Id: "@Id"},
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},

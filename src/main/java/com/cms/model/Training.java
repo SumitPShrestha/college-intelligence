@@ -15,11 +15,13 @@ public class Training implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
+
+    private String name;
 
 
-    private TrainingType memberType;
-
+//    private TrainingType trainingType;
+//
 
     private Date startDate;
 
@@ -27,11 +29,10 @@ public class Training implements Serializable {
 
     private int duration;
 
-    private double budgetAllocated;
+    private double budget;
 
-    private int targetedMember;
+    private int target;
 
-    private int attendantMember;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
@@ -44,24 +45,36 @@ public class Training implements Serializable {
     TrainingCenter trainingCenter;
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Role> roles;
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public TrainingType getMemberType() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+//    public TrainingType getTrainingType() {
+//        return trainingType;
+//    }
+//
+//    public void setTrainingType(TrainingType trainingType) {
+//        this.trainingType = trainingType;
+//    }
+/*public TrainingType getMemberType() {
         return memberType;
     }
 
     public void setMemberType(TrainingType memberType) {
         this.memberType = memberType;
-    }
+    }*/
 
     public Date getStartDate() {
         return startDate;
@@ -87,30 +100,30 @@ public class Training implements Serializable {
         this.duration = duration;
     }
 
-    public double getBudgetAllocated() {
-        return budgetAllocated;
+    public double getBudget () {
+        return budget ;
     }
 
-    public void setBudgetAllocated(double budgetAllocated) {
-        this.budgetAllocated = budgetAllocated;
+    public void setBudget (double budget) {
+        this.budget = budget;
     }
 
-    public int getTargetedMember() {
-        return targetedMember;
+    public int getTarget() {
+        return target;
     }
 
-    public void setTargetedMember(int targetedMember) {
-        this.targetedMember = targetedMember;
+    public void setTarget(int target) {
+        this.target = target;
     }
 
-    public int getAttendantMember() {
-        return attendantMember;
-    }
+    /* public int getAttendantMember() {
+             return attendantMember;
+         }
 
-    public void setAttendantMember(int attendantMember) {
-        this.attendantMember = attendantMember;
-    }
-
+         public void setAttendantMember(int attendantMember) {
+             this.attendantMember = attendantMember;
+         }
+     */
     public Member getTrainer() {
         return trainer;
     }
@@ -126,12 +139,5 @@ public class Training implements Serializable {
     public void setTrainingCenter(TrainingCenter trainingCenter) {
         this.trainingCenter = trainingCenter;
     }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }
+

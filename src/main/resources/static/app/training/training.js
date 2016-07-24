@@ -1,39 +1,33 @@
 (function () {
     'use strict';
 
-    angular.module('app.trainingcenter')
-        .controller('TrainingCenter', TrainingCenter);
-    TrainingCenter.$inject = ['trainingcenterservice', '$scope', 'NgTableParams', 'logger'];
+    angular.module('app.training')
+        .controller('Training', Training);
+    Training.$inject = ['trainingservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
 
-    function TrainingCenter(trainingcenterservice, $scope, NgTableParams, logger) {
-        findAll();
+    function Training(trainingservice, $scope, NgTableParams, logger, $routeParams) {
+        var tcId = $routeParams.id;
+        findAll(tcId);
 
         var self = this;
 
         var vm = this;
 
+        vm.riskyId=0;
 
-        $scope.trainingCenter = ['Ramechhap', 'Rasuwa', 'Sindhupalchowk'];
-        $scope.selectedTrainingCenterItem=$scope.trainingCenter[0];
-
-
-        $scope.trainingCenterDropboxitemselected = function (item) {
-
-            $scope.selectedTrainingCenterItem = item;
-        }
+        $scope.tmodel = {};
         $scope.initCreatePanel = function () {
-
-            $scope.tcmodel = {};
-            vm.title = "Create Training Center";
+            vm.riskyId=0;
+            vm.title = "Create Training Panel ";
             vm.showCreatePanel = !vm.showCreatePanel;
             $scope.btnText = "Create ";
         }
         $scope.initEditPanel = function (pid) {
             $scope.btnText = "Update";
             vm.riskyId = pid;
-            getSingleProject(pid);
+            getSingleTraining(pid);
 
-            vm.title = "Edit User";
+            vm.title = "Edit Training Panel";
             vm.showCreatePanel = true;
         }
 
@@ -51,52 +45,63 @@
         }
         function showValidationErrors() {
             $scope.submitted = true;
-            // $scope.userForm.username.$error.required=true;
         }
+
         $scope.eitherCreateOrEdit = function () {
-            var x = {id: vm.riskyId,
-                name: $scope.tcmodel.name,
-                address: $scope.tcmodel.address,
-                district:$scope.tcmodel.district,
-                zone:$scope.tcmodel.zone,
-                parentTrainingCenter:$scope.selectedTrainingCenterItem
+            var x = {
+                id: vm.riskyId,
+                name: $scope.tmodel.name,
+                budget: $scope.tmodel.budget,
+                start: $scope.tmodel.start,
+                end: $scope.tmodel.end,
+                target: $scope.tmodel.target,
+                trainingCenterId:tcId,
+
+
 
             }
 
-            createOrEditTrainingCenter(x);
+            createOrEditTraining(x);
 
         }
-        function createOrEditTrainingCenter(tc) {
-            trainingcenterservice.addTrainingCenter(tc).$promise.then(function (data) {
-                 findAll();
+        $scope.deleteTheTraining = function (trainingId) {
+            trainingservice.deleteTraining({id: trainingId}).$promise.then(function (data) {
+                findAll(tcId);
+            });
+        }
+        function createOrEditTraining(tc) {
+            trainingservice.addTraining(tc).$promise.then(function (data) {
+                findAll(tcId);
                 $scope.closeThePanel();
             });
 
         }
 
-        function getSingleTrainingCenter(pid) {
-            trainingcenterservice.getTrainingCenter({id: pid}).$promise.then(function (data) {
-                settcmodels(data);
+        function getSingleTraining(pid) {
+            trainingservice.getTraining({id: pid}).$promise.then(function (data) {
+                settmodels(data);
             });
 
 
         }
-        function settcmodels(data) {
-            $scope.tcmodel.name = data.name;
-            $scope.tcmodel.address = data.address;
-            $scope.tcmodel.district = data.budgetSubHeadNumber;
-            $scope.tcmodel.zone = data.budget;
-            $scope.tcmodel.parentTrainingCenter = data.parentTrainingCenter;
+
+        function settmodels(data) {
+            $scope.tmodel.name = data.name;
+            $scope.tmodel.budget = data.budget;
+            $scope.tmodel.start = data.start;
+            $scope.tmodel.end = data.end;
+            $scope.tmodel.target = data.target;
 
         }
 
 
-        function findAll() {
-            trainingcenterservice.findAllTrainingCenters().$promise.then(function (data) {
+        function findAll(tcId) {
+            trainingservice.findAllTrainingsByTrainingCenterId({id: tcId}).$promise.then(function (data) {
                 self.tableParams = new NgTableParams({}, {dataset: data});
             });
 
         }
+
 
     }
 

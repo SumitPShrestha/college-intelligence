@@ -4,19 +4,20 @@
 (function () {
     'use strict';
     angular
-        .module('app.demo')
-        .factory('userservice', userservice);
+        .module('app.training')
+        .factory('trainingcenterservice', trainingcenterservice);
 
-    function userservice($resource) {
-        return $resource("/admin/users",
+    function trainingcenterservice($resource) {
+        return $resource("/admin/trainingcenters",
             {Id: "@Id"},
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},
                 editUser: {method: "PUT"},
-                findAllUsers: {url:'/admin/users/','method': 'GET', isArray: true},
-                addUsers: {url:'/admin/user/',method: 'POST'},
-                deleteUser: {'url':'/admin/user/:id','method': 'DELETE','params': {id: '@id'}},
-                getUser: {'url':'/admin/user/:id','method': 'GET','params': {id: '@id'}}
+                findAllTrainingCenters: {url:'/admin/trainingCenters/','method': 'GET', isArray: true},
+                addTrainingCenter: {url:'/admin/trainingCenter/',method: 'POST'},
+                deleteTrainingCenterIfPossible: {'url':'/admin/trainingCenter/:id','method': 'DELETE','params': {id: '@id'}},
+                getTrainingCenter: {'url':'/admin/trainingCenter/:id','method': 'GET','params': {id: '@id'}},
+                findAllParentTrainingCenters: {url:'/admin/parentTrainingCenters/','method': 'GET', isArray: true}
 
 
             }

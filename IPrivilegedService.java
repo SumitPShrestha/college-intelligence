@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by amit on 6/16/16.
  */
-public interface IAdminService {
+public interface IPrivilegedService {
     List<ProjectDTO> getAllProjectsByFiscalYear(String fiscalYear);
 
     String createOrEditProject(ProjectDTO dto);

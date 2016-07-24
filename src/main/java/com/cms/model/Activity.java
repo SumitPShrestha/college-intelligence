@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "activity")
@@ -22,14 +23,12 @@ public class Activity implements Serializable {
 
     private String expenseHead;
     private String unit;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "progress_id")
-    private Progress progress;
+    @JoinColumn(name = "project_id")
+    private Project project;
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
+    private List<ActivityProgress> activityProgresses;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "goal_id")
-    private Goal goal;
 
     public String getUnit() {
         return unit;

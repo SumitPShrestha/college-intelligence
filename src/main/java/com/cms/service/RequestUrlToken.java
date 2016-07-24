@@ -9,11 +9,64 @@ import org.springframework.stereotype.Service;
 
 public class RequestUrlToken {
 
-    public static final String CREATE_USER = "/users";
+   /* CRUD for Users*/
+    public static final String CREATE_USER = "/user";
     public static final String UPDATE_USER = "/users";
     public static final String GET_USER = "/user/{id}";
     public static final String DELETE_USER = "/user/{id}";
     public static final String GET_USERS = "/users";
+
+    /* CRUD for Projects*/
+    public static final String CREATE_PROJECT = "/projects";
+    public static final String UPDATE_PROJECT= "/projects";
+    public static final String GET_PROJECT= "/project/pid/{id}";
+    public static final String DELETE_PROJECT = "/project/{id}";
+    public static final String GET_PROJECTS = "/projects";
+    public static final String GET_PROJECTS_BY_FISCAL_YEAR = "/project/{fiscalYear}";
+
+ /* CRUD for Activities*/
+ public static final String CREATE_ACTIVITY = "/activity";
+ public static final String UPDATE_ACTIVITY= "/activity";
+ public static final String GET_ACTIVITY_BY_PROJECT_ID= "/activity/code/{code}";
+ public static final String DELETE_ACTIVITY= "/activity/{id}";
+ public static final String GET_ACTIVITY= "/activity/{id}";
+
+
+
+
+ /* CRUD for GOAL*/
+ public static final String CREATE_GOAL = "/activity-goal";
+ public static final String UPDATE_GOAL = "/activity-goal";
+ public static final String GET_GOALS_BY_ACTIVITY_ID = "/activity-goal/{id}";
+
+
+ /* CRUD for TRAINING CENTERS*/
+ public static final String CREATE_TC = "/trainingCenter";
+ public static final String UPDATE_TC = "/trainingCenter";
+ public static final String DELETE_TC = "/trainingCenter/{id}";
+ public static final String GET_TC = "/trainingCenter/{id}";
+ public static final String GET_TCS = "/trainingCenters";
+ public static final String GET_PARENT_TCS = "/parentTrainingCenters";
+
+
+
+
+ /* CRUD for TRAINING  */
+ public static final String CREATE_TRAINING = "/training";
+ public static final String UPDATE_TRAINING = "/training";
+ public static final String DELETE_TRAINING = "/training/{id}";
+ public static final String GET_TRAINING = "/training/{id}";
+ public static final String GET_TRAININGS_BY_TC_ID = "/trainings/{id}";
+ public static final String GET_PARENT_TRAININGS = "/parentTrainingCenters";
+
+
+
+ /* CRUD for Users*/
+ public static final String CREATE_MEMBER= "/member";
+ public static final String UPDATE_MEMBER= "/members";
+ public static final String GET_MEMBER= "/member/{id}";
+ public static final String DELETE_MEMBER= "/member/{id}";
+ public static final String GET_MEMBERS_BY_TRAINING_ID = "/members/training/{trainingId}";
 
 
 }

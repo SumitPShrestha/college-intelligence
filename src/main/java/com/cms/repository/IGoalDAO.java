@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface IGoalDAO extends JpaRepository<Goal, Integer>,
-        JpaSpecificationExecutor<Role> {
+        JpaSpecificationExecutor<Goal> {
 
 	/*
      * @Query("SELECT u FROM Role u WHERE LOWER(u.Rolename) = LOWER(:name)")

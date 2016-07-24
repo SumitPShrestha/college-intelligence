@@ -24,8 +24,27 @@ public class Progress implements Serializable {
 
     private String unit;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "progress")
-    private List<Activity> activitiesList;
+    private String pCode;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
+    private List<ActivityProgress> activityProgresses;
+
+
+    public String getpCode() {
+        return pCode;
+    }
+
+    public void setpCode(String pCode) {
+        this.pCode = pCode;
+    }
+
+    public List<ActivityProgress> getActivityProgresses() {
+        return activityProgresses;
+    }
+
+    public void setActivityProgresses(List<ActivityProgress> activityProgresses) {
+        this.activityProgresses = activityProgresses;
+    }
 
     public Integer getId() {
         return id;
@@ -67,11 +86,4 @@ public class Progress implements Serializable {
         this.unit = unit;
     }
 
-    public List<Activity> getActivitiesList() {
-        return activitiesList;
-    }
-
-    public void setActivitiesList(List<Activity> activitiesList) {
-        this.activitiesList = activitiesList;
-    }
 }

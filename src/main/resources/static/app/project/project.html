@@ -11,31 +11,62 @@
         top: -20px;
         position: relative;
     }
+
     .form-group .help-block {
         display: none;
 
     }
+
     .error-block {
         color: #a94442;
 
     }
-    .form-item-container{
-        height:85px;
+
+    .form-item-container {
+        height: 85px;
     }
+
     .form-group.has-error .help-block {
         display: block;
     }
 
-    .radiobox{
-        width:50px;
+    .radiobox {
+        width: 50px;
+    }
+
+    table tr td {
+        width: auto;
+        text-align: center;
     }
 </style>
 <section class="mainbar">
     <section class="matter">
         <div class="container">
-            <div class="row">
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="true">-->
+                    <!--{{selectedItem}}-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="row">Fiscal Year
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
                 <button type="button" class="btn btn-primary btn-lg right"
-                        ng-click="initCreatePanel()">Create User
+                        ng-click="initCreatePanel()">Create Project
                 </button>
             </div>
             <div ng-show="vm.showCreatePanel" class="row" id="hero">
@@ -50,343 +81,134 @@
                     <div class="widget-content user">
 
 
-                        <!-- <form>
-                             <div class="form-group">
-                                 <label for="exampleInputEmail1">Email address</label>
-                                 <input data-ng-model="usermodel.username"  class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{vm.user.username}}" >
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputPassword1">Password</label>
-                                 <input data-ng-model="usermodel.password" type="password" class="form-control" id="exampleInputPassword1" value="{{vm.user.password}}"
-                                        placeholder="Password">
-                             </div>
-                             <div class="form-group">
-                                 <label for="exampleInputFile">File input</label>
-                                 <input type="file" id="exampleInputFile">
-                                 <p class="help-block">Example block-level help text here.</p>
-                             </div>
-                             <div class="checkbox">
-                                 <label>
-                                     <input type="checkbox"> Check me out and out and what is this again out
-                                 </label>
-                             </div>
-                             <button type="submit" class="btn btn-default" ng-click="eitherCreateOrEdit()">{{btnText}}</button>
-                         </form>-->
-                        <!--<ng-form name="pp">
-                            <formitemtextbox   hel="enter hero"   req="true" minimumlength="5"
-                                               label="hero" input="heroagain"></formitemtextbox>
+                        <form name="projectForm" novalidate>
 
-                            <formitemtextbox  hel="enter heroine"   label="heroine"  req="true"
-                                              patternkoname="number only" input="heroineagain"></formitemtextbox>
-
-                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(pp.$valid)">Submit</button>
-                        </ng-form>
-                        <li data-ng-show="pp.$valid">Showing valid</li>
-                        <li data-ng-show="pp.$valid">Showing valid</li>
-                        <li data-ng-show="pp.heroineagain.$valid">Showing valid</li>-->
-                        <form name="userForm" novalidate>
-                            <!--<div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">-->
-                            <!--<label>Name</label>-->
-                            <!--<input type="text" name="name" class="form-control" ng-model="usermodel.name" required>-->
-                            <!--<p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>-->
-                            <!--</div>-->
-
-                            <!-- USERNAME -->
-                            <!-- <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                                 <label>Username</label>
-                                 <input type="text" name="username" class="form-control" ng-model="usermodel.username" ng-minlength="3" ng-maxlength="8" required>
-                                 <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
-                                 <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
-                                 <p ng-show="userForm.username.$error.required" class="help-block">Username is required.</p>
-
-                             </div>-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">User Security Details</h3>
+                                    <h3 class="panel-title">Project Details</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
-                                            <label>Username :<span>*</span></label>
-                                            <input type="email" name="username" class="form-control"
-                                                   ng-model="usermodel.username" required>
+                                             ng-class="{ 'has-error' : projectmodel.projectCode.$invalid && !projectmodel.projectCode.$pristine }">
+                                            <label>Project Code :<span>*</span></label>
+                                            <input type="text" name="projectCode" class="form-control"
+                                                   ng-model="projectmodel.projectCode" required>
                                             <!--&lt;!&ndash;-->
-                                            <!--(userForm.username.$error.required && !userForm.username.$pristine)|| -->
+                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
                                             <!--&ndash;&gt;-->
                                         </div>
-                                        <p ng-show="userForm.username.$invalid && !userForm.username.$pristine " class="error-block">Enter
-                                            valid email.</p>
-                                        <p class="error-block" ng-show="(userForm.username.$error.required && !userForm.username.$pristine) ||( submitted  && userForm.username.$pristine)">Username
-                                            is required.</p>
-                                        {{submitted}}aa
-                                        {{userForm.username.$error.required}}
+
+                                        <p class="error-block"
+                                           ng-show="(projectForm.projectCode.$error.required && !projectForm.projectCode.$pristine) ||( submitted  && projectForm.projectCode.$pristine)">
+                                            Project Code is required.</p>
+
 
                                     </div>
 
-                                    <!-- EMAIL -->
-                                    <!--<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }" >-->
-                                    <!--<label>Email</label>-->
-                                    <!--<input type="email" name="email" class="form-control" ng-model="user.email" required>-->
-                                    <!--<p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>-->
-                                    <!--<p ng-show="userForm.email.$error.required" class="help-block">Email is required.</p>-->
 
-                                    <!--</div>-->
-                                    <div class="col-md-6 form-item-container" >
+                                    <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
-                                            <label>Password :<span>*</span></label>
-                                            <input type="text" name="password" class="form-control"
-                                                   ng-model="usermodel.password" required>
+                                             ng-class="{ 'has-error' : projectmodel.budgetSubHeadNumber.$invalid && !projectmodel.budgetSubHeadNumber.$pristine }">
+                                            <label>Budget Sub-Head :<span>*</span></label>
+                                            <input type="text" name="budgetSubHeadNumber" class="form-control"
+                                                   ng-model="projectmodel.budgetSubHeadNumber" required>
                                         </div>
-                                        <p class="error-block" ng-show="(userForm.password.$error.required && !userForm.password.$pristine) ||( submitted  && userForm.password.$pristine)">Password
-                                            is required.</p>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.budgetSubHeadNumber.$error.required && !projectForm.budgetSubHeadNumber.$pristine) ||( submitted  && projectForm.budgetSubHeadNumber.$pristine)">
+                                            Budget Sub-Head is required</p>
 
                                     </div>
 
                                     <div class="col-md-6 form-item-container">
-                                        <div class="form-group">
-                                            <label>Roles:</label>
-
-                                            <div data-ng-repeat="role in roles">
-                                                <label class="checkbox" style="width: auto" for="{{role.id}}">
-                                                    <input type="checkbox" ng-model="usermodel.selection.ids[role.name]"
-                                                           name="group" id="{{role.id}}"/>
-
-                                                    <div class="col-md-3">{{role.name}}</div>
-                                                </label>
-                                            </div>
-                                            {{selection}}
-
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : projectmodel.budget.$invalid && !projectmodel.budget.$pristine }">
+                                            <label>Budget :<span>*</span></label>
+                                            <input type="text" name="budget" class="form-control"
+                                                   ng-model="projectmodel.budget" required>
                                         </div>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.budget.$error.required && !projectForm.budget.$pristine) ||( submitted  && projectForm.budget.$pristine)">
+                                            Budget is required.</p>
+
                                     </div>
                                     <div class="col-md-6 form-item-container">
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">User Information Details</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
-                                            <label>First Name:<span>*</span></label>
-                                            <input type="text" name="firstName" class="form-control"
-                                                   ng-model="usermodel.firstName" required>
-
+                                             ng-class="{ 'has-error' : projectmodel.aidOrganisation.$invalid && !projectmodel.aidOrganisation.$pristine }">
+                                            <label> Aid Organisation :<span>*</span></label>
+                                            <input type="text" name="aidOrganisation" class="form-control"
+                                                   ng-model="projectmodel.aidOrganisation" required>
                                         </div>
-                                        <p ng-show="(userForm.firstName.$error.required && !userForm.firstName.$pristine) ||( submitted  && userForm.firstName.$pristine)" class="error-block">First Name
-                                            is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group">
-                                            <label>Middle Name:</label>
-                                            <input type="text" name="middleName" class="form-control"
-                                                   ng-model="usermodel.middleName"  >
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
-                                            <label>LastName :<span>*</span></label>
-                                            <input type="text" name="lastName" class="form-control"
-                                                   ng-model="usermodel.lastName" required>
-
-                                        </div>
-                                        <p ng-show="(userForm.lastName.$error.required && !userForm.lastName.$pristine) ||( submitted  && userForm.lastName.$pristine)" class="error-block">Last Name
-                                            is required.</p>
-
-                                    </div>
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group">
-
-                                            <label >Sex :<span>*</span></label>
-
-
-                                            <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="male">Male
-
-
-
-                                            <input class="radiobox" type="radio" data-ng-model="usermodel.sex" value="female">Female
-
-
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.dob.$invalid && !userForm.dob.$pristine }">
-                                            <label>Date Of Birth :<span>*</span></label>
-                                            <input type="date" name="dob" class="form-control"
-                                                   ng-model="usermodel.dob" required>
-
-                                        </div>
-                                        <p ng-show="userForm.dob.$invalid && !userForm.dob.$pristine" class="error-block">Enter
-                                            valid date.</p>
-                                        <p ng-show="(userForm.dob.$error.required && !userForm.dob.$pristine) ||( submitted  && userForm.dob.$pristine)" class="error-block">Date of Birth
-                                            is required.
-                                        </p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine }">
-                                            <label>Landline Number : </label>
-                                            <input type="number" name="landlineNumber" class="form-control"
-                                                   ng-model="usermodel.landlineNumber" required>
-                                        </div>
-                                        <p ng-show="userForm.landlineNumber.$invalid && !userForm.landlineNumber.$pristine" class="error-block">Enter
-                                            valid land-line number.</p>
-                                        <p ng-show="(userForm.landlineNumber.$error.required && !userForm.landlineNumber.$pristine) ||( submitted  && userForm.landlineNumber.$pristine)" class="error-block">Land-line Number
-                                            is required.
-                                        </p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine }">
-                                            <label>Mobile Number : </label>
-                                            <input type="number" name="mobileNumber" class="form-control"
-                                                   ng-model="usermodel.mobileNumber">
-                                        </div>
-                                        <p ng-show="userForm.mobileNumber.$invalid && !userForm.mobileNumber.$pristine" class="error-block">Enter
-                                            valid mobile number.</p>
-                                        <p ng-show="(userForm.mobileNumber.$error.required && !userForm.mobileNumber.$pristine) ||( submitted  && userForm.mobileNumber.$pristine)" class="error-block">Mobile Number
-                                            is required.
-                                        </p>
+                                        <p class="error-block"
+                                           ng-show="(projectForm.budgetSubHeadNumber.$error.required && !projectForm.aidOrganisation.$pristine) ||( submitted  && projectForm.aidOrganisation.$pristine)">
+                                            Aid Organisation name is required.</p>
 
                                     </div>
 
 
-                                </div>
-
-
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Address Details</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.streetAddress.$invalid && !userForm.streetAddress.$pristine }">
-                                            <label>Tole :<span>*</span></label>
-                                            <input type="text" name="streetAddress" class="form-control"
-                                                   ng-model="usermodel.streetAddress" required>
-
-                                        </div>
-                                        <p ng-show="(userForm.streetAddress.$error.required && !userForm.streetAddress.$pristine) ||( submitted  && userForm.streetAddress.$pristine)" class="error-block">Tole  Name
-                                            is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.vdcOrMunicipality.$invalid && !userForm.vdcOrMunicipality.$pristine }">
-                                            <label>VDC/Municipality :<span>*</span></label>
-
-                                            <input type="text" name="vdcOrMunicipality" class="form-control"
-                                                   ng-model="usermodel.vdcOrMunicipality" required>
-
-                                        </div>
-                                        <p ng-show="(userForm.vdcOrMunicipality.$error.required && !userForm.vdcOrMunicipality.$pristine) ||( submitted  && userForm.vdcOrMunicipality.$pristine)" class="error-block">VDC/Municipality
-                                            is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.district.$invalid && !userForm.district.$pristine }">
-                                            <label>District :<span>*</span></label>
-                                            <input type="text" name="district" class="form-control"
-                                                   ng-model="usermodel.district" required>
-
-                                        </div>
-                                        <p ng-show="(userForm.district.$error.required && !userForm.district.$pristine) ||( submitted  && userForm.district.$pristine)" class="error-block">District
-                                            is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.zone.$invalid && !userForm.zone.$pristine }">
-                                            <label>Zone :<span>*</span></label>
-                                            <input type="text" name="zone" class="form-control"
-                                                   ng-model="usermodel.zone" required>
-
-                                            <p ng-show="(userForm.zone.$error.required && !userForm.zone.$pristine) ||( submitted  && userForm.zone.$pristine)" class="error-block">Zone
-                                                is required.</p>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : userForm.country.$invalid && !userForm.country.$pristine }">
-                                            <label>Country :<span>*</span></label>
-                                            <input type="text" name="country" class="form-control"
-                                                   ng-model="usermodel.country" required>
-
-                                            <p ng-show="(userForm.country.$error.required && !userForm.country.$pristine) ||( submitted  && userForm.country.$pristine)" class="error-block">Country
-                                                is required.</p>
-
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(userForm.$valid)">
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(projectForm.$valid)">
                                 {{btnText}}
                             </button>
 
-                            {{userForm.$valid}}
+                            {{projectForm.$valid}}
                         </form>
                     </div>
 
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="widget wblue">
                     <div data-cc-widget-header title="User View Panel"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="false">
-                        <tr ng-repeat="user in $data">
-                            <td style="width: auto;text-align: center"title="'Username'" filter="{ name: 'text'}" sortable="'username'">
-                              <span>{{user.username}}</span>
+                        <tr ng-repeat="p in $data">
+
+
+                            <td title="'Project Code'" filter="{ projectCode: 'text'}" sortable="'projectCode'">
+                                <span>{{p.projectCode}}</span>
+                            </td>
+                            <td title="'Budget'" filter="{ budget  : 'text'}" sortable="'budget'">
+                                <span> {{p.budget}}</span>
+
+                            <td title="'Budget Sub Head Number'" filter="{ budgetSubHeadNumber: 'text'}"
+                                sortable="'budgetSubHeadNumber'">
+                                <span>   {{p.budgetSubHeadNumber}} </span>
+                            </td>
+                            <td title="'Aid Organisation'" filter="{ aidOrganisation: 'text'}"
+                                sortable="'aidOrganisation'">
+                                <span> {{p.aidOrganisation}}</span>
                             </td>
 
-                            <td style="width: auto;text-align: center" title="'Address'" filter="{ age: 'text'}" sortable="'address'">
-                                <span>{{user.streetAddress}},{{user.vdcOrMunicipality}},{{user.district}},{{user.zone}}</span>
-                            </td>
-                            <td title="'Name'" filter="{ age: 'text'}" sortable="'firstName'">
-                                {{user.firstName}}  {{user.middleName}} {{user.lastName}}
-                            </td>
-                            <td style="width: auto;text-align: center" title="'Date of Birth'" filter="{ age: 'text'}" sortable="'dob'">
-                                {{user.dob}}
-                            </td>
-                            <td style="width: auto;text-align: center" title="'Mobile Number'" filter="{ age: 'text'}" sortable="'mobileNumber'">
-                                {{user.mobileNumber}}
-                            </td>
-                            <td style="width: auto;text-align: center" title="'Landline Number'" filter="{ age: 'text'}" sortable="'landlineNumber'">
-                                {{user.landlineNumber}}
-                            </td>
-                            <td style="width: auto;text-align: center" class="cursor-hands">
+                            <td class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(user.id)"></span>
+                                      ng-click="initEditPanel(p.id)"></span>
                             </td>
-                            <td style="width: auto;text-align: center">
-                                <a data-toggle="tooltip" title="Delete !">
-                                    <span ng-click="deleteTheUser(user.id)"
+                            <td>
+                                <a data-toggle="tooltip" title="Delete!">
+                                    <span ng-click="deleteTheProject(p.id)"
                                           class="glyphicon glyphicon-trash red"></span>
                                 </a>
                             </td>
+                            <td>
+                                <a data-toggle="tooltip" title="View All Activities !" href="/#/activity/{{p.projectCode}}">
+                                    <i class="fa fa-eye blue" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <!--<td>-->
+                                <!--<a data-toggle="tooltip" title="Update Progress !">-->
+                                    <!--<span ng-click="deleteTheUser(p.id)">-->
+
+                              <!--<i class="fa fa-wrench" style="font-size:24px"></i>-->
+
+                                    <!--</span>-->
+                                <!--</a>-->
+                            <!--</td>-->
 
                         </tr>
                     </table>

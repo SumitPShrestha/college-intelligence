@@ -38,6 +38,9 @@
         width: auto;
         text-align: center;
     }
+    .dropdown-menu{
+        margin-left: 146px;
+    }
 </style>
 <section class="mainbar">
     <section class="matter">
@@ -61,28 +64,28 @@
                     <div class="widget-content user">
 
 
-                        <form name="activityForm" novalidate>
+                        <form name="progressForm" novalidate>
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Activity Details</h3>
+                                    <h3 class="panel-title">Progress Details</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : activityForm.activityHead.$invalid && !activityForm.activityHead.$pristine }">
+                                             ng-class="{ 'has-error' : progressForm.pCode.$invalid && !progressForm.pCode.$pristine }">
                                             <label>Project Code :<span>*</span></label>
-                                            <input type="text" name="activityHead" class="form-control"
-                                                   ng-model="activitymodel.activityHead" required>
+                                            <input type="text" name="pCode" class="form-control"
+                                                   ng-model="progressmodel.pCode" required>
                                             <!--&lt;!&ndash;-->
-                                            <!--(activityForm.username.$error.required && !activityForm.username.$pristine)|| -->
+                                            <!--(progressForm.username.$error.required && !progressForm.username.$pristine)|| -->
                                             <!--&ndash;&gt;-->
                                         </div>
-                                        <p ng-show="activityForm.activityHead.$invalid && !activityForm.activityHead.$pristine "
+                                        <p ng-show="progressForm.pCode.$invalid && !progressForm.pCode.$pristine "
                                            class="error-block">Enter
                                             valid email.</p>
                                         <p class="error-block"
-                                           ng-show="(activityForm.activityHead.$error.required && !activityForm.activityHead.$pristine) ||( submitted  && activityForm.username.$pristine)">
+                                           ng-show="(progressForm.pCode.$error.required && !progressForm.pCode.$pristine) ||( submitted  && progressForm.username.$pristine)">
                                             Project Code is required.</p>
 
 
@@ -91,52 +94,89 @@
 
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : activitymodel.expenseHead.$invalid && !activitymodel.expenseHead.$pristine }">
-                                            <label>Budget Sub-Head :<span>*</span></label>
-                                            <input type="text" name="expenseHead" class="form-control"
-                                                   ng-model="activitymodel.expenseHead" required>
+                                             ng-class="{ 'has-error' : progressmodel.goalQty.$invalid && !progressmodel.goalQty.$pristine }">
+                                            <label>Goal Qty :<span>*</span></label>
+                                            <input type="text" name="goalQty" class="form-control"
+                                                   ng-model="progressmodel.goalQty" required>
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(activityForm.expenseHead.$error.required && !activityForm.expenseHead.$pristine) ||( submitted  && activityForm.expenseHead.$pristine)">
-                                            Budget Sub-Head is required</p>
+                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.goalQty.$pristine) ||( submitted  && progressForm.goalQty.$pristine)">
+                                            Goal Qty is required</p>
 
                                     </div>
 
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : activitymodel.budget.$invalid && !activitymodel.budget.$pristine }">
-                                            <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
-                                                   ng-model="activitymodel.budget" required>
+                                             ng-class="{ 'has-error' : progressmodel.progressQty.$invalid && !progressmodel.progressQty.$pristine }">
+                                            <label>Progress Qty :<span>*</span></label>
+                                            <input type="text" name="progressQty" class="form-control"
+                                                   ng-model="progressmodel.progressQty" required>
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(activityForm.budget.$error.required && !activityForm.budget.$pristine) ||( submitted  && activityForm.budget.$pristine)">
-                                            Budget is required.</p>
+                                           ng-show="(progressForm.progressQty.$error.required && !progressForm.progressQty.$pristine) ||( submitted  && progressForm.progressQty.$pristine)">
+                                            Progress Qty is required.</p>
 
                                     </div>
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : activitymodel.unit.$invalid && !activitymodel.unit.$pristine }">
-                                            <label>  :<span>*</span></label>
+                                             ng-class="{ 'has-error' : progressmodel.unit.$invalid && !progressmodel.unit.$pristine }">
+                                            <label>Unit :<span>*</span></label>
                                             <input type="text" name="unit" class="form-control"
-                                                   ng-model="activitymodel.unit" required>
+                                                   ng-model="progressmodel.unit" required>
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(activityForm.expenseHead.$error.required && !activityForm.unit.$pristine) ||( submitted  && activityForm.unit.$pristine)">
-                                            is required.</p>
+                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.unit.$pristine) ||( submitted  && progressForm.unit.$pristine)">
+                                            Unit is required.</p>
 
                                     </div>
+                                    <div class="col-md-6 form-item-container">
+
+
+                                        <div class="dropdown">
+                                            <label>Time Frame:<span>*</span></label>
+                                            <button class="btn btn-default dropdown-toggle" type="button"
+                                                    id="dropdownMenu1" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                {{selectedTimeFrameItem}}
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li ng-repeat="oneYear in timeFrame"><a
+                                                        ng-click="timeFrameDropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-item-container">
+
+
+                                        <div class="dropdown">
+                                            <label>Training Center :<span>*</span></label>
+                                            <button class="btn btn-default dropdown-toggle" type="button"
+                                                    id="dropdownMenu1" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                {{selectedTrainingCenterItem}}
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li ng-repeat="tc in trainingCenters"><a
+                                                        ng-click="trainingCenterDropboxitemselected(tc)">{{tc}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
 
 
                                 </div>
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(activityForm.$valid)">
+                            <button type="submit" class="btn btn-primary" ng-click="submitFormss(progressForm.$valid)">
                                 {{btnText}}
                             </button>
 
-                            {{activityForm.$valid}}
+                            {{progressForm.$valid}}
                         </form>
 
 
@@ -189,18 +229,16 @@
                                     </div>
 
 
-
-
                                     <div class="col-md-4 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : q1goalmodel.budget.$invalid && !projectmodel.budget.$pristine }">
-                                            <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
-                                                   ng-model="q1goalmodel.budget" required>
+                                             ng-class="{ 'has-error' : q1goalmodel.progressQty.$invalid && !projectmodel.progressQty.$pristine }">
+                                            <label>progressQty :<span>*</span></label>
+                                            <input type="text" name="progressQty" class="form-control"
+                                                   ng-model="q1goalmodel.progressQty" required>
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(q1GoalForm.budget.$error.required && !q1GoalForm.budget.$pristine) ||( submitted  && q1GoalForm.budget.$pristine)">
-                                            Budget is required.</p>
+                                           ng-show="(q1GoalForm.progressQty.$error.required && !q1GoalForm.progressQty.$pristine) ||( submitted  && q1GoalForm.progressQty.$pristine)">
+                                            progressQty is required.</p>
 
                                     </div>
                                     <div class="col-md-4 form-item-container">
@@ -233,169 +271,26 @@
                 </div>
 
 
-
-                        <form name="q2GoalForm" novalidate>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Second Quarter Goal</h3>
-                                </div>
-                                <div class="panel-body">
-
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q2GoalForm.qty.$invalid && !q2GoalForm.qty.$pristine }">
-                                            <label>Qty :<span>*</span></label>
-                                            <input type="text" name="qty" class="form-control"
-                                                   ng-model="q2goalmodel.qty" required>
-                                            <!--&lt;!&ndash;-->
-                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
-                                            <!--&ndash;&gt;-->
-                                        </div>
-                                        <p ng-show="q2GoalForm.qty.$invalid && !q2GoalForm.qty.$pristine "
-                                           class="error-block">Enter
-                                            valid email.</p>
-                                        <p class="error-block"
-                                           ng-show="(q2GoalForm.qty.$error.required && !q2GoalForm.qty.$pristine) ||( submitted  && q2GoalForm.qty.$pristine)">
-                                            Project Code is required.</p>
-
-
-                                    </div>
-
-
-
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q2goalmodel.budget.$invalid && !projectmodel.budget.$pristine }">
-                                            <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
-                                                   ng-model="q2goalmodel.budget" required>
-                                        </div>
-                                        <p class="error-block"
-                                           ng-show="(q2GoalForm.budget.$error.required && !q2GoalForm.budget.$pristine) ||( submitted  && q2GoalForm.budget.$pristine)">
-                                            Budget is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q2goalmodel.weightage.$invalid && !q2goalmodel.weightage.$pristine }">
-                                            <label> Weightage :<span>*</span></label>
-                                            <input type="text" name="weightage" class="form-control"
-                                                   ng-model="q2goalmodel.weightage" required>
-                                        </div>
-                                        <p class="error-block"
-                                           ng-show="(q2GoalForm.weightage.$error.required && !q2GoalForm.weightage.$pristine) ||( submitted  && q2GoalForm.weightage.$pristine)">
-                                            Weightage is required.</p>
-
-                                    </div>
-
-
-                                    <button type="submit" class="btn btn-primary"
-                                            ng-click="q2submitFormss(q2GoalForm.$valid)">
-                                        {{q2btnText}}
-                                    </button>
-
-                                    {{projectForm.$valid}}
-                                </div>
-                            </div>
-
-                        </form>
-
-
-
-
-                        <form name="q3GoalForm" novalidate>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Third Quarter Goal</h3>
-                                </div>
-                                <div class="panel-body">
-
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q3GoalForm.qty.$invalid && !q3GoalForm.qty.$pristine }">
-                                            <label>Qty :<span>*</span></label>
-                                            <input type="text" name="qty" class="form-control"
-                                                   ng-model="q3goalmodel.qty" required>
-                                            <!--&lt;!&ndash;-->
-                                            <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
-                                            <!--&ndash;&gt;-->
-                                        </div>
-                                        <p ng-show="q3GoalForm.qty.$invalid && !q3GoalForm.qty.$pristine "
-                                           class="error-block">Enter
-                                            valid email.</p>
-                                        <p class="error-block"
-                                           ng-show="(q3GoalForm.qty.$error.required && !q3GoalForm.qty.$pristine) ||( submitted  && q3GoalForm.qty.$pristine)">
-                                            Project Code is required.</p>
-
-
-                                    </div>
-
-
-
-
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q3goalmodel.budget.$invalid && !projectmodel.budget.$pristine }">
-                                            <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
-                                                   ng-model="q3goalmodel.budget" required>
-                                        </div>
-                                        <p class="error-block"
-                                           ng-show="(q3GoalForm.budget.$error.required && !q3GoalForm.budget.$pristine) ||( submitted  && q3GoalForm.budget.$pristine)">
-                                            Budget is required.</p>
-
-                                    </div>
-                                    <div class="col-md-4 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : q3goalmodel.weightage.$invalid && !q3goalmodel.weightage.$pristine }">
-                                            <label> Weightage :<span>*</span></label>
-                                            <input type="text" name="weightage" class="form-control"
-                                                   ng-model="q3goalmodel.weightage" required>
-                                        </div>
-                                        <p class="error-block"
-                                           ng-show="(q3GoalForm.weightage.$error.required && !q3GoalForm.weightage.$pristine) ||( submitted  && q3GoalForm.weightage.$pristine)">
-                                            Weightage is required.</p>
-
-                                    </div>
-
-
-                                    <button type="submit" class="btn btn-primary"
-                                            ng-click="q3submitFormss(q3GoalForm.$valid)">
-                                        {{q3btnText}}
-                                    </button>
-
-                                    {{q3GoalForm.$valid}}
-                                </div>
-                            </div>
-
-                        </form>
-
-
             </div>
 
 
             <div class="row">
                 <div class="widget wblue">
-                    <div data-cc-widget-header title="Project Activity View Panel"></div>
+                    <div data-cc-widget-header title="Progress View Panel"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="false">
                         <tr ng-repeat="a in $data">
 
 
-                            <td title="'Activity Head'" filter="{ activityHead: 'text'}" sortable="'activityHead'">
-                                <span>{{a.activityHead}}</span>
+                            <td title="'Activity Head'" filter="{ pCode: 'text'}" sortable="'pCode'">
+                                <span>{{a.pCode}}</span>
                             </td>
-                            <td title="'Budget'" filter="{ budget  : 'text'}" sortable="'budget'">
-                                <span> {{a.budget}}</span>
+                            <td title="'progressQty'" filter="{ progressQty  : 'text'}" sortable="'progressQty'">
+                                <span> {{a.progressQty}}</span>
 
-                            <td title="'Expense'" filter="{ expenseHead: 'text'}"
-                                sortable="'expenseHead'">
-                                <span>   {{a.expenseHead}} </span>
+                            <td title="'Expense'" filter="{ goalQty: 'text'}"
+                                sortable="'goalQty'">
+                                <span>   {{a.goalQty}} </span>
                             </td>
                             <td title="'Unit'" filter="{ unit: 'text'}"
                                 sortable="'unit'">
@@ -424,7 +319,7 @@
                             <td>
                                 <a data-toggle="tooltip" title="Update Progress !" href="/#/progress/{{a.id}}">
 
-                               <i class="fa fa-cog fa-2x fa-fw" aria-hidden="true"></i>
+                                    <i class="fa fa-cog fa-2x fa-fw" aria-hidden="true"></i>
 
 
                                     </span>

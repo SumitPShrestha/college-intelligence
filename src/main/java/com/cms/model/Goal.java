@@ -22,8 +22,9 @@ public class Goal implements Serializable {
     private TimeFrame timeFrame;
 
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "goal")
-    private List<Activity> activitiesList;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
+    private List<ActivityProgress> activityProgresses;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -68,12 +69,12 @@ public class Goal implements Serializable {
     public void setTimeFrame(TimeFrame timeFrame) {
         this.timeFrame = timeFrame;
     }
-
-    public List<Activity> getActivitiesList() {
-        return activitiesList;
+    public List<ActivityProgress> getActivityProgresses() {
+        return activityProgresses;
     }
 
-    public void setActivitiesList(List<Activity> activitiesList) {
-        this.activitiesList = activitiesList;
+    public void setActivityProgresses(List<ActivityProgress> activityProgresses) {
+        this.activityProgresses = activityProgresses;
     }
+
 }

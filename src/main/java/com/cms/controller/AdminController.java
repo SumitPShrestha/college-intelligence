@@ -1,6 +1,9 @@
 package com.cms.controller;
 
+import com.cms.dto.ProjectDTO;
+import com.cms.dto.TrainingCenterDTO;
 import com.cms.dto.UserDTO;
+import com.cms.service.IAdminService;
 import com.cms.service.IUserService;
 import com.cms.service.RequestUrlToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,6 +27,8 @@ public class AdminController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IAdminService adminService;
 
     @RequestMapping(value = RequestUrlToken.CREATE_USER, method = RequestMethod.POST)
     @ResponseBody
@@ -60,7 +65,7 @@ public class AdminController {
     }
     @RequestMapping(value = RequestUrlToken.DELETE_USER, method = RequestMethod.DELETE)
     @ResponseBody
-    public String deleteExam(@PathVariable Integer id)
+    public String deleteUser(@PathVariable Integer id)
             throws JsonProcessingException {
 
         String userId=userService.deleteUser(id);
@@ -68,6 +73,103 @@ public class AdminController {
         ObjectMapper mapper = new ObjectMapper();
         String val = mapper.writeValueAsString(userId);
         return val;
+    }
+    @RequestMapping(value = RequestUrlToken.CREATE_PROJECT, method = RequestMethod.POST)
+    @ResponseBody
+    public String createProject(@RequestBody ProjectDTO dto)
+            throws JsonProcessingException {
+        String userId = adminService.createOrEditProject(dto);
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId +"  created successfully");
+        return val;
+    }
+    @RequestMapping(value = RequestUrlToken.UPDATE_PROJECT, method = RequestMethod.PUT)
+    @ResponseBody
+    public String editProject(@RequestBody ProjectDTO dto)
+            throws JsonProcessingException {
+        String userId = adminService.createOrEditProject(dto);
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId +"  edited successfully");
+        return val;
+    }
+
+
+    /*@RequestMapping(value = RequestUrlToken.GET_PROJECT, method = RequestMethod.GET)
+    @ResponseBody
+    public ProjectDTO getSingleProject(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        return adminService.getProject(id);
+    }*/
+    @RequestMapping(value = RequestUrlToken.DELETE_PROJECT, method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteProject(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        String userId=adminService.deleteProject(id);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId);
+        return val;
+    }
+    @RequestMapping(value = RequestUrlToken.CREATE_TC, method = RequestMethod.POST)
+    @ResponseBody
+    public String createTC(@RequestBody TrainingCenterDTO dto)
+            throws JsonProcessingException {
+        String userId = adminService.createOrEditTrainingCenter(dto);
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId +"  created successfully");
+        return val;
+    }
+    @RequestMapping(value = RequestUrlToken.UPDATE_TC, method = RequestMethod.PUT)
+    @ResponseBody
+    public String editTC(@RequestBody ProjectDTO dto)
+            throws JsonProcessingException {
+        String userId = adminService.createOrEditProject(dto);
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId +"  edited successfully");
+        return val;
+    }
+
+
+    /*@RequestMapping(value = RequestUrlToken.GET_PROJECT, method = RequestMethod.GET)
+    @ResponseBody
+    public ProjectDTO getSingleProject(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        return adminService.getProject(id);
+    }*/
+    @RequestMapping(value = RequestUrlToken.DELETE_TC, method = RequestMethod.DELETE)
+    @ResponseBody
+    public String deleteTC(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        String userId=adminService.deleteTrainingCenter(id);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String val = mapper.writeValueAsString(userId);
+        return val;
+    }
+    @RequestMapping(value = RequestUrlToken.GET_TCS, method = RequestMethod.GET)
+    @ResponseBody
+    public List<TrainingCenterDTO> showAllTrainingCenters()
+            throws JsonProcessingException {
+        List<TrainingCenterDTO> ss = adminService.getAllTrainingCenters();
+        return ss;
+    }
+    @RequestMapping(value = RequestUrlToken.GET_PARENT_TCS, method = RequestMethod.GET)
+    @ResponseBody
+    public List<TrainingCenterDTO> showAllParentTrainingCenters()
+            throws JsonProcessingException {
+        List<TrainingCenterDTO> ss = adminService.getAllParentTrainingCenters();
+        return ss;
+    }
+    @RequestMapping(value = RequestUrlToken.GET_TC, method = RequestMethod.GET)
+    @ResponseBody
+    public TrainingCenterDTO getSingleTC(@PathVariable Integer id)
+            throws JsonProcessingException {
+      TrainingCenterDTO dto = adminService.getTrainingCenter(id);
+        return dto;
     }
 
 }

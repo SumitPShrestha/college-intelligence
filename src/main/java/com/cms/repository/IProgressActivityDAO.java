@@ -1,12 +1,11 @@
 package com.cms.repository;
 
-import com.cms.model.Progress;
-import com.cms.model.ProgressActivity;
+import com.cms.model.ActivityProgress;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface IProgressActivityDAO extends JpaRepository<ProgressActivity, Integer>,
-        JpaSpecificationExecutor<ProgressActivity> {
+public interface IProgressActivityDAO extends JpaRepository<ActivityProgress, Integer>,
+        JpaSpecificationExecutor<ActivityProgress> {
 
 
 

@@ -11,7 +11,9 @@
         'app.avengers',
         'app.dashboard',
         'app.demo',
-        'app.layout'
+        'app.layout',
+        'app.project',
+        'app.training'
     ]);
 
 })();
