@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "progress_activity")
 
-public class ProgressActivity implements Serializable {
+public class ActivityProgress implements Serializable {
 
     @Id
     @GeneratedValue
