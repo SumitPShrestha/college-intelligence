@@ -7,6 +7,7 @@
 
     function Activity(activityservice, goalservice, $scope, NgTableParams, logger, $routeParams) {
         var pCode = $routeParams.code;
+        findAllActivities(pCode);
 
         $scope.activitymodel={};
 
@@ -21,6 +22,40 @@
             vm.showCreatePanel = !vm.showCreatePanel;
             $scope.btnText = "Create ";
         }
+
+        $scope.submitFormss = function (isValid) {
+            if (isValid) {
+                $scope.eitherCreateOrEdit();
+            }
+            else {
+                showValidationErrors();
+            }
+
+        }
+        function showValidationErrors() {
+            $scope.submitted = true;
+            // $scope.userForm.username.$error.required=true;
+        }
+        $scope.eitherCreateOrEdit = function () {
+
+
+            var p={projectCode:pCode};
+            var x = {id: vm.riskyId,
+                activityHead: $scope.activitymodel.activityHead
+                ,
+                expenseHead: $scope.activitymodel.expenseHead,
+                budget:$scope.activitymodel.budget,
+                unit:$scope.activitymodel.unit,
+                projectCode:pCode
+
+
+            }
+
+            createOrEditActivity(x);
+
+        }
+
+
 
         $scope.clearValidationMessages=function(){
             $scope.submitted=false;
@@ -58,7 +93,7 @@
             if (isValid) {
                 var x = {
                     goal: {
-                        id: vm.riskyId,
+                        id: $scope.q1goalmodel.id,
                         qty: $scope.q1goalmodel.qty,
                         weightage: $scope.q1goalmodel.weightage,
                         budget: $scope.q1goalmodel.budget,
@@ -78,7 +113,7 @@
             if (isValid) {
                 var x = {
                     goal: {
-                        id: vm.riskyId,
+                        id: $scope.q2goalmodel.id,
                         qty: $scope.q2goalmodel.qty,
                         weightage: $scope.q2goalmodel.weightage,
                         budget: $scope.q2goalmodel.budget,
@@ -100,7 +135,7 @@
                 var x = {
                     goal: {
 
-                        id: vm.riskyId,
+                        id:$scope.q3goalmodel.id,
                         qty: $scope.q3goalmodel.qty,
                         weightage: $scope.q3goalmodel.weightage,
                         budget: $scope.q3goalmodel.budget,
@@ -139,6 +174,23 @@
             createOrEditGoal(goal);
 
         }
+        $scope.clearForm = function() {
+            $scope.q1goalmodel.id = 0;
+            $scope.q1goalmodel.qty = "";
+            $scope.q1goalmodel.weightage = "";
+            $scope.q1goalmodel.budget = "";
+            $scope.q2goalmodel.id = 0;
+            $scope.q2goalmodel.qty = "";
+            $scope.q2goalmodel.weightage = "";
+            $scope.q2goalmodel.budget = "";
+            $scope.q3goalmodel.id =0;
+            $scope.q1goalmodel.qty = "";
+            $scope.q1goalmodel.weightage = "";
+            $scope.q1goalmodel.budget = "";
+
+
+
+        }
 
         findAllActivities(pCode);
         //$scope.submitted = false;
@@ -164,10 +216,16 @@
             $scope.activitymodel.expenseHead = data.expenseHead;
             $scope.activitymodel.budget = data.budget;
             $scope.activitymodel.unit = data.unit;
-           // $scope.activitymodel.fiscalYear = data.fiscalYear;
+            //$scope.activitymodel.project = data.fiscalYear;
 
         }
+        function createOrEditActivity(activity) {
+            activityservice.addActivity(activity).$promise.then(function (data) {
+                findAllActivities(pCode);
+                $scope.closeThePanel();
+            });
 
+        }
 
 
         function findAllActivities(pCode) {
@@ -181,6 +239,7 @@
                 goals.forEach(function (goal) {
                     if (goal.timeFrame == "FIRST_QUARTER") {
                         $scope.q1goalmodel = {};
+                        $scope.q1goalmodel.id = goal.id;
                         $scope.q1goalmodel.qty = goal.qty;
                         $scope.q1goalmodel.weightage = goal.weightage;
                         $scope.q1goalmodel.budget = goal.budget;
@@ -190,6 +249,7 @@
 
                     if (goal.timeFrame == "SECOND_QUARTER") {
                         $scope.q2goalmodel = {};
+                        $scope.q2goalmodel.id = goal.id;
                         $scope.q2goalmodel.qty = goal.qty;
                         $scope.q2goalmodel.weightage = goal.weightage;
                         $scope.q2goalmodel.budget = goal.budget;
@@ -199,6 +259,7 @@
 
                     if (goal.timeFrame == "THIRD_QUARTER") {
                         $scope.q3goalmodel = {};
+                        $scope.q3goalmodel.id = goal.id;
                         $scope.q3goalmodel.qty = goal.qty;
                         $scope.q3goalmodel.weightage = goal.weightage;
                         $scope.q3goalmodel.budget = goal.budget;

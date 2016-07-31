@@ -1,18 +1,12 @@
-package com.cms.model;
+package com.cms.dto;
 
+import com.cms.model.TimeFrame;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
+/**
+ * Created by amit on 7/25/16.
+ */
+public class ProgressDTO {
 
-@Entity
-@Table(name = "progress")
-
-public class Progress implements Serializable {
-
-    @Id
-    @GeneratedValue
     private Integer id;
 
 
@@ -24,22 +18,18 @@ public class Progress implements Serializable {
 
     private int goalQty;
 
+    private int activityId;
 
+    private String trainingCenter;
 
-
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
-    private List<ActivityProgress> activityProgresses;
-
-
-
-
-    public List<ActivityProgress> getActivityProgresses() {
-        return activityProgresses;
+    public int getActivityId() {
+        return activityId;
     }
 
-    public void setActivityProgresses(List<ActivityProgress> activityProgresses) {
-        this.activityProgresses = activityProgresses;
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
     }
+
 
     public Integer getId() {
         return id;
@@ -82,4 +72,12 @@ public class Progress implements Serializable {
     }
 
 
+
+    public String getTrainingCenter() {
+        return trainingCenter;
+    }
+
+    public void setTrainingCenter(String trainingCenter) {
+        this.trainingCenter = trainingCenter;
+    }
 }

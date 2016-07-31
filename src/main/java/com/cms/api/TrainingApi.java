@@ -156,12 +156,27 @@ public class TrainingApi implements ITrainingApi {
 
         memberDAO.delete(id);
 
-        return "Member with ID :" + id + "  deleted";
+        return id.toString();
     }
 
     @Override
     public String deleteTraining(Integer trainingId) {
         trainingDAO.delete(trainingId);
         return trainingId.toString();
+    }
+
+    @Override
+    public List<Training> getTrainingByFiscalYear(String fiscalYear) {
+        return trainingDAO.findTrainingsByFiscalYear(fiscalYear);
+    }
+
+    @Override
+    public int countNumberOfAttendeesInTraining(int id) {
+        return memberDAO.countNumberOfTrainees(id);
+    }
+
+    @Override
+    public int countNumberOfMale(int id) {
+        return memberDAO.countNumberOfMaleMembers(id);
     }
 }

@@ -26,36 +26,38 @@ public class PrivilegedController {
 
     @RequestMapping(value = RequestUrlToken.GET_ACTIVITY_BY_PROJECT_ID, method = RequestMethod.GET)
     @ResponseBody
-    public List<Activity> showAllActivities(@PathVariable String code)  throws JsonProcessingException {
-        List<Activity> pjs = privilegedService.getAllActivitiesByProjectCode(code);
+    public List<ActivityDTO> showAllActivities(@PathVariable String code) throws JsonProcessingException {
+        List<ActivityDTO> pjs = privilegedService.getAllActivitiesByProjectCode(code);
         return pjs;
     }
 
     @RequestMapping(value = RequestUrlToken.CREATE_ACTIVITY, method = RequestMethod.POST)
     @ResponseBody
-    public String create(@RequestBody Activity activity)
+    public String create(@RequestBody ActivityDTO dto)
             throws JsonProcessingException {
-        String goalId = privilegedService.createOrEditActivity(activity);
+        String goalId = privilegedService.createOrEditActivity(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  created successfully");
+        String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_ACTIVITY, method = RequestMethod.PUT)
     @ResponseBody
     public String saveActivity(@RequestBody TrainingDTO dto)
             throws JsonProcessingException {
         String goalId = privilegedService.createOrEditTraining(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  updated successfully");
+        String val = mapper.writeValueAsString(goalId + "  updated successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.DELETE_ACTIVITY, method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteActivity(@PathVariable Integer id)
             throws JsonProcessingException {
         String goalId = privilegedService.deleteTraining(id);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString("Training with "+goalId +"  deleted successfully");
+        String val = mapper.writeValueAsString("Training with " + goalId + "  deleted successfully");
         return val;
     }
 
@@ -63,20 +65,8 @@ public class PrivilegedController {
     @ResponseBody
     public Activity getActivity(@PathVariable Integer id)
             throws JsonProcessingException {
-        return  privilegedService.getActivity(id);
+        return privilegedService.getActivity(id);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @RequestMapping(value = RequestUrlToken.CREATE_GOAL, method = RequestMethod.POST)
@@ -85,16 +75,17 @@ public class PrivilegedController {
             throws JsonProcessingException {
         String goalId = privilegedService.createOrEditGoal(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  created successfully");
+        String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_GOAL, method = RequestMethod.PUT)
     @ResponseBody
     public String saveUser(@RequestBody GoalDTO dto)
             throws JsonProcessingException {
         String goalId = privilegedService.createOrEditGoal(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  updated successfully");
+        String val = mapper.writeValueAsString(goalId + "  updated successfully");
         return val;
     }
 
@@ -107,38 +98,40 @@ public class PrivilegedController {
     }
 
 
-
     @RequestMapping(value = RequestUrlToken.GET_TRAININGS_BY_TC_ID, method = RequestMethod.GET)
     @ResponseBody
-    public List<TrainingDTO> showAllActivities(@PathVariable Integer id)  throws JsonProcessingException {
+    public List<TrainingDTO> showAllActivities(@PathVariable Integer id) throws JsonProcessingException {
         List<TrainingDTO> dtos = privilegedService.getTrainingsByTrainingCenterId(id);
         return dtos;
     }
+
     @RequestMapping(value = RequestUrlToken.CREATE_TRAINING, method = RequestMethod.POST)
     @ResponseBody
     public String edit(@RequestBody TrainingDTO dto)
             throws JsonProcessingException {
         String goalId = privilegedService.createOrEditTraining(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  created successfully");
+        String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_TRAINING, method = RequestMethod.PUT)
     @ResponseBody
     public String saveTraining(@RequestBody TrainingDTO dto)
             throws JsonProcessingException {
         String goalId = privilegedService.createOrEditTraining(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId +"  updated successfully");
+        String val = mapper.writeValueAsString(goalId + "  updated successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.DELETE_TRAINING, method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteTraining(@PathVariable Integer id)
             throws JsonProcessingException {
         String goalId = privilegedService.deleteTraining(id);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString("Training with "+goalId +"  deleted successfully");
+        String val = mapper.writeValueAsString("Training with " + goalId + "  deleted successfully");
         return val;
     }
 
@@ -146,7 +139,7 @@ public class PrivilegedController {
     @ResponseBody
     public TrainingDTO getTraining(@PathVariable Integer id)
             throws JsonProcessingException {
-       TrainingDTO dto= privilegedService.getTraining(id);
+        TrainingDTO dto = privilegedService.getTraining(id);
         return dto;
     }
 
@@ -156,16 +149,17 @@ public class PrivilegedController {
             throws JsonProcessingException {
         String memberId = privilegedService.createOrEditApplicationMember(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(memberId +"  created successfully");
+        String val = mapper.writeValueAsString(memberId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_MEMBER, method = RequestMethod.PUT)
     @ResponseBody
     public String saveMember(@RequestBody MemberDTO dto)
             throws JsonProcessingException {
         String memberId = privilegedService.createOrEditApplicationMember(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(memberId +"  edited successfully");
+        String val = mapper.writeValueAsString(memberId + "  edited successfully");
         return val;
     }
 
@@ -176,6 +170,7 @@ public class PrivilegedController {
         List<MemberDTO> ss = privilegedService.getAllMembersByTrainingId(trainingId);
         return ss;
     }
+
     @RequestMapping(value = RequestUrlToken.GET_MEMBER, method = RequestMethod.GET)
     @ResponseBody
     public MemberDTO getSingleMember(@PathVariable Integer id)
@@ -183,17 +178,49 @@ public class PrivilegedController {
 
         return privilegedService.getMemberByMemberId(id);
     }
+
     @RequestMapping(value = RequestUrlToken.DELETE_MEMBER, method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteMember(@PathVariable Integer id)
             throws JsonProcessingException {
 
-        String memberId=privilegedService.deleteMember(id);
+        String memberId = privilegedService.deleteMember(id);
 
         ObjectMapper mapper = new ObjectMapper();
         String val = mapper.writeValueAsString(memberId);
         return val;
     }
+
+    @RequestMapping(value = RequestUrlToken.CREATE_PROGRESS, method = RequestMethod.POST)
+    @ResponseBody
+    public String createProgress(@RequestBody ProgressDTO dto)
+            throws JsonProcessingException {
+        String progressId = privilegedService.createSubmittedProgress(dto);
+        return progressId;
+    }
+    @RequestMapping(value = RequestUrlToken.GET_PROGRESSES, method = RequestMethod.GET)
+    @ResponseBody
+    public List<ProgressDTO> getAllProgresses()
+            throws JsonProcessingException {
+        List<ProgressDTO> dtos = privilegedService.getAllProgresses();
+        return dtos;
+    }
+
+    @RequestMapping(value = RequestUrlToken.GET_PROGRESS, method = RequestMethod.GET)
+    @ResponseBody
+    public ProgressDTO getProgress(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        return privilegedService.getProgressByItsId(id);
+    }
+    @RequestMapping(value = RequestUrlToken.GET_PROGRESS, method = RequestMethod.DELETE)
+    @ResponseBody
+    public String  deleteProgress(@PathVariable Integer id)
+            throws JsonProcessingException {
+
+        return privilegedService.deleteProgress(id);
+    }
+
 
 
 }

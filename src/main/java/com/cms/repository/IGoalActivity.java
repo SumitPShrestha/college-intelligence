@@ -17,6 +17,9 @@ public interface IGoalActivity extends JpaRepository<GoalActivity, Integer>,
     @Query("SELECT u.goal FROM GoalActivity u WHERE u.activity.id=:activityId")
     List<Goal> getAllGoalsByActivityId(@Param("activityId")Integer activityId);
 
+    @Query("SELECT u  FROM GoalActivity u WHERE u.activity.id=:activityId AND u.goal.id=:goalId")
+    GoalActivity findGoalActivityByGoalIdAndActivityId(@Param("goalId")Integer goalId, @Param("activityId") Integer activityId);
+
 
 
 

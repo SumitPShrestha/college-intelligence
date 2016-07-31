@@ -57,6 +57,21 @@
                     },
                     roles:['ROLE_ADMIN']
                 }
+            },
+            {
+                url: '/treport',
+                config: {
+                    templateUrl: 'app/training/report/trainingReport.html',
+                    controller: 'TReport',
+                    controllerAs: 'vm',
+                    title: 'treport',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Training Report'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
             }
         ];
     }

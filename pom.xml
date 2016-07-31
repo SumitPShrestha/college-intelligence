@@ -5,6 +5,8 @@
     <artifactId>ng-spring-boot</artifactId>
     <version>1.0.0</version>
     <name>ng-spring-boot</name>
+    <packaging>war</packaging>
+
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -151,11 +153,17 @@
             <!--<artifactId>spring-data-jpa</artifactId>-->
             <!--<version>1.7.2.RELEASE</version>-->
         <!--</dependency>-->
-
+      <!--  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
 
     </dependencies>
 
     <build>
+        <finalName>nced</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -170,8 +178,10 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>

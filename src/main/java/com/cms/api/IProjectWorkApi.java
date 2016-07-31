@@ -1,11 +1,7 @@
 package com.cms.api;
 
-import com.cms.dto.GoalDTO;
-import com.cms.dto.ProjectDTO;
-import com.cms.model.Activity;
-import com.cms.model.Goal;
-import com.cms.model.Project;
-import com.cms.model.TrainingCenter;
+import com.cms.dto.*;
+import com.cms.model.*;
 
 import java.util.List;
 
@@ -22,7 +18,7 @@ public interface IProjectWorkApi {
 
     ProjectDTO getProjectById(Integer id);
 
-    List<Activity> getActivitiesByProjectId(Integer projectId);
+    List<ActivityDTO> getActivitiesByProjectId(Integer projectId);
 
     Project getProjectByProjectCode(String code);
 
@@ -30,9 +26,27 @@ public interface IProjectWorkApi {
 
     List<Goal> findGoalsByActivityId(Integer activityId);
 
-    String createOrEditActivity(Activity a);
+    String createOrEditActivity(ActivityDTO a);
 
     Activity getActivityById(Integer id);
+
+    String createOrEditProgress(ProgressDTO dto);
+
+    List<ProgressDTO> getAllSubmittedProgresses();
+
+    ProgressDTO getProgressByProgressId(Integer id);
+
+    String deleteProgress(Integer id);
+
+    List<ReportDTO> getReport();
+
+
+    List<ReportDTO> getReportByFiscalYear(String fiscalYear);
+
+    List<Activity> getActivitiesByFiscalYear(String fiscalYear);
+
+    List<Progress> getProgressByActivityId(Integer id);
+
 }
 
 

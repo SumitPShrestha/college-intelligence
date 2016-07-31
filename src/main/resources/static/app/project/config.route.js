@@ -57,6 +57,21 @@
                     },
                     roles:['ROLE_ADMIN']
                 }
+            },
+            {
+                url: '/report',
+                config: {
+                    templateUrl: 'app/project/report/report.html',
+                    controller: 'Report',
+                    controllerAs: 'vm',
+                    title: 'report',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Report'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
             }
         ];
     }

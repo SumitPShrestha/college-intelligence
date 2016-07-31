@@ -10,16 +10,16 @@ import java.util.List;
  * Created by amit on 7/15/16.
  */
 public interface IPrivilegedService {
-    List<Activity> getAllActivitiesByProjectId(Integer projectId);
+    List<ActivityDTO> getAllActivitiesByProjectId(Integer projectId);
 
-    String createOrEditActivity(Activity dto);
+    String createOrEditActivity(ActivityDTO dto);
 
     Activity getActivity(Integer id);
 
     String deleteActivity(Integer projectId,Integer activityId);
 
 
-    public List<Activity> getAllActivitiesByProjectCode(String  code);
+    public List<ActivityDTO> getAllActivitiesByProjectCode(String  code);
 
     String createOrEditGoal(GoalDTO  dto);
 
@@ -40,4 +40,16 @@ public interface IPrivilegedService {
     String deleteMember(Integer id);
 
     String deleteTraining(Integer trainingId);
+
+
+    String createSubmittedProgress(ProgressDTO dto);
+
+    List<ProgressDTO> getAllProgresses();
+
+    ProgressDTO getProgressByItsId(Integer id);
+
+    String deleteProgress(Integer id);
+
+    List<ReportDTO> getReportForProjectWork();
+
 }

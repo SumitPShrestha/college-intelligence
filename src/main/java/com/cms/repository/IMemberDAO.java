@@ -13,13 +13,16 @@ public interface IMemberDAO extends JpaRepository<Member, Integer>,
         JpaSpecificationExecutor<Member> {
 
 
-
-
-
-     @Query("SELECT u FROM Member u WHERE u.training.id = :trainingId")
+    @Query("SELECT u FROM Member u WHERE u.training.id = :trainingId")
     List<Member> findAllMembersByTrainingId(@Param("trainingId") Integer trainingId);
 
-	/*
+    @Query("SELECT count(m) FROM Member m WHERE m.training.id=:id")
+    int countNumberOfTrainees(@Param("id") Integer id);
+
+    @Query("SELECT count(t) FROM Member t WHERE t.training.id=:id AND t.isMale=1")
+    int countNumberOfMaleMembers(@Param("id") Integer id);
+
+    /*
      * @Query("SELECT u FROM Role u WHERE LOWER(u.Rolename) = LOWER(:name)")
 	 * Role retrieveByName(@Param("name") String name);
 	 */

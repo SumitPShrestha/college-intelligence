@@ -1,0 +1,194 @@
+<style>
+    #close {
+        margin-right: 25px;
+        /* margin-top: 15px; */
+        bottom: -51px;
+        position: relative;
+    }
+
+    #hero {
+        /* margin-top: 15px; */
+        top: -20px;
+        position: relative;
+    }
+
+    .form-group .help-block {
+        display: none;
+
+    }
+
+    .error-block {
+        color: #a94442;
+
+    }
+
+    .form-item-container {
+        height: 85px;
+    }
+
+    .form-group.has-error .help-block {
+        display: block;
+    }
+
+    .radiobox {
+        width: 50px;
+    }
+
+    table tr td {
+        width: auto;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        margin-left: 146px;
+    }
+</style>
+<section class="mainbar">
+    <section class="matter">
+        <div class="container ">
+
+            <div class="row">Fiscal Year
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <div class="widget wblue">
+                <div data-cc-widget-header title="Project Activities Report Panel"></div>
+                <!--Point to be noted show-filter can be set as either true or false-->
+                <table ng-table="vm.tableParams" class="table " show-filter="false">
+
+                    <thead>
+                    <tr>
+                        <th rowspan="4">Activity</th>
+                        <th rowspan="4">Project</th>
+                        <th colspan="4" bgcolor="green">1st Quarter</th>
+                        <th colspan="4" bgcolor="#7cfc00">2nd Quarter</th>
+                        <th colspan="4" bgcolor="#32cd32">3rd Quarter</th>
+                        <th colspan="4" bgcolor="lime">Yearly</th>
+
+                    </tr>
+                    <tr>
+                        <th bgcolor="#b0e0e6">Goal Qty</th>
+                        <th bgcolor="#b0e0e6">Progress Qty</th>
+                        <th bgcolor="#b0e0e6">Budget</th>
+                        <th bgcolor="#b0e0e6">Weightage</th>
+                        <th bgcolor="#f0f8ff">Goal Qty</th>
+                        <th bgcolor="#f0f8ff">Progress Qty</th>
+                        <th bgcolor="#f0f8ff">Budget</th>
+                        <th bgcolor="#f0f8ff">Weightage</th>
+                        <th bgcolor="#fff0f5">Goal Qty</th>
+                        <th bgcolor="#fff0f5">Progress Qty</th>
+                        <th bgcolor="#fff0f5">Budget</th>
+                        <th bgcolor="#fff0f5">Weightage</th>
+                        <th bgcolor="#add8e6">Goal Qty</th>
+                        <th bgcolor="#add8e6">Progress Qty</th>
+                        <th bgcolor="#add8e6">Budget</th>
+                        <th bgcolor="#add8e6">Weightage</th>
+
+                    </tr>
+
+                    </thead>
+                    <tr ng-repeat="a in $data" bgcolor="#faebd7">
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.activityDTO.activityHead}} </span>
+                        </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                                   sortable="'goalQty'" >
+                        <span>   {{a.activityDTO.projectCode}} </span>
+                    </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g1.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p1.progressQty}}</span>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g1.budget}} </span>
+                        </td>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g1.weightage}} </span>
+                        </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g2.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p2.progressQty}}</span>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g2.budget}} </span>
+                        </td>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g2.weightage}} </span>
+                        </td>
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g3.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p3.progressQty}}</span>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g3.budget}} </span>
+                        </td>
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g3.weightage}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.g.qty}} </span>
+                        </td>
+
+                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                            sortable="'progressQty'">
+                            <span> {{a.p.progressQty}}</span>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g.budget}} </span>
+                        </td>
+
+                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'">
+                            <span>   {{a.g.weightage}} </span>
+                        </td>
+
+                    </tr>
+                </table>
+
+
+            </div>
+            <!--</div>-->
+
+        </div>
+
+
+    </section>
+</section>

@@ -1,8 +1,6 @@
 package com.cms.controller;
 
-import com.cms.dto.ProjectDTO;
-import com.cms.dto.TrainingCenterDTO;
-import com.cms.dto.UserDTO;
+import com.cms.dto.*;
 import com.cms.service.IAdminService;
 import com.cms.service.IUserService;
 import com.cms.service.RequestUrlToken;
@@ -171,5 +169,24 @@ public class AdminController {
       TrainingCenterDTO dto = adminService.getTrainingCenter(id);
         return dto;
     }
+    @RequestMapping(value = RequestUrlToken.VIEW_REPORT, method = RequestMethod.GET)
+    @ResponseBody
+    public List<ReportDTO> getReport(@PathVariable String fiscalYear)
+            throws JsonProcessingException {
+        List<ReportDTO> dtos = adminService.getReportForProjectWork(fiscalYear);
+        return dtos;
+    }
+
+    @RequestMapping(value = RequestUrlToken.VIEW_TRAINING_REPORT, method = RequestMethod.GET)
+    @ResponseBody
+    public List<TrainingReportDTO> getTrainingReport(@PathVariable String fiscalYear)
+            throws JsonProcessingException {
+        List<TrainingReportDTO> dtos = adminService.getReportForTraining(fiscalYear);
+        return dtos;
+    }
+
+
+
+
 
 }

@@ -3,6 +3,7 @@ package com.cms.api;
 import com.cms.dto.MemberDTO;
 import com.cms.dto.TrainingCenterDTO;
 import com.cms.dto.TrainingDTO;
+import com.cms.model.Training;
 
 import java.util.List;
 
@@ -35,4 +36,10 @@ public interface ITrainingApi {
     String deleteMember(Integer id);
 
     String deleteTraining(Integer trainingId);
+
+    List<Training> getTrainingByFiscalYear(String fiscalYear);
+
+    int countNumberOfAttendeesInTraining(int id);
+
+    int countNumberOfMale(int id);
 }

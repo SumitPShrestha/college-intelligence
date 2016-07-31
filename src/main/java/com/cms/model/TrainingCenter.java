@@ -29,7 +29,7 @@ public class TrainingCenter implements Serializable {
     private TrainingCenter parentTrainingCenter;
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "trainingCenter")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "trainingCenter")
     private List<ActivityProgress> progressActivities;
 
     public static long getSerialVersionUID() {

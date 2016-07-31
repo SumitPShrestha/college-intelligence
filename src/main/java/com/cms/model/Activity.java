@@ -25,6 +25,7 @@ public class Activity implements Serializable {
     private String unit;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
+    @JsonIgnore
     private Project project;
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
     private List<ActivityProgress> activityProgresses;
@@ -68,9 +69,23 @@ public class Activity implements Serializable {
 
     public void setExpenseHead(String expenseHead) {
         this.expenseHead = expenseHead;
+
     }
 
+    public Project getProject() {
+        return project;
+    }
 
+    public void setProject(Project project) {
+        this.project = project;
 
+    }
 
+    public List<ActivityProgress> getActivityProgresses() {
+        return activityProgresses;
+    }
+
+    public void setActivityProgresses(List<ActivityProgress> activityProgresses) {
+        this.activityProgresses = activityProgresses;
+    }
 }

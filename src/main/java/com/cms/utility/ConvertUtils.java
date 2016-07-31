@@ -82,7 +82,7 @@ public class ConvertUtils {
         dto.setAddress(tc.getAddress());
         dto.setDistrict(tc.getDistrict());
         dto.setZone(tc.getZone());
-        if(tc.getParentTrainingCenter()!=null) {
+        if (tc.getParentTrainingCenter() != null) {
             dto.setParentTrainingCenter(tc.getParentTrainingCenter().getName());
         }
         return dto;
@@ -98,7 +98,7 @@ public class ConvertUtils {
 
 
     public static TrainingDTO convertToTrainingDTO(Training t) {
-        TrainingDTO dto=new TrainingDTO();
+        TrainingDTO dto = new TrainingDTO();
         dto.setId(t.getId());
         dto.setName(t.getName());
         dto.setBudget(t.getBudget());
@@ -108,7 +108,6 @@ public class ConvertUtils {
         return dto;
 
     }
-
 
 
     public static List<MemberDTO> convertToMemberDTOs(List<Member> members) {
@@ -122,7 +121,7 @@ public class ConvertUtils {
     }
 
     public static MemberDTO convertToMemberDTO(Member m) {
-        MemberDTO dto= new MemberDTO();
+        MemberDTO dto = new MemberDTO();
         dto.setMemberId(m.getId());
         dto.setFirstName(m.getFirstName());
         dto.setMiddleName(m.getMiddleName());
@@ -141,6 +140,83 @@ public class ConvertUtils {
         dto.setMemberType(m.getMemberType());
         dto.setTrainingId(m.getTraining().getId());
         dto.setMale(m.isMale());
+        return dto;
+    }
+
+    public static List<ActivityDTO> convertToAcctivityDTO(List<Activity> activities) {
+        List<ActivityDTO> dtos = new ArrayList<ActivityDTO>();
+        for (Activity a : activities) {
+            dtos.add(ConvertUtils.convertToActivityDTO(a));
+        }
+        return dtos;
+    }
+
+    private static ActivityDTO convertToActivityDTO(Activity a) {
+        ActivityDTO dto = new ActivityDTO();
+        dto.setId(a.getId());
+        dto.setUnit(a.getUnit());
+        dto.setExpenseHead(a.getExpenseHead());
+        dto.setActivityHead(a.getActivityHead());
+        dto.setProjectCode(a.getProject().getProjectCode());
+        dto.setBudget(a.getBudget());
+
+        return dto;
+    }
+
+
+    public static List<ProgressDTO> convertToProgressesDTO(List<ActivityProgress> all) {
+        List<ProgressDTO> dtos = new ArrayList<ProgressDTO>();
+        for (ActivityProgress ap : all) {
+            dtos.add(ConvertUtils.convertToProgressDTO(ap));
+        }
+        return dtos;
+
+    }
+
+    public static ProgressDTO convertToProgressDTO(ActivityProgress ap) {
+        Progress progress = ap.getProgress();
+        Activity a = ap.getActivity();
+        TrainingCenter tc = ap.getTrainingCenter();
+
+        ProgressDTO dto = new ProgressDTO();
+        dto.setId(progress.getId());
+        dto.setDescription(progress.getDescription());
+        dto.setGoalQty(progress.getGoalQty());
+        dto.setProgressQty(progress.getProgressQty());
+        dto.setTimeFrame(progress.getTimeFrame());
+
+        dto.setTrainingCenter(tc.getName());
+        dto.setActivityId(a.getId());
+        return dto;
+    }
+
+    public static ReportDTO convertToReportDTO(Activity a, Goal g1, Goal g2, Goal g3, Goal yearlyGoal, Progress q1, Progress q2, Progress q3, Progress yearlyProgress) {
+        ReportDTO dto = new ReportDTO();
+        dto.setActivityDTO(ConvertUtils.convertToActivityDTO(a));
+        dto.setG(yearlyGoal);
+        dto.setG1(g1);
+        dto.setG2(g2);
+        dto.setG3(g3);
+        dto.setP(yearlyProgress);
+        dto.setP1(q1);
+        dto.setP2(q2);
+        dto.setP3(q3);
+        return dto;
+    }
+
+    public static TrainingReportDTO convertToTrainingReportDTO(Training oneTraining, int numberOfAttendees, int numberOfMale, int numberOfFemale) {
+
+        TrainingReportDTO dto= new TrainingReportDTO();
+        dto.setName(oneTraining.getName());
+        //dto.setTimeFrame(oneTraining.get);
+        dto.setBudget(oneTraining.getBudget());
+        dto.setStartDate(oneTraining.getStartDate().toString());
+        dto.setEndDate(oneTraining.getEndDate().toString());
+        dto.setDuration(7);
+        dto.setTarget(oneTraining.getTarget());
+        dto.setMaleFrequency(numberOfMale);
+        dto.setFemaleFrequency(numberOfFemale);
+        dto.setNoOfAttendees(numberOfAttendees);
         return dto;
     }
 }

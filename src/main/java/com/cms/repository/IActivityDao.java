@@ -17,6 +17,9 @@ public interface IActivityDao extends JpaRepository<Activity, Integer>,
     @Query("SELECT u FROM Activity u WHERE u.project.id =:projectId")
     List<Activity> findActivitiesByProjectId(@Param("projectId") Integer projectId);
 
+    @Query("SELECT u FROM Activity u WHERE u.project.fiscalYear =:fiscalYear")
+    List<Activity> findActivitiesByFiscalYear(@Param("fiscalYear") String fiscalYear);
+
 	/*
      * @Query("SELECT u FROM Role u WHERE LOWER(u.Rolename) = LOWER(:name)")
 	 * Role retrieveByName(@Param("name") String name);

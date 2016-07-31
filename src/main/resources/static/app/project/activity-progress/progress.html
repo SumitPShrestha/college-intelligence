@@ -49,7 +49,7 @@
             <div class="row">
 
                 <button type="button" class="btn btn-primary btn-lg right"
-                        ng-click="initCreatePanel()">Create Project
+                        ng-click="initCreatePanel()">Create Progress
                 </button>
             </div>
             <div ng-show="vm.showCreatePanel" class="row" id="hero">
@@ -71,25 +71,6 @@
                                     <h3 class="panel-title">Progress Details</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="col-md-6 form-item-container">
-                                        <div class="form-group"
-                                             ng-class="{ 'has-error' : progressForm.pCode.$invalid && !progressForm.pCode.$pristine }">
-                                            <label>Project Code :<span>*</span></label>
-                                            <input type="text" name="pCode" class="form-control"
-                                                   ng-model="progressmodel.pCode" required>
-                                            <!--&lt;!&ndash;-->
-                                            <!--(progressForm.username.$error.required && !progressForm.username.$pristine)|| -->
-                                            <!--&ndash;&gt;-->
-                                        </div>
-                                        <p ng-show="progressForm.pCode.$invalid && !progressForm.pCode.$pristine "
-                                           class="error-block">Enter
-                                            valid email.</p>
-                                        <p class="error-block"
-                                           ng-show="(progressForm.pCode.$error.required && !progressForm.pCode.$pristine) ||( submitted  && progressForm.username.$pristine)">
-                                            Project Code is required.</p>
-
-
-                                    </div>
 
 
                                     <div class="col-md-6 form-item-container">
@@ -119,13 +100,13 @@
                                     </div>
                                     <div class="col-md-6 form-item-container">
                                         <div class="form-group"
-                                             ng-class="{ 'has-error' : progressmodel.unit.$invalid && !progressmodel.unit.$pristine }">
-                                            <label>Unit :<span>*</span></label>
-                                            <input type="text" name="unit" class="form-control"
-                                                   ng-model="progressmodel.unit" required>
+                                             ng-class="{ 'has-error' : progressmodel.description.$invalid && !progressmodel.description.$pristine }">
+                                            <label>Description :<span>*</span></label>
+                                            <textarea  name="description" class="form-control"
+                                                   ng-model="progressmodel.description" required />
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.unit.$pristine) ||( submitted  && progressForm.unit.$pristine)">
+                                           ng-show="(progressForm.goalQty.$error.required && !progressForm.description.$pristine) ||( submitted  && progressForm.description.$pristine)">
                                             Unit is required.</p>
 
                                     </div>
@@ -278,24 +259,26 @@
                 <div class="widget wblue">
                     <div data-cc-widget-header title="Progress View Panel"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
-                    <table ng-table="vm.tableParams" class="table" show-filter="false">
+                    <table ng-table="vm.tableParams" class="table" show-filter="true">
                         <tr ng-repeat="a in $data">
 
 
-                            <td title="'Activity Head'" filter="{ pCode: 'text'}" sortable="'pCode'">
-                                <span>{{a.pCode}}</span>
-                            </td>
-                            <td title="'progressQty'" filter="{ progressQty  : 'text'}" sortable="'progressQty'">
-                                <span> {{a.progressQty}}</span>
 
-                            <td title="'Expense'" filter="{ goalQty: 'text'}"
+                            <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
                                 sortable="'goalQty'">
                                 <span>   {{a.goalQty}} </span>
                             </td>
-                            <td title="'Unit'" filter="{ unit: 'text'}"
-                                sortable="'unit'">
-                                <span> {{a.unit}}</span>
+                            <td title="'progressQty'" filter="{ progressQty  : 'text'}" sortable="'progressQty'">
+                                <span> {{a.progressQty}}</span>
                             </td>
+                            <td title="'Time Frame'" filter="{ timeFrame  : 'text'}" sortable="'timeFrame'">
+                                <span> {{a.timeFrame}}</span>
+                            </td>
+                            <td title="'Training Center'" filter="{ trainingCenter  : 'text'}" sortable="'trainingCenter'" >
+                                <span> {{a.trainingCenter}}</span>
+                            </td>
+
+
 
                             <td class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
@@ -303,19 +286,11 @@
                             </td>
                             <td>
                                 <a data-toggle="tooltip" title="Delete ">
-                                    <span ng-click="deleteTheUser(a.id)"
+                                    <span ng-click="deleteThisProgress(a.id)"
                                           class="glyphicon glyphicon-trash red"></span>
                                 </a>
                             </td>
-                            <td>
-                                <a data-toggle="tooltip" title="Update Goal !">
-                                    <span ng-click="initializeGoalPanel(a.id)">
 
-                              <i class="fa fa-wrench" style="font-size:24px"></i>
-
-                                    </span>
-                                </a>
-                            </td>
                             <td>
                                 <a data-toggle="tooltip" title="Update Progress !" href="/#/progress/{{a.id}}">
 

@@ -24,11 +24,11 @@ public class PriviligedService implements IPrivilegedService {
 
 
     @Override
-    public List<Activity> getAllActivitiesByProjectId(Integer projectId) {
+    public List<ActivityDTO> getAllActivitiesByProjectId(Integer projectId) {
         return projectWorkApi.getActivitiesByProjectId(projectId);
     }
     @Override
-    public List<Activity> getAllActivitiesByProjectCode(String code) {
+    public List<ActivityDTO> getAllActivitiesByProjectCode(String code) {
           Project project= projectWorkApi.getProjectByProjectCode(code);
        return projectWorkApi.getActivitiesByProjectId(project.getId());
 
@@ -46,7 +46,7 @@ public class PriviligedService implements IPrivilegedService {
 
 
     @Override
-    public String createOrEditActivity(Activity a) {
+    public String createOrEditActivity(ActivityDTO a) {
         return projectWorkApi.createOrEditActivity(a);
     }
 
@@ -98,6 +98,31 @@ public class PriviligedService implements IPrivilegedService {
     @Override
     public String deleteTraining(Integer trainingId) {
         return trainingApi.deleteTraining(trainingId);
+    }
+
+    @Override
+    public String createSubmittedProgress(ProgressDTO dto) {
+        return projectWorkApi.createOrEditProgress(dto);
+    }
+
+    @Override
+    public List<ProgressDTO> getAllProgresses() {
+        return projectWorkApi.getAllSubmittedProgresses();
+    }
+
+    @Override
+    public ProgressDTO getProgressByItsId(Integer id) {
+        return projectWorkApi.getProgressByProgressId(id);
+    }
+
+    @Override
+    public String deleteProgress(Integer id) {
+        return projectWorkApi.deleteProgress(id);
+    }
+
+    @Override
+    public List<ReportDTO> getReportForProjectWork() {
+        return projectWorkApi.getReport();
     }
 
 

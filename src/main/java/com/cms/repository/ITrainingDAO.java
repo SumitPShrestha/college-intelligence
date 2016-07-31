@@ -17,4 +17,8 @@ public interface ITrainingDAO extends JpaRepository<Training, Integer>,
     @Query("SELECT t FROM Training t WHERE t.trainingCenter.id=:id")
     List<Training> findTrainingByTrainingCenterId(@Param("id") Integer id);
 
+    @Query("SELECT t FROM Training t WHERE t.fiscalYear=:fiscalYear")
+    List<Training> findTrainingsByFiscalYear(@Param("fiscalYear")String fiscalYear);
+
+
 }

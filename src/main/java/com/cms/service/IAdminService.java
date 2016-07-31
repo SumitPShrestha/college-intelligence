@@ -1,8 +1,6 @@
 package com.cms.service;
 
-import com.cms.dto.ProjectDTO;
-import com.cms.dto.TrainingCenterDTO;
-import com.cms.dto.UserDTO;
+import com.cms.dto.*;
 import com.cms.model.TrainingCenter;
 
 import java.util.List;
@@ -29,4 +27,7 @@ public interface IAdminService {
 
     List<TrainingCenterDTO> getAllParentTrainingCenters();
 
+    List<ReportDTO> getReportForProjectWork(String fiscalYear);
+
+    List<TrainingReportDTO> getReportForTraining(String fiscalYear);
 }

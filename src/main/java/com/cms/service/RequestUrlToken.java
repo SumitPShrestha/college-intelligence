@@ -69,4 +69,14 @@ public class RequestUrlToken {
  public static final String GET_MEMBERS_BY_TRAINING_ID = "/members/training/{trainingId}";
 
 
+ /* CRUD for Progress*/
+ public static final String CREATE_PROGRESS= "/progress";
+ public static final String UPDATE_PROGRESS= "/progress";
+ public static final String GET_PROGRESS= "/progress/{id}";
+ public static final String DELETE_PROGRESS= "/progress/{id}";
+ public static final String GET_PROGRESSES = "/progresses";
+
+
+ public static final String VIEW_REPORT = "/report/{fiscalYear}";
+ public static final String VIEW_TRAINING_REPORT = "/treport/{fiscalYear}";
 }

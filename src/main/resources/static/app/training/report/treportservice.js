@@ -5,9 +5,9 @@
     'use strict';
     angular
         .module('app.project')
-        .factory('progressservice', progressservice);
+        .factory('treportservice', treportservice);
 
-    function progressservice($resource) {
+    function treportservice($resource) {
         return $resource("/privileged/progress",
             {Id: "@Id"},
             {
@@ -17,7 +17,7 @@
                 addProgress: {'url':'/privileged/progress','method': 'POST'},
                 deleteProgress: {'url':'/privileged/progress/:id','method': 'DELETE','params': {id: '@id'}},
                 getProgress: {'url':'/privileged/progress/:id','method': 'GET','params': {id: '@id'}},
-                getProgresssByFiscalYear: {'url':'/all/progress/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
+                getTrainingsReportByFiscalYear: {'url':'/admin/treport/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
 
 
             }

@@ -21,10 +21,18 @@ public class Goal implements Serializable {
     private double budget;
     private TimeFrame timeFrame;
 
+public  Goal(){
 
+}
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
     private List<ActivityProgress> activityProgresses;
+
+    public Goal(int qty, int weightage, double budget) {
+        this.qty=qty;
+        this.weightage=weightage;
+        this.budget=budget;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

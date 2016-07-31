@@ -22,6 +22,7 @@ public class Training implements Serializable {
 
 //    private TrainingType trainingType;
 //
+    private String fiscalYear;
 
     private Date startDate;
 
@@ -138,6 +139,14 @@ public class Training implements Serializable {
 
     public void setTrainingCenter(TrainingCenter trainingCenter) {
         this.trainingCenter = trainingCenter;
+    }
+
+    public String getFiscalYear() {
+        return fiscalYear;
+    }
+
+    public void setFiscalYear(String fiscalYear) {
+        this.fiscalYear = fiscalYear;
     }
 }
 
