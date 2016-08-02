@@ -206,7 +206,7 @@ public class ConvertUtils {
 
     public static TrainingReportDTO convertToTrainingReportDTO(Training oneTraining, int numberOfAttendees, int numberOfMale, int numberOfFemale) {
 
-        TrainingReportDTO dto= new TrainingReportDTO();
+        TrainingReportDTO dto = new TrainingReportDTO();
         dto.setName(oneTraining.getName());
         //dto.setTimeFrame(oneTraining.get);
         dto.setBudget(oneTraining.getBudget());
@@ -219,5 +219,20 @@ public class ConvertUtils {
         dto.setNoOfAttendees(numberOfAttendees);
         return dto;
     }
+
+    public static ActivityDTO converToActivityDTO(Activity activity) {
+        ActivityDTO dto = new ActivityDTO();
+        dto.setId(activity.getId());
+        dto.setBudget(activity.getBudget());
+        dto.setProjectCode(activity.getProject().getProjectCode());
+        dto.setExpenseHead(activity.getExpenseHead());
+        dto.setUnit(activity.getUnit());
+        dto.setActivityHead(activity.getActivityHead());
+        return dto;
+    }
+
+
+
+
 }
 

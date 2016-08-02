@@ -17,7 +17,7 @@ public class Goal implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
     private int qty;
-    private int weightage;
+    private double weightage;
     private double budget;
     private TimeFrame timeFrame;
 
@@ -28,7 +28,7 @@ public  Goal(){
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
     private List<ActivityProgress> activityProgresses;
 
-    public Goal(int qty, int weightage, double budget) {
+    public Goal(int qty, double weightage, double budget) {
         this.qty=qty;
         this.weightage=weightage;
         this.budget=budget;
@@ -54,7 +54,7 @@ public  Goal(){
         this.qty = qty;
     }
 
-    public int getWeightage() {
+    public double getWeightage() {
         return weightage;
     }
 

@@ -1,5 +1,6 @@
 package com.cms.repository;
 
+import com.cms.dto.ProgressDTO;
 import com.cms.model.ActivityProgress;
 import com.cms.model.Progress;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +19,11 @@ public interface IProgressActivityDAO extends JpaRepository<ActivityProgress, In
 
 
     @Query("SELECT u.progress FROM ActivityProgress u WHERE u.activity.id=:id")
-    List<Progress> findProgressByActivityId(@Param("id")Integer id);
+    List<Progress> findProgressByActivityId(@Param("id") Integer id);
+
+    @Query("SELECT u FROM ActivityProgress u WHERE u.activity.id=:id")
+    List<ActivityProgress> findProgressActivityByActivityId(@Param("id") Integer id);
+
 
 //    @Query("DELETE FROM ActivityProgress u where u.progress.id=:id")
 //    void deleteProgressByProgressId(@Param("id") Integer id);

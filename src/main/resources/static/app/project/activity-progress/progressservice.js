@@ -13,7 +13,7 @@
             {
                // editUser: {method: "PUT", 'params': {id: '@id'}},
                 editProgress: {method: "PUT"},
-                findAllProgresses: {'url':'/privileged/progresses','method': 'GET', isArray: true},
+                findAllProgresses: {'url':'/privileged/activity-progress/:id','method': 'GET', isArray: true,'params': {id: '@id'}},
                 addProgress: {'url':'/privileged/progress','method': 'POST'},
                 deleteProgress: {'url':'/privileged/progress/:id','method': 'DELETE','params': {id: '@id'}},
                 getProgress: {'url':'/privileged/progress/:id','method': 'GET','params': {id: '@id'}},

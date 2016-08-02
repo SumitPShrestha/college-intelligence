@@ -14,7 +14,7 @@
         $scope.selectedTimeFrameItem = $scope.timeFrame[3];
         $scope.timeFrame.pop();
         findAllTC();
-        findAllActivitiesProgress();
+        findAllActivitiesProgress(activityId);
 
         $scope.initCreatePanel = function () {
             // $scope.clearValidationMessages();
@@ -59,9 +59,9 @@
             }
 
         }
-        $scope.deleteThisProgress=function(pid){
-            progressservice.deleteProgress({id:pid}).$promise.then(function(data){
-                findAllActivitiesProgress();
+        $scope.deleteThisProgress = function (pid) {
+            progressservice.deleteProgress({id: pid}).$promise.then(function (data) {
+                findAllActivitiesProgress(activityId);
             })
         }
         function showValidationErrors() {
@@ -90,7 +90,7 @@
 
         function createOrEditProgress(progress) {
             progressservice.addProgress(progress).$promise.then(function (data) {
-                findAllActivitiesProgress();
+                findAllActivitiesProgress(activityId);
                 $scope.closeThePanel();
             });
 
@@ -111,9 +111,9 @@
 
         }
 
-        function findAllActivitiesProgress() {
+        function findAllActivitiesProgress(aid) {
 
-            progressservice.findAllProgresses().$promise.then(function (data) {
+            progressservice.findAllProgresses({id: aid}).$promise.then(function (data) {
                 self.tableParams = new NgTableParams({}, {dataset: data});
             })
 
@@ -128,7 +128,7 @@
         }
 
         function setProgressModel(progress) {
-            $scope.progressmodel={};
+            $scope.progressmodel = {};
             $scope.selectedTimeFrameItem = progress.timeFrame;
             $scope.progressmodel.description = progress.description;
             $scope.progressmodel.progressQty = progress.progressQty;

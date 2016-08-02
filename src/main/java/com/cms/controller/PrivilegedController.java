@@ -43,11 +43,11 @@ public class PrivilegedController {
 
     @RequestMapping(value = RequestUrlToken.UPDATE_ACTIVITY, method = RequestMethod.PUT)
     @ResponseBody
-    public String saveActivity(@RequestBody TrainingDTO dto)
+    public String saveActivity(@RequestBody ActivityDTO dto)
             throws JsonProcessingException {
-        String goalId = privilegedService.createOrEditTraining(dto);
+        String goalId = privilegedService.createOrEditActivity(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(goalId + "  updated successfully");
+        String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
 
@@ -63,7 +63,7 @@ public class PrivilegedController {
 
     @RequestMapping(value = RequestUrlToken.GET_ACTIVITY, method = RequestMethod.GET)
     @ResponseBody
-    public Activity getActivity(@PathVariable Integer id)
+    public ActivityDTO getActivity(@PathVariable Integer id)
             throws JsonProcessingException {
         return privilegedService.getActivity(id);
     }
@@ -198,11 +198,11 @@ public class PrivilegedController {
         String progressId = privilegedService.createSubmittedProgress(dto);
         return progressId;
     }
-    @RequestMapping(value = RequestUrlToken.GET_PROGRESSES, method = RequestMethod.GET)
+    @RequestMapping(value = RequestUrlToken.GET_PROGRESSES_BY_ACTIVITY_ID, method = RequestMethod.GET)
     @ResponseBody
-    public List<ProgressDTO> getAllProgresses()
+    public List<ProgressDTO> getAllProgresses(@PathVariable Integer id)
             throws JsonProcessingException {
-        List<ProgressDTO> dtos = privilegedService.getAllProgresses();
+        List<ProgressDTO> dtos = privilegedService.getAllProgressesByActivityId(id);
         return dtos;
     }
 
@@ -213,7 +213,7 @@ public class PrivilegedController {
 
         return privilegedService.getProgressByItsId(id);
     }
-    @RequestMapping(value = RequestUrlToken.GET_PROGRESS, method = RequestMethod.DELETE)
+    @RequestMapping(value = RequestUrlToken.DELETE_PROGRESS, method = RequestMethod.DELETE)
     @ResponseBody
     public String  deleteProgress(@PathVariable Integer id)
             throws JsonProcessingException {

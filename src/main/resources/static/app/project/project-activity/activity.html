@@ -41,6 +41,8 @@
 </style>
 <section class="mainbar">
     <section class="matter">
+
+
         <div class="container">
 
             <div class="row">
@@ -391,6 +393,9 @@
                             <td title="'Activity Head'" filter="{ activityHead: 'text'}" sortable="'activityHead'">
                                 <span>{{a.activityHead}}</span>
                             </td>
+                            <td title="'Activity Name'" filter="{ activityName: 'text'}" sortable="'activityName'">
+                                <span>{{a.activityName}}</span>
+                            </td>
                             <td title="'Budget'" filter="{ budget  : 'text'}" sortable="'budget'">
                                 <span> {{a.budget}}</span>
 
@@ -438,7 +443,7 @@
 
                 </div>
             </div>
-
+            {{vm.neep}}
         </div>
 
     </section>

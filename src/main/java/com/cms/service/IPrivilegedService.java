@@ -14,7 +14,7 @@ public interface IPrivilegedService {
 
     String createOrEditActivity(ActivityDTO dto);
 
-    Activity getActivity(Integer id);
+    ActivityDTO getActivity(Integer id);
 
     String deleteActivity(Integer projectId,Integer activityId);
 
@@ -52,4 +52,5 @@ public interface IPrivilegedService {
 
     List<ReportDTO> getReportForProjectWork();
 
+    List<ProgressDTO> getAllProgressesByActivityId(Integer id);
 }

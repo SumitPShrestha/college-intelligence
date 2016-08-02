@@ -140,7 +140,7 @@
                                                    ng-model="projectmodel.aidOrganisation" required>
                                         </div>
                                         <p class="error-block"
-                                           ng-show="(projectForm.budgetSubHeadNumber.$error.required && !projectForm.aidOrganisation.$pristine) ||( submitted  && projectForm.aidOrganisation.$pristine)">
+                                           ng-show="(projectForm.aidOrganisation.$error.required && !projectForm.aidOrganisation.$pristine) ||( submitted  && projectForm.aidOrganisation.$pristine)">
                                             Aid Organisation name is required.</p>
 
                                     </div>
@@ -173,6 +173,9 @@
                             <td title="'Project Code'" filter="{ projectCode: 'text'}" sortable="'projectCode'">
                                 <span>{{p.projectCode}}</span>
                             </td>
+                            <td title="'Project Name'" filter="{ projectName: 'text'}" sortable="'projectName'">
+                                <span>{{p.projectName}}</span>
+                            </td>
                             <td title="'Budget'" filter="{ budget  : 'text'}" sortable="'budget'">
                                 <span> {{p.budget}}</span>
 
@@ -196,7 +199,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a data-toggle="tooltip" title="View All Activities !" href="/#/activity/{{p.projectCode}}">
+                                <a data-toggle="tooltip" title="View All Activities !" href="/#/activity/{{p.projectCode}}/{{selectedItem}}">
                                     <i class="fa fa-eye blue" aria-hidden="true"></i>
                                 </a>
                             </td>

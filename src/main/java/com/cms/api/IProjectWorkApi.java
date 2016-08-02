@@ -47,6 +47,7 @@ public interface IProjectWorkApi {
 
     List<Progress> getProgressByActivityId(Integer id);
 
+    List<ProgressDTO> findProgressesByActivityId(Integer id);
 }
 
 

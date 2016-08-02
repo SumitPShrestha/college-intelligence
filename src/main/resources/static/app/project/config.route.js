@@ -28,8 +28,23 @@
                     roles:['ROLE_ADMIN']
                 }
             },
-            {
+           /* {
                 url: '/activity/:code',
+                config: {
+                    templateUrl: 'app/project/project-activity/activity.html',
+                    controller: 'Activity',
+                    controllerAs: 'vm',
+                    title: 'project-activity',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Activities'
+                    },
+                    roles:['ROLE_ADMIN']
+                }
+            },*/
+            {
+                url: '/activity/:code/:fiscalYear',
                 config: {
                     templateUrl: 'app/project/project-activity/activity.html',
                     controller: 'Activity',

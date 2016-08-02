@@ -174,6 +174,11 @@ public class ProjectWorkApi implements IProjectWorkApi {
         return progressActivityDAO.findProgressByActivityId(id);
     }
 
+    @Override
+    public List<ProgressDTO> findProgressesByActivityId(Integer id) {
+        return ConvertUtils.convertToProgressesDTO(progressActivityDAO.findProgressActivityByActivityId(id));
+    }
+
 
     private String editProgress(ProgressDTO dto) {
         Progress progress = progressDAO.findOne(dto.getId());

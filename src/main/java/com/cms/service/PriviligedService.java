@@ -6,6 +6,7 @@ import com.cms.dto.*;
 import com.cms.model.Activity;
 import com.cms.model.Goal;
 import com.cms.model.Project;
+import com.cms.utility.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,8 +52,8 @@ public class PriviligedService implements IPrivilegedService {
     }
 
     @Override
-    public Activity getActivity(Integer id) {
-        return projectWorkApi.getActivityById(id);
+    public ActivityDTO getActivity(Integer id) {
+        return ConvertUtils.converToActivityDTO(projectWorkApi.getActivityById(id));
     }
 
     @Override
@@ -123,6 +124,11 @@ public class PriviligedService implements IPrivilegedService {
     @Override
     public List<ReportDTO> getReportForProjectWork() {
         return projectWorkApi.getReport();
+    }
+
+    @Override
+    public List<ProgressDTO> getAllProgressesByActivityId(Integer id) {
+        return projectWorkApi.findProgressesByActivityId(id);
     }
 
 
