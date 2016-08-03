@@ -2,10 +2,7 @@ package com.cms.service;
 
 import com.cms.api.IProjectWorkApi;
 import com.cms.api.ITrainingApi;
-import com.cms.dto.ProjectDTO;
-import com.cms.dto.ReportDTO;
-import com.cms.dto.TrainingCenterDTO;
-import com.cms.dto.TrainingReportDTO;
+import com.cms.dto.*;
 import com.cms.model.*;
 import com.cms.utility.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,6 +155,11 @@ public class AdminService implements IAdminService {
 
         return dtos;
 
+    }
+
+    @Override
+    public List<ProgressDTO> getProgressReport(String fiscalYear) {
+        return projectWorkApi.getAllSubmittedProgresses(fiscalYear);
     }
 
     private Goal calculateYearlyGoal(List<Goal> ga) {

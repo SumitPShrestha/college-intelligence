@@ -36,10 +36,10 @@
                     controllerAs: 'vm',
                     title: 'training',
 
-                    settings: {
+                   /* settings: {
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Training  '
-                    },
+                    },*/
                     roles:['ROLE_ADMIN']
                 }
             },
@@ -51,10 +51,10 @@
                     controllerAs: 'vm',
                     title: 'training',
 
-                    settings: {
+                   /* settings: {
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Training  '
-                    },
+                    },*/
                     roles:['ROLE_ADMIN']
                 }
             },

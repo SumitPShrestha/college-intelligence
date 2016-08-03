@@ -185,6 +185,14 @@ public class AdminController {
         return dtos;
     }
 
+    @RequestMapping(value = RequestUrlToken.VIEW_PROGRESS_REPORT, method = RequestMethod.GET)
+    @ResponseBody
+    public List<ProgressDTO> getProgressReport(@PathVariable String fiscalYear)
+            throws JsonProcessingException {
+        List<ProgressDTO> dtos = adminService.getProgressReport(fiscalYear);
+        return dtos;
+    }
+
 
 
 

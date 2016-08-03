@@ -24,6 +24,9 @@ public interface IProgressActivityDAO extends JpaRepository<ActivityProgress, In
     @Query("SELECT u FROM ActivityProgress u WHERE u.activity.id=:id")
     List<ActivityProgress> findProgressActivityByActivityId(@Param("id") Integer id);
 
+    @Query("SELECT u FROM ActivityProgress u WHERE u.activity.project.fiscalYear=:fiscalYear")
+    List<ActivityProgress> findAllProgressSubmittedInFiscalYear(@Param("fiscalYear") String fiscalYear);
+
 
 //    @Query("DELETE FROM ActivityProgress u where u.progress.id=:id")
 //    void deleteProgressByProgressId(@Param("id") Integer id);

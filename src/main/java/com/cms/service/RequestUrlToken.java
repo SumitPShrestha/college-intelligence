@@ -82,4 +82,7 @@ public class RequestUrlToken {
 
  public static final String VIEW_REPORT = "/report/{fiscalYear}";
  public static final String VIEW_TRAINING_REPORT = "/treport/{fiscalYear}";
+ public static final String VIEW_PROGRESS_REPORT = "/report/progresses/{fiscalYear}";
+
+
 }

@@ -3,18 +3,34 @@
 
     angular.module('app.project')
         .controller('Progress', Progress);
-    Progress.$inject = ['progressservice', 'trainingcenterservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
+    Progress.$inject = ['reportservice','progressservice', 'trainingcenterservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
 
-    function Progress(progressservice, trainingcenterservice, $scope, NgTableParams, logger, $routeParams) {
+    function Progress(reportservice,progressservice, trainingcenterservice, $scope, NgTableParams, logger, $routeParams) {
         var vm = this;
         var self = this;
         var activityId = $routeParams.activityId;
         // alert(pCode);
+        if(activityId!=undefined){
+            vm.forReport=true;
+
         $scope.timeFrame = ["FIRST_QUARTER", "SECOND_QUARTER", "THIRD_QUARTER", "SELECT"];
         $scope.selectedTimeFrameItem = $scope.timeFrame[3];
         $scope.timeFrame.pop();
         findAllTC();
-        findAllActivitiesProgress(activityId);
+        findAllActivitiesProgressByActivityId(activityId);
+        }
+        else{
+            vm.forReport=false;
+            $scope.fYear = ['2072-73', '2073-74', '2074-75', '2075-76', '2077-78'];
+            $scope.selectedItem = $scope.fYear[0];
+            findAllProgressesByFiscalYear({fiscalYear: $scope.selectedItem});
+
+            $scope.dropboxitemselected = function (item) {
+
+                $scope.selectedItem = item;
+                findAllProgressesByFiscalYear({fiscalYear: $scope.selectedItem});
+            }
+        }
 
         $scope.initCreatePanel = function () {
             // $scope.clearValidationMessages();
@@ -61,7 +77,7 @@
         }
         $scope.deleteThisProgress = function (pid) {
             progressservice.deleteProgress({id: pid}).$promise.then(function (data) {
-                findAllActivitiesProgress(activityId);
+                findAllActivitiesProgressByActivityId(activityId);
             })
         }
         function showValidationErrors() {
@@ -90,7 +106,7 @@
 
         function createOrEditProgress(progress) {
             progressservice.addProgress(progress).$promise.then(function (data) {
-                findAllActivitiesProgress(activityId);
+                findAllActivitiesProgressByActivityId(activityId);
                 $scope.closeThePanel();
             });
 
@@ -111,9 +127,9 @@
 
         }
 
-        function findAllActivitiesProgress(aid) {
+        function findAllActivitiesProgressByActivityId(aid) {
 
-            progressservice.findAllProgresses({id: aid}).$promise.then(function (data) {
+            progressservice.findAllProgressesByActivityId({id: aid}).$promise.then(function (data) {
                 self.tableParams = new NgTableParams({}, {dataset: data});
             })
 
@@ -134,6 +150,14 @@
             $scope.progressmodel.progressQty = progress.progressQty;
             $scope.progressmodel.goalQty = progress.goalQty;
             $scope.selectedTrainingCenterItem = progress.trainingCenter;
+
+        }
+
+        function findAllProgressesByFiscalYear(fYear){
+            reportservice.findAllProgresses(fYear).$promise.then(function(data){
+                self.tableParams = new NgTableParams({}, {dataset: data});
+
+            })
 
         }
 

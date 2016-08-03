@@ -106,10 +106,10 @@ public class PriviligedService implements IPrivilegedService {
         return projectWorkApi.createOrEditProgress(dto);
     }
 
-    @Override
-    public List<ProgressDTO> getAllProgresses() {
-        return projectWorkApi.getAllSubmittedProgresses();
-    }
+//    @Override
+//    public List<ProgressDTO> getAllProgresses() {
+//        return projectWorkApi.getAllSubmittedProgresses();
+//    }
 
     @Override
     public ProgressDTO getProgressByItsId(Integer id) {

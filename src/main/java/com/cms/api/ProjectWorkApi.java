@@ -136,8 +136,8 @@ public class ProjectWorkApi implements IProjectWorkApi {
     }
 
     @Override
-    public List<ProgressDTO> getAllSubmittedProgresses() {
-        return ConvertUtils.convertToProgressesDTO(progressActivityDAO.findAll());
+    public List<ProgressDTO> getAllSubmittedProgresses(String fiscalYear) {
+        return ConvertUtils.convertToProgressesDTO(progressActivityDAO.findAllProgressSubmittedInFiscalYear(fiscalYear));
     }
 
     @Override

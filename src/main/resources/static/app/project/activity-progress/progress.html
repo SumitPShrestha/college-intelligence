@@ -38,17 +38,26 @@
         width: auto;
         text-align: center;
     }
-    .dropdown-menu{
-        margin-left: 146px;
-    }
+
 </style>
 <section class="mainbar">
     <section class="matter">
         <div class="container">
 
             <div class="row">
+                <div data-ng-show="!vm.forReport" class="dropdown"><span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        {{selectedItem}}
+                        <span class="caret"></span>
+                    </button>
 
-                <button type="button" class="btn btn-primary btn-lg right"
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                    </ul>
+                </div>
+
+                <button data-ng-show="vm.forReport" type="button" class="btn btn-primary btn-lg right"
                         ng-click="initCreatePanel()">Create Progress
                 </button>
             </div>
@@ -259,7 +268,7 @@
                 <div class="widget wblue">
                     <div data-cc-widget-header title="Progress View Panel"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
-                    <table ng-table="vm.tableParams" class="table" show-filter="true">
+                    <table ng-table="vm.tableParams" class="table" show-filter="!vm.forReport">
                         <tr ng-repeat="a in $data">
 
 
@@ -280,18 +289,18 @@
 
 
 
-                            <td class="cursor-hands">
+                            <td data-ng-show="vm.forReport" class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(a.id)"></span>
                             </td>
-                            <td>
+                            <td data-ng-show="vm.forReport">
                                 <a data-toggle="tooltip" title="Delete ">
                                     <span ng-click="deleteThisProgress(a.id)"
                                           class="glyphicon glyphicon-trash red"></span>
                                 </a>
                             </td>
 
-                            <td>
+                            <td data-ng-show="vm.forReport">
                                 <a data-toggle="tooltip" title="Update Progress !" href="/#/progress/{{a.id}}">
 
                                     <i class="fa fa-cog fa-2x fa-fw" aria-hidden="true"></i>

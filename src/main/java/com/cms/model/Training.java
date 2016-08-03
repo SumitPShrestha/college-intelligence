@@ -19,9 +19,6 @@ public class Training implements Serializable {
 
     private String name;
 
-
-//    private TrainingType trainingType;
-//
     private String fiscalYear;
 
     private Date startDate;
@@ -101,11 +98,11 @@ public class Training implements Serializable {
         this.duration = duration;
     }
 
-    public double getBudget () {
-        return budget ;
+    public double getBudget() {
+        return budget;
     }
 
-    public void setBudget (double budget) {
+    public void setBudget(double budget) {
         this.budget = budget;
     }
 

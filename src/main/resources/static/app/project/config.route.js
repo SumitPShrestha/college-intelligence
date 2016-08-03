@@ -51,10 +51,10 @@
                     controllerAs: 'vm',
                     title: 'project-activity',
 
-                    settings: {
+                   /* settings: {
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Activities'
-                    },
+                    },*/
                     roles:['ROLE_ADMIN']
                 }
             },
@@ -66,9 +66,24 @@
                     controllerAs: 'vm',
                     title: 'progress',
 
-                    settings: {
+                   /* settings: {
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Progress'
+                    },*/
+                    roles:['ROLE_ADMIN']
+                }
+            },
+            {
+                url: '/allprogresses',
+                config: {
+                    templateUrl: 'app/project/activity-progress/progress.html',
+                    controller: 'Progress',
+                    controllerAs: 'vm',
+                    title: 'progress',
+
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Progress Report'
                     },
                     roles:['ROLE_ADMIN']
                 }
@@ -83,7 +98,7 @@
 
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-shield fa-rotate-270"></i> Report'
+                        content: '<i class="fa fa-shield fa-rotate-270"></i>Project Report'
                     },
                     roles:['ROLE_ADMIN']
                 }

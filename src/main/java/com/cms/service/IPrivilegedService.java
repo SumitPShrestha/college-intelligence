@@ -44,7 +44,7 @@ public interface IPrivilegedService {
 
     String createSubmittedProgress(ProgressDTO dto);
 
-    List<ProgressDTO> getAllProgresses();
+  //  List<ProgressDTO> getAllProgresses();
 
     ProgressDTO getProgressByItsId(Integer id);
 

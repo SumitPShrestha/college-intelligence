@@ -38,17 +38,13 @@
         width: auto;
         text-align: center;
     }
-
-    .dropdown-menu {
-        margin-left: 146px;
-    }
 </style>
 <section class="mainbar">
     <section class="matter">
         <div class="container ">
 
-            <div class="row">Fiscal Year
-                <div class="dropdown">
+            <div class="row">
+                <div class="dropdown"><span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
@@ -68,29 +64,29 @@
                 <table ng-table="vm.tableParams" class="table " show-filter="false">
 
                     <tr ng-repeat="a in $data" bgcolor="#faebd7">
-                        <td bgcolor="#f0f8ff" title="'name'" filter="{ name: 'text'}"
+                        <td bgcolor="#f0f8ff" title="'Training name'" filter="{ name: 'text'}"
                             sortable="'name'" >
                             <span>   {{a.name}} </span>
                         </td>
-                        <td bgcolor="#f0f8ff" title="'startDate'" filter="{ startDate: 'text'}"
+                        <td bgcolor="#faebd7" title="'Start Date'" filter="{ startDate: 'text'}"
                                    sortable="'startDate'" >
                         <span>   {{a.startDate}} </span>
                     </td>
-                        <td bgcolor="#f0f8ff" title="'endDate'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#f0f8ff" title="'End Date'" filter="{ goalQty: 'text'}"
                             sortable="'endDate'" >
                             <span>   {{a.endDate}} </span>
                         </td>
 
-                        <td bgcolor="#f0f8ff" title="'duration'" filter="{ duration  : 'text'}"
+                        <td bgcolor="#faebd7" bgcolor="#faebd7" title="'Duration'" filter="{ duration  : 'text'}"
                             sortable="'progressQty'">
                             <span> {{a.duration}}</span>
 
-                        <td title="'budget'" filter="{ budget: 'text'}"
+                        <td bgcolor="#f0f8ff" title="'Budget'" filter="{ budget: 'text'}"
                             sortable="'budget'">
                             <span>   {{a.budget}} </span>
                         </td>
 
-                        <td title="'target'" filter="{ target: 'text'}"
+                        <td bgcolor="#faebd7" title="'Target'" filter="{ target: 'text'}"
                             sortable="'target'">
                             <span>   {{a.target}} </span>
                         </td>
@@ -99,11 +95,11 @@
                             <span>   {{a.noOfAttendees}} </span>
                         </td>
 
-                        <td bgcolor="#f0f8ff" title="'Male Frequecy'" filter="{ maleFrequency  : 'text'}"
+                        <td bgcolor="#faebd7" title="'Male Frequecy'" filter="{ maleFrequency  : 'text'}"
                             sortable="'progressQty'">
                             <span> {{a.maleFrequency}}</span>
 
-                        <td title="'Female Frequency'" filter="{ femaleFrequency: 'text'}"
+                        <td bgcolor="#f0f8ff" title="'Female Frequency'" filter="{ femaleFrequency: 'text'}"
                             sortable="'femaleFrequency'">
                             <span>   {{a.femaleFrequency}} </span>
                         </td>

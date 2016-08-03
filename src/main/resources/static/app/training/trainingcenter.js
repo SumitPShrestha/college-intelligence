@@ -116,15 +116,6 @@
                 $scope.selectedTrainingCenterItem = data.parentTrainingCenter;
             }
 
-            /* $scope.trainingCenters.forEach(function(tc){
-             if(tc==data.name){
-             $scope.trainingCenters.
-             }
-             if($scope.selectedTrainingCenterItem==tc){
-
-
-             }
-             });*/
 
         }
 

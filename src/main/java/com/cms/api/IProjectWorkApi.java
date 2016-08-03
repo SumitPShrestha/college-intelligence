@@ -32,7 +32,7 @@ public interface IProjectWorkApi {
 
     String createOrEditProgress(ProgressDTO dto);
 
-    List<ProgressDTO> getAllSubmittedProgresses();
+    List<ProgressDTO> getAllSubmittedProgresses(String fiscalYear);
 
     ProgressDTO getProgressByProgressId(Integer id);
 

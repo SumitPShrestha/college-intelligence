@@ -7,7 +7,6 @@
     function Activity(activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
         var pCode = $routeParams.code;
         var fYear = $routeParams.fiscalYear;
-        alert(fYear);
         findAllActivities(pCode, fYear);
 
         $scope.activitymodel = {};

@@ -14,7 +14,7 @@
     function getRoutes() {
         return [
             {
-                url: '/demo',
+                url: '/app-users',
                 config: {
                     templateUrl: 'app/demo/demo.html',
                     controller: 'Demo',
@@ -23,7 +23,7 @@
 
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-shield fa-rotate-270"></i> Demo'
+                        content: '<i class="fa fa-shield fa-rotate-270"></i> Application Users '
                     },
                     roles:['ROLE_ADMIN']
                 }

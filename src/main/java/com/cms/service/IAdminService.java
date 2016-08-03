@@ -30,4 +30,6 @@ public interface IAdminService {
     List<ReportDTO> getReportForProjectWork(String fiscalYear);
 
     List<TrainingReportDTO> getReportForTraining(String fiscalYear);
+
+    List<ProgressDTO> getProgressReport(String fiscalYear);
 }

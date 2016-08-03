@@ -39,16 +39,13 @@
         text-align: center;
     }
 
-    .dropdown-menu {
-        margin-left: 146px;
-    }
 </style>
 <section class="mainbar">
     <section class="matter">
         <div class="container ">
 
-            <div class="row">Fiscal Year
-                <div class="dropdown">
+            <div class="row">
+                <div class="dropdown"><span style="color: #1171a3; font-weight: bold" >Fiscal Year </span>
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
@@ -69,37 +66,37 @@
 
                     <thead>
                     <tr>
-                        <th rowspan="4">Activity</th>
-                        <th rowspan="4">Project</th>
-                        <th colspan="4" bgcolor="green">1st Quarter</th>
-                        <th colspan="4" bgcolor="#7cfc00">2nd Quarter</th>
-                        <th colspan="4" bgcolor="#32cd32">3rd Quarter</th>
-                        <th colspan="4" bgcolor="lime">Yearly</th>
+                        <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Head</th>
+                        <th style="vertical-align: middle" bgcolor="#f0f8ff" rowspan="2">Project Code </th>
+                        <th colspan="4" bgcolor="#faebd7">1st Quarter</th>
+                        <th colspan="4" bgcolor="#f0f8ff">2nd Quarter</th>
+                        <th colspan="4" bgcolor="#faebd7">3rd Quarter</th>
+                        <th colspan="4" bgcolor="f0f8ff">Yearly</th>
 
                     </tr>
                     <tr>
-                        <th bgcolor="#b0e0e6">Goal Qty</th>
-                        <th bgcolor="#b0e0e6">Progress Qty</th>
-                        <th bgcolor="#b0e0e6">Budget</th>
-                        <th bgcolor="#b0e0e6">Weightage</th>
+                        <th bgcolor="#faebd7">Goal Qty</th>
+                        <th bgcolor="#faebd7">Progress Qty</th>
+                        <th bgcolor="#faebd7">Budget</th>
+                        <th bgcolor="#faebd7">Weightage</th>
                         <th bgcolor="#f0f8ff">Goal Qty</th>
                         <th bgcolor="#f0f8ff">Progress Qty</th>
                         <th bgcolor="#f0f8ff">Budget</th>
                         <th bgcolor="#f0f8ff">Weightage</th>
-                        <th bgcolor="#fff0f5">Goal Qty</th>
-                        <th bgcolor="#fff0f5">Progress Qty</th>
-                        <th bgcolor="#fff0f5">Budget</th>
-                        <th bgcolor="#fff0f5">Weightage</th>
-                        <th bgcolor="#add8e6">Goal Qty</th>
-                        <th bgcolor="#add8e6">Progress Qty</th>
-                        <th bgcolor="#add8e6">Budget</th>
-                        <th bgcolor="#add8e6">Weightage</th>
+                        <th bgcolor="#faebd7">Goal Qty</th>
+                        <th bgcolor="#faebd7">Progress Qty</th>
+                        <th bgcolor="#faebd7">Budget</th>
+                        <th bgcolor="#faebd7">Weightage</th>
+                        <th bgcolor="#f0f8ff">Goal Qty</th>
+                        <th bgcolor="#f0f8ff">Progress Qty</th>
+                        <th bgcolor="#f0f8ff">Budget</th>
+                        <th bgcolor="#f0f8ff">Weightage</th>
 
                     </tr>
 
                     </thead>
                     <tr ng-repeat="a in $data" bgcolor="#faebd7">
-                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.activityDTO.activityHead}} </span>
                         </td>
@@ -107,21 +104,21 @@
                                    sortable="'goalQty'" >
                         <span>   {{a.activityDTO.projectCode}} </span>
                     </td>
-                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.g1.qty}} </span>
                         </td>
 
-                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                        <td bgcolor="#faebd7" title="'progressQty'" filter="{ progressQty  : 'text'}"
                             sortable="'progressQty'">
                             <span> {{a.p1.progressQty}}</span>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ budget: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g1.budget}} </span>
                         </td>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ weightage: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g1.weightage}} </span>
                         </td>
@@ -134,29 +131,29 @@
                             sortable="'progressQty'">
                             <span> {{a.p2.progressQty}}</span>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
-                            sortable="'goalQty'">
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'budget'">
                             <span>   {{a.g2.budget}} </span>
                         </td>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
-                            sortable="'goalQty'">
+                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'weightage'">
                             <span>   {{a.g2.weightage}} </span>
                         </td>
-                        <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.g3.qty}} </span>
                         </td>
 
-                        <td bgcolor="#f0f8ff" title="'progressQty'" filter="{ progressQty  : 'text'}"
+                        <td bgcolor="#faebd7" title="'progressQty'" filter="{ progressQty  : 'text'}"
                             sortable="'progressQty'">
                             <span> {{a.p3.progressQty}}</span>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g3.budget}} </span>
                         </td>
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g3.weightage}} </span>
                         </td>
@@ -170,12 +167,12 @@
                             sortable="'progressQty'">
                             <span> {{a.p.progressQty}}</span>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#f0f8ff"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g.budget}} </span>
                         </td>
 
-                        <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                        <td bgcolor="#f0f8ff"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g.weightage}} </span>
                         </td>
