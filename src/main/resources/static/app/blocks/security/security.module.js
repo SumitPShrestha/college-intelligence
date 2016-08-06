@@ -6,7 +6,6 @@
 
     angular.module('blocks.security', [
         'ngRoute',
-
         'blocks.logger'
     ]);
 })();
