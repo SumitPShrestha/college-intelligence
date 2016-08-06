@@ -17,11 +17,8 @@
         function Login(credentials) {
             LoginService.login(credentials).$promise.then(
                 function (responseUser) {
-                    $rootScope.userAuth = responseUser;
-                    $cookieStore.put('user', responseUser);
-                    logger.info("Login Success!!!!")
 
-                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess,responseUser);
                 }, function (response) {
                     logger.info("Login Failed!!!!")
                 }
