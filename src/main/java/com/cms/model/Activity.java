@@ -21,6 +21,8 @@ public class Activity implements Serializable {
 
     private String activityHead;
 
+    private String activityName;
+
     private String expenseHead;
     private String unit;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -30,6 +32,13 @@ public class Activity implements Serializable {
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "activity")
     private List<ActivityProgress> activityProgresses;
 
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
 
     public String getUnit() {
         return unit;

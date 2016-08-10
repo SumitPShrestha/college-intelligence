@@ -162,6 +162,11 @@ public class AdminService implements IAdminService {
         return projectWorkApi.getAllSubmittedProgresses(fiscalYear);
     }
 
+    @Override
+    public String getChildTrainingCenter(Integer id) {
+        return trainingApi.countChildTrainingCenter(id);
+    }
+
     private Goal calculateYearlyGoal(List<Goal> ga) {
         int qty = 0;
         int weightage = 0;

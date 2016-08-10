@@ -17,7 +17,8 @@
                 addTrainingCenter: {url:'/admin/trainingCenter/',method: 'POST'},
                 deleteTrainingCenterIfPossible: {'url':'/admin/trainingCenter/:id','method': 'DELETE','params': {id: '@id'}},
                 getTrainingCenter: {'url':'/admin/trainingCenter/:id','method': 'GET','params': {id: '@id'}},
-                findAllParentTrainingCenters: {url:'/admin/parentTrainingCenters/','method': 'GET', isArray: true}
+                findAllParentTrainingCenters: {url:'/admin/parentTrainingCenters/','method': 'GET', isArray: true},
+                findChildTrainingCenter:{'url':'/admin/childTrainingCenter/:id','method': 'GET','params': {id: '@id'}}
 
 
             }

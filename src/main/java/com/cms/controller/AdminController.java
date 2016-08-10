@@ -7,10 +7,7 @@ import com.cms.service.RequestUrlToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +15,7 @@ import java.util.List;
 
 
 @Controller
-/*@Secured("ROLE_ADMIN")*/
+@Secured("ROLE_ADMIN")
 
 @RequestMapping("/admin")
 public class AdminController {
@@ -34,16 +31,17 @@ public class AdminController {
             throws JsonProcessingException {
         String userId = userService.createOrEditApplicationUser(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  created successfully");
+        String val = mapper.writeValueAsString(userId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_USER, method = RequestMethod.PUT)
     @ResponseBody
     public String saveUser(@RequestBody UserDTO dto)
             throws JsonProcessingException {
         String userId = userService.createOrEditApplicationUser(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  edited successfully");
+        String val = mapper.writeValueAsString(userId + "  edited successfully");
         return val;
     }
 
@@ -54,6 +52,7 @@ public class AdminController {
         List<UserDTO> ss = userService.getAllUsers();
         return ss;
     }
+
     @RequestMapping(value = RequestUrlToken.GET_USER, method = RequestMethod.GET)
     @ResponseBody
     public UserDTO getSingleUser(@PathVariable Integer id)
@@ -61,33 +60,36 @@ public class AdminController {
 
         return userService.getUser(id);
     }
+
     @RequestMapping(value = RequestUrlToken.DELETE_USER, method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteUser(@PathVariable Integer id)
             throws JsonProcessingException {
 
-        String userId=userService.deleteUser(id);
+        String userId = userService.deleteUser(id);
 
         ObjectMapper mapper = new ObjectMapper();
         String val = mapper.writeValueAsString(userId);
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.CREATE_PROJECT, method = RequestMethod.POST)
     @ResponseBody
     public String createProject(@RequestBody ProjectDTO dto)
             throws JsonProcessingException {
         String userId = adminService.createOrEditProject(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  created successfully");
+        String val = mapper.writeValueAsString(userId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_PROJECT, method = RequestMethod.PUT)
     @ResponseBody
     public String editProject(@RequestBody ProjectDTO dto)
             throws JsonProcessingException {
         String userId = adminService.createOrEditProject(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  edited successfully");
+        String val = mapper.writeValueAsString(userId + "  edited successfully");
         return val;
     }
 
@@ -104,28 +106,30 @@ public class AdminController {
     public String deleteProject(@PathVariable Integer id)
             throws JsonProcessingException {
 
-        String userId=adminService.deleteProject(id);
+        String userId = adminService.deleteProject(id);
 
         ObjectMapper mapper = new ObjectMapper();
         String val = mapper.writeValueAsString(userId);
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.CREATE_TC, method = RequestMethod.POST)
     @ResponseBody
     public String createTC(@RequestBody TrainingCenterDTO dto)
             throws JsonProcessingException {
         String userId = adminService.createOrEditTrainingCenter(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  created successfully");
+        String val = mapper.writeValueAsString(userId + "  created successfully");
         return val;
     }
+
     @RequestMapping(value = RequestUrlToken.UPDATE_TC, method = RequestMethod.PUT)
     @ResponseBody
     public String editTC(@RequestBody ProjectDTO dto)
             throws JsonProcessingException {
         String userId = adminService.createOrEditProject(dto);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString(userId +"  edited successfully");
+        String val = mapper.writeValueAsString(userId + "  edited successfully");
         return val;
     }
 
@@ -142,12 +146,14 @@ public class AdminController {
     public String deleteTC(@PathVariable Integer id)
             throws JsonProcessingException {
 
-        String userId=adminService.deleteTrainingCenter(id);
+        String userId = adminService.deleteTrainingCenter(id);
 
         ObjectMapper mapper = new ObjectMapper();
         String val = mapper.writeValueAsString(userId);
         return val;
     }
+
+    @Secured({"ROLE_ADMIN", "ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_TCS, method = RequestMethod.GET)
     @ResponseBody
     public List<TrainingCenterDTO> showAllTrainingCenters()
@@ -155,6 +161,8 @@ public class AdminController {
         List<TrainingCenterDTO> ss = adminService.getAllTrainingCenters();
         return ss;
     }
+
+    @Secured({"ROLE_ADMIN", "ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_PARENT_TCS, method = RequestMethod.GET)
     @ResponseBody
     public List<TrainingCenterDTO> showAllParentTrainingCenters()
@@ -162,13 +170,15 @@ public class AdminController {
         List<TrainingCenterDTO> ss = adminService.getAllParentTrainingCenters();
         return ss;
     }
+
     @RequestMapping(value = RequestUrlToken.GET_TC, method = RequestMethod.GET)
     @ResponseBody
     public TrainingCenterDTO getSingleTC(@PathVariable Integer id)
             throws JsonProcessingException {
-      TrainingCenterDTO dto = adminService.getTrainingCenter(id);
+        TrainingCenterDTO dto = adminService.getTrainingCenter(id);
         return dto;
     }
+
     @RequestMapping(value = RequestUrlToken.VIEW_REPORT, method = RequestMethod.GET)
     @ResponseBody
     public List<ReportDTO> getReport(@PathVariable String fiscalYear)
@@ -189,12 +199,20 @@ public class AdminController {
     @ResponseBody
     public List<ProgressDTO> getProgressReport(@PathVariable String fiscalYear)
             throws JsonProcessingException {
+
         List<ProgressDTO> dtos = adminService.getProgressReport(fiscalYear);
         return dtos;
     }
 
+    @RequestMapping(value = RequestUrlToken.GET_CHILD_TCS, method = RequestMethod.GET)
+    @ResponseBody
+    public TrainingCenterDTO hero(@PathVariable Integer id)
+            throws JsonProcessingException {
+        TrainingCenterDTO dto = new TrainingCenterDTO();
+        dto.setCount(adminService.getChildTrainingCenter(id));
 
 
-
-
+        return dto;
+    }
 }
+

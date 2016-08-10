@@ -131,5 +131,10 @@ public class PriviligedService implements IPrivilegedService {
         return projectWorkApi.findProgressesByActivityId(id);
     }
 
+    @Override
+    public String deleteActivityWithGoalsIfProgressIsNotUpdated(Integer id) {
+        return projectWorkApi.deleteActivityWithGoals(id);
+    }
+
 
 }

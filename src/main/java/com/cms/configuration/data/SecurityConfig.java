@@ -90,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private UserDetailsService userDetailsService(final IUserDAO userDaoo) throws UsernameNotFoundException {
         return (username) -> {
+
             final User adminUser = userDaoo.retrieveByName(username);
             if (adminUser == null) {
                 throw new UsernameNotFoundException("User "+username+ " not found:::::::::::::::::::::::::::::");

@@ -6,6 +6,9 @@ import com.cms.model.Goal;
  * Created by amit on 7/16/16.
  */
 public class GoalDTO {
+    Goal goal;
+    Integer activityId;
+
     public Goal getGoal() {
         return goal;
     }
@@ -14,7 +17,6 @@ public class GoalDTO {
         this.goal = goal;
     }
 
-    Goal goal;
 
     public Integer getActivityId() {
         return activityId;
@@ -24,7 +26,6 @@ public class GoalDTO {
         this.activityId = activityId;
     }
 
-    Integer activityId;
 
 
 

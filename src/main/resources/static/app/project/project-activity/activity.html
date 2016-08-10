@@ -87,6 +87,23 @@
 
 
                                     </div>
+                                    <div class="col-md-6 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : activityForm.activityName.$invalid && !activityForm.activityName.$pristine }">
+                                            <label>Activity Name :<span>*</span></label>
+                                            <input type="text" name="activityName" class="form-control"
+                                                   ng-model="activitymodel.activityName" required>
+                                            <!--&lt;!&ndash;-->
+                                            <!--(activityForm.username.$error.required && !activityForm.username.$pristine)|| -->
+                                            <!--&ndash;&gt;-->
+                                        </div>
+
+                                        <p class="error-block"
+                                           ng-show="(activityForm.activityName.$error.required && !activityForm.activityName.$pristine) ||( submitted  && activityForm.username.$pristine)">
+                                            Activity Head is required.</p>
+
+
+                                    </div>
 
 
                                     <div class="col-md-6 form-item-container">
@@ -106,7 +123,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : activitymodel.budget.$invalid && !activitymodel.budget.$pristine }">
                                             <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
+                                            <input type="number" name="budget" class="form-control"
                                                    ng-model="activitymodel.budget" required>
                                         </div>
                                         <p class="error-block"
@@ -173,7 +190,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q1GoalForm.qty.$invalid && !q1GoalForm.qty.$pristine }">
                                             <label>Qty :<span>*</span></label>
-                                            <input type="text" name="qty" class="form-control"
+                                            <input type="number" name="qty" class="form-control"
                                                    ng-model="q1goalmodel.qty" required>
                                             <!--&lt;!&ndash;-->
                                             <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
@@ -196,7 +213,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q1goalmodel.budget.$invalid && !projectmodel.budget.$pristine }">
                                             <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
+                                            <input type="number" name="budget" class="form-control"
                                                    ng-model="q1goalmodel.budget" required>
                                         </div>
                                         <p class="error-block"
@@ -208,7 +225,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q1goalmodel.weightage.$invalid && !q1goalmodel.weightage.$pristine }">
                                             <label> Weightage :<span>*</span></label>
-                                            <input type="text" name="weightage" class="form-control"
+                                            <input type="number" name="weightage" class="form-control"
                                                    ng-model="q1goalmodel.weightage" required>
                                         </div>
                                         <p class="error-block"
@@ -249,7 +266,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q2GoalForm.qty.$invalid && !q2GoalForm.qty.$pristine }">
                                             <label>Qty :<span>*</span></label>
-                                            <input type="text" name="qty" class="form-control"
+                                            <input type="number" name="qty" class="form-control"
                                                    ng-model="q2goalmodel.qty" required>
                                             <!--&lt;!&ndash;-->
                                             <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
@@ -284,7 +301,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q2goalmodel.weightage.$invalid && !q2goalmodel.weightage.$pristine }">
                                             <label> Weightage :<span>*</span></label>
-                                            <input type="text" name="weightage" class="form-control"
+                                            <input type="number" name="weightage" class="form-control"
                                                    ng-model="q2goalmodel.weightage" required>
                                         </div>
                                         <p class="error-block"
@@ -322,7 +339,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q3GoalForm.qty.$invalid && !q3GoalForm.qty.$pristine }">
                                             <label>Qty :<span>*</span></label>
-                                            <input type="text" name="qty" class="form-control"
+                                            <input type="number" name="qty" class="form-control"
                                                    ng-model="q3goalmodel.qty" required>
                                             <!--&lt;!&ndash;-->
                                             <!--(projectForm.username.$error.required && !projectForm.username.$pristine)|| -->
@@ -345,7 +362,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q3goalmodel.budget.$invalid && !projectmodel.budget.$pristine }">
                                             <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
+                                            <input type="number" name="budget" class="form-control"
                                                    ng-model="q3goalmodel.budget" required>
                                         </div>
                                         <p class="error-block"
@@ -357,7 +374,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : q3goalmodel.weightage.$invalid && !q3goalmodel.weightage.$pristine }">
                                             <label> Weightage :<span>*</span></label>
-                                            <input type="text" name="weightage" class="form-control"
+                                            <input type="number" name="weightage" class="form-control"
                                                    ng-model="q3goalmodel.weightage" required>
                                         </div>
                                         <p class="error-block"
@@ -390,7 +407,7 @@
                         <tr ng-repeat="a in $data">
 
 
-                            <td title="'Activity Head'" filter="{ activityHead: 'text'}" sortable="'activityHead'">
+                            <td title="'Activity Head'" filter="{ activityName: 'text'}" sortable="'activityHead'">
                                 <span>{{a.activityHead}}</span>
                             </td>
                             <td title="'Activity Name'" filter="{ activityName: 'text'}" sortable="'activityName'">
@@ -409,18 +426,18 @@
                             </td>
 
                             <td class="cursor-hands">
-                                <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(a.id)"></span>
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(a.id)"></button>
                             </td>
                             <td>
                                 <a data-toggle="tooltip" title="Delete ">
-                                    <span ng-click="deleteTheUser(a.id)"
-                                          class="glyphicon glyphicon-trash red"></span>
+                                    <button ng-click="deleteTheActivity(a.id)"
+                                          class="glyphicon glyphicon-trash red"></button>
                                 </a>
                             </td>
                             <td>
                                 <a data-toggle="tooltip" title="Update Goal !">
-                                    <span ng-click="initializeGoalPanel(a.id)">
+                                    <span ng-click="initializeGoalPanel(a.id,a.activityName)">
 
                               <i class="fa fa-wrench" style="font-size:24px"></i>
 
@@ -443,7 +460,6 @@
 
                 </div>
             </div>
-            {{vm.neep}}
         </div>
 
     </section>

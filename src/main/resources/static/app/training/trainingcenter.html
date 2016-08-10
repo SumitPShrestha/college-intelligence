@@ -35,11 +35,12 @@
     }
 
 
+
 </style>
 <section class="mainbar">
     <section class="matter">
         <div class="container">
-            <div class="row">
+            <div  data-ng-show="showMe" class="row">
                 <button type="button" class="btn btn-primary btn-lg right"
                         ng-click="initCreatePanel()">Create Training Center
                 </button>
@@ -128,7 +129,7 @@
                                             </button>
 
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li ng-repeat="tc in trainingCenters"><a
+                                                <li ng-repeat="tc in trainingCenters track by $index"><a
                                                         ng-click="trainingCenterDropboxitemselected(tc)">{{tc}}</a></li>
                                             </ul>
                                         </div>
@@ -177,22 +178,30 @@
                             </td>
 
 
-                            <td style="width: auto;text-align: center" class="cursor-hands">
+                           <!-- <td data-ng-show="showMe" style="width: auto;text-align: center" class="cursor-hands">
                                 <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(tc.id)"></span>
+                            </td>-->
+                            <td data-ng-show="showMe" style="width: auto;text-align: center" >
+                                <a data-toggle="tooltip" title="Edit !">
+                                <button class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(tc.id)"></button>
+
+                                    </a>
                             </td>
-                            <td style="width: auto;text-align: center">
+                            <td data-ng-show="showMe" style="width: auto;text-align: center" >
                                 <a data-toggle="tooltip" title="Delete !">
-                                    <span ng-click="deleteTrainingCenter(tc.id)"
-                                          class="glyphicon glyphicon-trash red"></span>
+                                    <button class="glyphicon glyphicon-trash red "
+                                            ng-click=" deleteTrainingCenter(tc.id)"></button>
                                 </a>
                             </td>
-                            <td style="width: auto;text-align: center" class="cursor-hands">
 
-                                <a href="/#/trainingCenter/{{tc.id}}">
-                                          <span data-toggle="tooltip" title="Go to Training !!">
+                            <td style="width: auto;text-align: center"  >
+
+                                <a data-toggle="tooltip" title="Go to Training !!" href="/#/trainingCenter/{{tc.id}}">
+                                          <button >
                                     <i class="fa fa-eye blue" aria-hidden="true"></i>
-                                      </span>
+                                      </button>
                                 </a>
 
                             </td>

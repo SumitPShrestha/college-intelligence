@@ -82,22 +82,11 @@ public class TrainingApi implements ITrainingApi {
         if (training == null) {
             training = new Training();
         }
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 
-
-        Date sDate = null;
-        Date eDate = null;
-        try {
-            sDate = formatter.parse(dto.getStart());
-            eDate = formatter.parse(dto.getEnd());
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         training.setName(dto.getName());
         training.setBudget(dto.getBudget());
-        training.setStartDate(sDate);
-        training.setEndDate(eDate);
+        training.setStartDate(dto.getStart());
+        training.setEndDate(dto.getEnd());
         training.setTarget(dto.getTarget());
         training.setTrainingCenter(trainingCenterDAO.findOne(dto.getTrainingCenterId()));
 
@@ -178,5 +167,10 @@ public class TrainingApi implements ITrainingApi {
     @Override
     public int countNumberOfMale(int id) {
         return memberDAO.countNumberOfMaleMembers(id);
+    }
+
+    @Override
+    public String countChildTrainingCenter(Integer id) {
+        return trainingCenterDAO.countChildTrainingCenter(id).toString();
     }
 }

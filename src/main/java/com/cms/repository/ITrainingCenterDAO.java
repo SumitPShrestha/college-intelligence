@@ -1,6 +1,7 @@
 package com.cms.repository;
 
 import com.cms.model.TrainingCenter;
+import com.sun.jndi.toolkit.ctx.Continuation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +21,6 @@ public interface ITrainingCenterDAO extends JpaRepository<TrainingCenter, Intege
     List<TrainingCenter> findAllParentTrainingCenter();
 
 
-
+    @Query("SELECT count(u)   FROM TrainingCenter u WHERE u.parentTrainingCenter.id = :id")
+    Integer countChildTrainingCenter(@Param("id") Integer id);
 }

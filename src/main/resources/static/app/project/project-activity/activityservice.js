@@ -15,7 +15,7 @@
                 editProject: {method: "PUT"},
                 findAllActivities: {'url':'/privileged/activity/code/:id','method': 'GET', isArray: true,'params': {id: '@id'}},
                 addActivity: {'url':'/privileged/activity/','method': 'POST'},
-                deleteActivity: {'url':'/all/project/:id','method': 'DELETE','params': {id: '@id'}},
+                deleteActivity: {'url':'/privileged/activity/:id','method': 'DELETE','params': {id: '@id'}},
                 getSingleActivity: {'url':'/privileged/activity/:id','method': 'GET','params': {id: '@id'}},
                 getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
 

@@ -26,7 +26,7 @@ public class Project implements Serializable {
 
     private String projectCode;
 
-
+    private String projectName;
 
     private String fiscalYear;
 
@@ -35,6 +35,14 @@ public class Project implements Serializable {
     private double budget;
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "project")
     private List<Activity> activities;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public Integer getId() {
         return id;

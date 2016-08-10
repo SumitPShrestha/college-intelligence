@@ -3,7 +3,10 @@ package com.cms.utility;
 import com.cms.dto.*;
 import com.cms.model.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,7 +31,14 @@ public class ConvertUtils {
             userDTO.setEmail(user.getUserInfo().getEmail());
             userDTO.setLandlineNumber(user.getUserInfo().getLandlineNumber());
             userDTO.setMobileNumber(user.getUserInfo().getMobileNumber());
-            userDTO.setDob(user.getUserInfo().getDob().toString());
+//            Date date=null;
+//            SimpleDateFormat tt= new SimpleDateFormat("mm/dd/yyyy");
+//            try {
+//                  date =(Date) tt.parse("");
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+            userDTO.setDob(user.getUserInfo().getDob());
             userDTO.setMale(user.getUserInfo().isMale());
         }
         if (user.getRoles() != null) {
@@ -53,6 +63,7 @@ public class ConvertUtils {
         dto.setFiscalYear(p.getFiscalYear());
         dto.setBudgetSubHeadNumber(p.getBudgetSubHeadNumber());
         dto.setAidOrganisation(p.getAidOrganisation());
+        dto.setProjectName(p.getProjectName());
         dto.setBudget(p.getBudget());
         return dto;
     }
@@ -102,8 +113,8 @@ public class ConvertUtils {
         dto.setId(t.getId());
         dto.setName(t.getName());
         dto.setBudget(t.getBudget());
-        dto.setStart(t.getStartDate().toString());
-        dto.setEnd(t.getEndDate().toString());
+        dto.setStart(t.getStartDate() );
+        dto.setEnd(t.getEndDate());
         dto.setTarget(t.getTarget());
         return dto;
 
@@ -155,6 +166,7 @@ public class ConvertUtils {
         ActivityDTO dto = new ActivityDTO();
         dto.setId(a.getId());
         dto.setUnit(a.getUnit());
+        dto.setActivityName(a.getActivityName());
         dto.setExpenseHead(a.getExpenseHead());
         dto.setActivityHead(a.getActivityHead());
         dto.setProjectCode(a.getProject().getProjectCode());
@@ -210,9 +222,9 @@ public class ConvertUtils {
         dto.setName(oneTraining.getName());
         //dto.setTimeFrame(oneTraining.get);
         dto.setBudget(oneTraining.getBudget());
-        dto.setStartDate(oneTraining.getStartDate().toString());
-        dto.setEndDate(oneTraining.getEndDate().toString());
-        dto.setDuration(7);
+        dto.setStartDate(oneTraining.getStartDate());
+        dto.setEndDate(oneTraining.getEndDate());
+        dto.setDuration(dto.getDuration());
         dto.setTarget(oneTraining.getTarget());
         dto.setMaleFrequency(numberOfMale);
         dto.setFemaleFrequency(numberOfFemale);
@@ -228,6 +240,7 @@ public class ConvertUtils {
         dto.setExpenseHead(activity.getExpenseHead());
         dto.setUnit(activity.getUnit());
         dto.setActivityHead(activity.getActivityHead());
+        dto.setActivityName(activity.getActivityName());
         return dto;
     }
 

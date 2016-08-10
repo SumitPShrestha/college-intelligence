@@ -10,6 +10,8 @@
 
                 //   $rootScope.uiState = $state;
 
+
+
                 $rootScope.logout = function () {
 
                     $http.get("/auth/logout")

@@ -99,7 +99,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : progressmodel.progressQty.$invalid && !progressmodel.progressQty.$pristine }">
                                             <label>Progress Qty :<span>*</span></label>
-                                            <input type="text" name="progressQty" class="form-control"
+                                            <input type="number" name="progressQty" class="form-control"
                                                    ng-model="progressmodel.progressQty" required>
                                         </div>
                                         <p class="error-block"
@@ -266,7 +266,7 @@
 
             <div class="row">
                 <div class="widget wblue">
-                    <div data-cc-widget-header title="Progress View Panel"></div>
+                    <div data-cc-widget-header title="{{vm.title}}"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="!vm.forReport">
                         <tr ng-repeat="a in $data">
@@ -297,16 +297,6 @@
                                 <a data-toggle="tooltip" title="Delete ">
                                     <span ng-click="deleteThisProgress(a.id)"
                                           class="glyphicon glyphicon-trash red"></span>
-                                </a>
-                            </td>
-
-                            <td data-ng-show="vm.forReport">
-                                <a data-toggle="tooltip" title="Update Progress !" href="/#/progress/{{a.id}}">
-
-                                    <i class="fa fa-cog fa-2x fa-fw" aria-hidden="true"></i>
-
-
-                                    </span>
                                 </a>
                             </td>
 

@@ -3,11 +3,15 @@
 
     angular.module('app.training')
         .controller('TrainingCenter', TrainingCenter);
-    TrainingCenter.$inject = ['trainingcenterservice', '$scope', 'NgTableParams', 'logger'];
+    TrainingCenter.$inject = ['trainingcenterservice', '$scope', 'NgTableParams', 'logger', '$rootScope', 'trainingservice'];
 
-    function TrainingCenter(trainingcenterservice, $scope, NgTableParams, logger) {
+    function TrainingCenter(trainingcenterservice, $scope, NgTableParams, logger, $rootScope, trainingservice) {
+        if ($rootScope.userHasRole("ROLE_ADMIN")) {
+            $scope.showMe = true;
+        }
         findAll();
-        findAllParentTC();
+
+
 
         var self = this;
 
@@ -19,7 +23,8 @@
             $scope.selectedTrainingCenterItem = item;
         }
         $scope.initCreatePanel = function () {
-            pushAndPopSELECTmenu();
+
+            $scope.selectedTrainingCenterItem = "SELECT";
             vm.riskyId = 0;
             $scope.tcmodel = {};
             vm.title = "Create Training Center Panel";
@@ -27,7 +32,8 @@
             $scope.btnText = "Create ";
         }
         $scope.initEditPanel = function (pid) {
-            pushAndPopSELECTmenu();
+
+           // pushAndPopSELECTmenu();
             $scope.btnText = "Update";
             vm.riskyId = pid;
             getSingleTrainingCenter(pid);
@@ -54,6 +60,8 @@
         }
 
         $scope.eitherCreateOrEdit = function () {
+
+
             var x = {
                 id: vm.riskyId,
                 name: $scope.tcmodel.name,
@@ -67,18 +75,38 @@
             createOrEditTrainingCenter(x);
 
         }
-        $scope.hasChildren = function () {
-            return true;
+        $scope.hasChildren = function (tcId) {
+
+
+            return have;
         }
         $scope.deleteTrainingCenter = function (tcId) {
-            if (!$scope.hasChildren()) {
-                trainingcenterservice.deleteTrainingCenterIfPossible({id: tcId}).$promise.then(function (data) {
-                    findAll();
-                });
-            }
-            else{
-                alert("You must first delete the parent Training Center and all related trainings to delete this training center.");
-            }
+            var have = true;
+            trainingservice.findAllTrainingsByTrainingCenterId({id: tcId}).$promise.then(function (data) {
+                if (data.length > 0) {
+
+                    alert("You must first delete all related trainings to delete this training center.");
+                }
+
+
+                else {
+                    trainingcenterservice.findChildTrainingCenter({id: tcId}).$promise.then(function (data) {
+                        if (data.count > 0) {
+                            alert("Cannot delete this Traininig Center . Is parent Training Center");
+                        }
+                        else {
+                            if (confirm("Are you sure you want to delete this training center")) {
+                                trainingcenterservice.deleteTrainingCenterIfPossible({id: tcId}).$promise.then(function (data) {
+                                    findAll();
+                                });
+
+                            }
+                        }
+                    });
+
+
+                }
+            });
 
 
         }
@@ -97,6 +125,7 @@
 
         function getSingleTrainingCenter(pid) {
             trainingcenterservice.getTrainingCenter({id: pid}).$promise.then(function (data) {
+
                 settcmodels(data);
             });
 
@@ -104,16 +133,20 @@
         }
 
         function settcmodels(data) {
+            vm.title = "Edit Training Center Panel of ' Training Center ' : " + "' "+data.name+" '" ;
             $scope.tcmodel.name = data.name;
             $scope.tcmodel.address = data.address;
             $scope.tcmodel.district = data.district;
             $scope.tcmodel.zone = data.zone
-            if (data.parentTrainingCenter == undefined) {
-                $scope.selectedTrainingCenterItem = "SELECT"
+            if (data.parentTrainingCenter == undefined ) {
+
+                $scope.selectedTrainingCenterItem = "SELECT";
+
             }
             else {
 
                 $scope.selectedTrainingCenterItem = data.parentTrainingCenter;
+
             }
 
 
@@ -121,6 +154,7 @@
 
 
         function findAll() {
+            findAllParentTC();
             trainingcenterservice.findAllTrainingCenters().$promise.then(function (data) {
                 self.tableParams = new NgTableParams({}, {dataset: data});
             });
@@ -128,19 +162,21 @@
         }
 
         function pushAndPopSELECTmenu() {
-            $scope.trainingCenters.push("SELECT");
-            $scope.selectedTrainingCenterItem = $scope.trainingCenters[$scope.trainingCenters.length - 1];
-            $scope.trainingCenters.pop();
+           // $scope.trainingCenters.push("SELECT");
+            //$scope.selectedTrainingCenterItem = $scope.trainingCenters[$scope.trainingCenters.length - 1];
+            //$scope.trainingCenters.pop();
 
         }
 
         function findAllParentTC() {
+            $scope.trainingCenters = [];
             trainingcenterservice.findAllParentTrainingCenters().$promise.then(function (data) {
-                $scope.trainingCenters = [];
+
                 data.forEach(function (tc) {
                     $scope.trainingCenters.push(tc.name);
                 });
-                $scope.trainingCenters.push("NONE");
+                $scope.trainingCenters.push("SELECT");
+
 
             });
 

@@ -151,7 +151,7 @@
             vm.riskyId = userId;
             getSingleUser(userId);
 
-            vm.title = "Edit User";
+
             vm.showCreatePanel = true;
         }
 
@@ -199,6 +199,7 @@
 
         function getSingleUser(userId) {
             userservice.getUser({id: userId}).$promise.then(function (data) {
+                vm.title = "Edit User Panel of ' Username ' : " + "' "+data.username+" '" ;
                 setUserModels(data);
             });
 

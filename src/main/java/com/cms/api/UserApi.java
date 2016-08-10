@@ -72,15 +72,15 @@ public class UserApi implements IUserApi {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 
 
-        Date date = null;
-        try {
-            date = formatter.parse(dto.getDob());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        Date date = null;
+//        try {
+//            date = formatter.parse(dto.getDob());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
 
-        user.getUserInfo().setDob(date);
+        user.getUserInfo().setDob(dto.getDob());
         user.getUserInfo().setUser(user);
         userInfoDao.save(user.getUserInfo());
         userDao.save(user);
@@ -144,19 +144,19 @@ public class UserApi implements IUserApi {
         userInfo.setDistrict(dto.getDistrict());
         userInfo.setCountry(dto.getCountry());
         userInfo.setMale(dto.isMale());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
 
-        Date date = null;
-        try {
-            date = formatter.parse(dto.getDob());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println(date);
-        System.out.println(formatter.format(date));
+//        Date date = null;
+//        try {
+//            date =(Date) formatter.parse(dto.getDob());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(date);
+//        System.out.println(formatter.format(date));
 
-        userInfo.setDob(date);
+        userInfo.setDob(dto.getDob());
         user.setUserInfo(userInfo);
 
 

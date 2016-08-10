@@ -53,4 +53,6 @@ public interface IPrivilegedService {
     List<ReportDTO> getReportForProjectWork();
 
     List<ProgressDTO> getAllProgressesByActivityId(Integer id);
+
+    String deleteActivityWithGoalsIfProgressIsNotUpdated(Integer id);
 }

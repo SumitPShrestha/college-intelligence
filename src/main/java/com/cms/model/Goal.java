@@ -58,7 +58,7 @@ public  Goal(){
         return weightage;
     }
 
-    public void setWeightage(int weightage) {
+    public void setWeightage(double weightage) {
         this.weightage = weightage;
     }
 

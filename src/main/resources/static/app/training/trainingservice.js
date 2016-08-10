@@ -16,7 +16,9 @@
                 findAllTrainingsByTrainingCenterId: {url:'/privileged/trainings/:id','method': 'GET', isArray: true,'params': {id: '@id'}},
                 addTraining: {url:'/privileged/training/',method: 'POST'},
                 deleteTraining: {'url':'/privileged/training/:id','method': 'DELETE','params': {id: '@id'}},
-                getTraining: {'url':'/privileged/training/:id','method': 'GET','params': {id: '@id'}}
+                getTraining: {'url':'/privileged/training/:id','method': 'GET','params': {id: '@id'}},
+
+
 
             }
         )

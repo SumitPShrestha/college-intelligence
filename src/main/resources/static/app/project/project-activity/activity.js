@@ -3,8 +3,8 @@
 
     angular.module('app.project')
         .controller('Activity', Activity);
-    Activity.$inject = ['activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http'];
-    function Activity(activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
+    Activity.$inject = ['progressservice', 'activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http'];
+    function Activity(progressservice, activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
         var pCode = $routeParams.code;
         var fYear = $routeParams.fiscalYear;
         findAllActivities(pCode, fYear);
@@ -20,8 +20,6 @@
 
 
             vm.title = "Create Project Activity Panel";
-            vm.neep = "कुरा आजभन्दा ६ महिना अगाडीको हो । म माघको २७ गते रामेछाप गएको थिए, त्यहाँ मेरो मामाघर हो र मामाको ";
-            vm.peep = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
             vm.showCreatePanel = !vm.showCreatePanel;
             $scope.btnText = "Create ";
@@ -47,8 +45,8 @@
             var p = {projectCode: pCode};
             var x = {
                 id: vm.riskyId,
-                activityHead: $scope.activitymodel.activityHead
-                ,
+                activityHead: $scope.activitymodel.activityHead,
+                activityName: $scope.activitymodel.activityName,
                 expenseHead: $scope.activitymodel.expenseHead,
                 budget: $scope.activitymodel.budget,
                 unit: $scope.activitymodel.unit,
@@ -66,8 +64,11 @@
             $scope.submitted = false;
 
             //clear validation messages for username
-            $scope.activitymodel.activityHead= "";
+            $scope.activitymodel.activityHead = "";
             $scope.activityForm.activityHead.$pristine = true;
+
+            $scope.activitymodel.activityName = "";
+            $scope.activityForm.activityName.$pristine = true;
 
             //clear validation messages for username
             $scope.activitymodel.expenseHead = "";
@@ -76,8 +77,9 @@
             $scope.activitymodel.unit = "";
             $scope.activityForm.unit.$pristine = true;
             //clear validation messages for username
-            $scope.activitymodel.budget  = "";
+            $scope.activitymodel.budget = "";
             $scope.activityForm.budget.$pristine = true;
+
 
         }
 
@@ -93,10 +95,32 @@
         }
 
 
-        $scope.initializeGoalPanel = function (aid) {
+        $scope.deleteTheActivity = function (aId) {
+
+
+            progressservice.findAllProgressesByActivityId({id: aId}).$promise.then(function (data) {
+                if (data.length > 0) {
+                    alert("cannot delete ! This activity is associated with progress");
+                }
+                else {
+                    if (confirm("Are you sure you want to delete ?")) {
+                        activityservice.deleteActivity({id: aId}).$promise.then(function (data) {
+                            findAllActivities(pCode, fYear);
+                        });
+
+                    }
+
+                }
+            })
+
+
+        }
+
+
+        $scope.initializeGoalPanel = function (aid,activityName) {
 
             vm.showGoalPanel = true;
-            vm.goalTitle = "Create Goal";
+            vm.goalTitle = "Update Goal Panel in ' Activity ' : " + "' "+activityName+" '" ;
             $scope.q1btnText = "Create";
             $scope.q2btnText = "Create";
             $scope.q3btnText = "Create";
@@ -189,6 +213,9 @@
 
         }
         $scope.clearForm = function () {
+            $scope.q1goalmodel = {};
+            $scope.q2goalmodel = {};
+            $scope.q3goalmodel = {};
             $scope.q1goalmodel.id = 0;
             $scope.q1goalmodel.qty = "";
             $scope.q1goalmodel.weightage = "";
@@ -198,14 +225,29 @@
             $scope.q2goalmodel.weightage = "";
             $scope.q2goalmodel.budget = "";
             $scope.q3goalmodel.id = 0;
-            $scope.q1goalmodel.qty = "";
-            $scope.q1goalmodel.weightage = "";
-            $scope.q1goalmodel.budget = "";
+            $scope.q3goalmodel.qty = "";
+            $scope.q3goalmodel.weightage = "";
+            $scope.q3goalmodel.budget = "";
+            //$scope.projectmodel.projectCode = "";
+            //$scope.projectForm.projectCode.$pristine = true;
+
+
+            //clear validation messages for username
+            //$scope.projectmodel.projectName = "";
+            $scope.q1GoalForm.qty.$pristine = true;
+            $scope.q2GoalForm.qty.$pristine = true;
+            $scope.q3GoalForm.qty.$pristine = true;
+            $scope.q1GoalForm.weightage.$pristine = true;
+            $scope.q2GoalForm.weightage.$pristine = true;
+            $scope.q3GoalForm.weightage.$pristine = true;
+            $scope.q1GoalForm.budget.$pristine = true;
+            $scope.q2GoalForm.budget.$pristine = true;
+            $scope.q3GoalForm.budget.$pristine = true;
 
 
         }
 
-        findAllActivities(pCode,fYear);
+        findAllActivities(pCode, fYear);
         //$scope.submitted = false;
         var self = this;
         var vm = this;
@@ -221,6 +263,8 @@
         function getSingleProjectActivity(activityId) {
             activityservice.getSingleActivity({id: activityId}).$promise.then(function (data) {
                 setProjectModels(data);
+                vm.title = "Edit Activity Panel of ' Activity ' : " + "' " + data.activityName + " '";
+
             });
 
 
@@ -231,13 +275,16 @@
             $scope.activitymodel.expenseHead = data.expenseHead;
             $scope.activitymodel.budget = data.budget;
             $scope.activitymodel.unit = data.unit;
+            $scope.activitymodel.activityName = data.activityName;
+
+
             //$scope.activitymodel.project = data.fiscalYear;
 
         }
 
         function createOrEditActivity(activity) {
             activityservice.addActivity(activity).$promise.then(function (data) {
-                findAllActivities(pCode,fYear);
+                findAllActivities(pCode, fYear);
                 $scope.closeThePanel();
             });
 
@@ -247,30 +294,18 @@
 
         function findAllActivities(pCode, fYear) {
 
-            $http.get(fYear + '-nationalization.json').then(function (response) {
-                heroes = response.data;
-                activityservice.findAllActivities({id: pCode}).$promise.then(function (data) {
-                    data.forEach(function (val) {
 
-                        heroes.forEach(function (loc) {
-                            if (loc.key == val.activityHead) {
-                                //  val.activityHead = loc.value;
-                                val.activityName = loc.value;
-                                //console.log("test")
-                            }
+            activityservice.findAllActivities({id: pCode}).$promise.then(function (data) {
 
-                        });
-
-                    });
-                    self.tableParams = new NgTableParams({}, {dataset: data});
-                });
-
+                self.tableParams = new NgTableParams({}, {dataset: data});
             });
 
 
         }
 
         function getGoalsByActivityIdAndSetModels(aid) {
+
+            $scope.clearForm();
             goalservice.getGoalsByActivityId({id: aid}).$promise.then(function (goals) {
                 goals.forEach(function (goal) {
                     if (goal.timeFrame == "FIRST_QUARTER") {

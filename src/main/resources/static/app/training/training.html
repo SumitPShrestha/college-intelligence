@@ -34,7 +34,7 @@
         width: 50px;
     }
 
-    .dropdown-menu{
+    .dropdown-menu {
         margin-left: 146px;
     }
 </style>
@@ -83,7 +83,7 @@
                                         <div class="form-group"
                                              ng-class="{ 'has-error' : tForm.budget.$invalid && !tForm.budget.$pristine }">
                                             <label>Budget :<span>*</span></label>
-                                            <input type="text" name="budget" class="form-control"
+                                            <input type="number" name="budget" class="form-control"
                                                    ng-model="tmodel.budget" required>
 
                                             <p ng-show="(tForm.budget.$error.required && !tForm.budget.$pristine) ||( submitted  && tForm.budget.$pristine)"
@@ -101,9 +101,11 @@
                                                    ng-model="tmodel.start" required>
 
                                         </div>
-                                        <p ng-show="tForm.start.$invalid && !tForm.start.$pristine" class="error-block">Enter
-                                            valid date.</p>
-                                        <p ng-show="(tForm.start.$error.required && !tForm.start.$pristine) ||( submitted  && tForm.start.$pristine)" class="error-block">Date of Birth
+                                        <p ng-show="tForm.start.$invalid && !tForm.start.$pristine" class="error-block">
+                                            Enter
+                                            starting date.</p>
+                                        <p ng-show="(tForm.start.$error.required && !tForm.start.$pristine) ||( submitted  && tForm.start.$pristine)"
+                                           class="error-block">Date of Start
                                             is required.
                                         </p>
 
@@ -116,9 +118,27 @@
                                                    ng-model="tmodel.end" required>
 
                                         </div>
-                                        <p ng-show="tForm.end.$invalid && !tForm.end.$pristine" class="error-block">Enter
-                                            valid date.</p>
-                                        <p ng-show="(tForm.end.$error.required && !tForm.end.$pristine) ||( submitted  && tForm.end.$pristine)" class="error-block">Date of Birth
+                                        <p ng-show="tForm.end.$invalid && !tForm.end.$pristine" class="error-block">
+                                            Enter
+                                            ending date.</p>
+                                        <p ng-show="(tForm.end.$error.required && !tForm.end.$pristine) ||( submitted  && tForm.end.$pristine)"
+                                           class="error-block">Date of End
+                                            is required.
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4 form-item-container">
+                                        <div class="form-group"
+                                             ng-class="{ 'has-error' : tForm.duration.$invalid && !tForm.duration.$pristine }">
+                                            <label>Duration Of Training: </label>
+                                            <input type="number" name="duration" class="form-control"
+                                                   ng-model="tmodel.duration" required>
+                                        </div>
+                                        <p ng-show="tForm.duration.$invalid && !tForm.duration.$pristine"
+                                           class="error-block">Enter
+                                            valid number.</p>
+                                        <p ng-show="(tForm.duration.$error.required && !tForm.duration.$pristine) ||( submitted  && tForm.duration.$pristine)"
+                                           class="error-block">Duration of training
                                             is required.
                                         </p>
 
@@ -130,9 +150,11 @@
                                             <input type="number" name="target" class="form-control"
                                                    ng-model="tmodel.target" required>
                                         </div>
-                                        <p ng-show="tForm.target.$invalid && !tForm.target.$pristine" class="error-block">Enter
-                                            valid  number.</p>
-                                        <p ng-show="(tForm.target.$error.required && !tForm.target.$pristine) ||( submitted  && tForm.target.$pristine)" class="error-block">Targetted member
+                                        <p ng-show="tForm.target.$invalid && !tForm.target.$pristine"
+                                           class="error-block">Enter
+                                            valid number.</p>
+                                        <p ng-show="(tForm.target.$error.required && !tForm.target.$pristine) ||( submitted  && tForm.target.$pristine)"
+                                           class="error-block">Targetted member
                                             is required.
                                         </p>
 
@@ -155,12 +177,12 @@
 
             <div class="row">
                 <div class="widget wblue">
-                    <div data-cc-widget-header title="Trainings View Panel"></div>
+                    <div data-cc-widget-header title="{{vm.mainTitle}}"></div>
                     <!--Point to be noted show-filter can be set as either true or false-->
                     <table ng-table="vm.tableParams" class="table" show-filter="false">
                         <tr ng-repeat="tg in $data">
-                            <td title="'Name'" filter="{ age: 'text'}" sortable="'name'">
-                                <a href="/#/trainingCenter/{{tc.name}}">{{tg.name}}</a>
+                            <td style="width: auto;text-align: center" title="'View All Training Members'" filter="{ age: 'text'}" sortable="'name'">
+                                <a  href="/#/training/{{tg.id}}">{{tg.name}}</a>
                             </td>
 
                             <td style="width: auto;text-align: center" title="'budget'" filter="{ name: 'text'}"
@@ -181,21 +203,26 @@
                             </td>
 
 
-                            <td style="width: auto;text-align: center" class="cursor-hands">
-                                <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(tg.id)"></span>
+                            <td style="width: auto;text-align: center" >
+                                <button><a data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                           ng-click="initEditPanel(tg.id)"></a></button>
                             </td>
                             <td style="width: auto;text-align: center">
                                 <a data-toggle="tooltip" title="Delete !">
-                                    <span ng-click="deleteTheTraining(tg.id)"
-                                          class="glyphicon glyphicon-trash red"></span>
+                                  <button ng-click="deleteTheTraining(tg.id)"
+                                            class="glyphicon glyphicon-trash red">
+                                      </button>
                                 </a>
+
                             </td>
 
-                            <td>
-                                <a data-toggle="tooltip" title="View All Training Members !" href="/#/training/{{tg.id}}">
-                                    <i class="fa fa-eye blue" aria-hidden="true"></i>
-                                </a>
+                            <td style="width: auto;text-align: center">
+                                <button>
+                                    <a data-toggle="tooltip" title="View All Training Members !"
+                                       href="/#/training/{{tg.id}}">
+                                        <i class="fa fa-eye blue" aria-hidden="true"></i>
+                                    </a>
+                                </button>
                             </td>
 
                         </tr>

@@ -3,9 +3,10 @@
 
     angular.module('app.project')
         .controller('Project', Project);
-    Project.$inject = ['projectservice', '$scope', 'NgTableParams', 'logger', '$http'];
+    Project.$inject = ['projectservice','activityservice', '$scope', 'NgTableParams', 'logger', '$http','$rootScope'];
 
-    function Project(projectservice, $scope, NgTableParams, logger, $http) {
+    function Project(projectservice,activityservice, $scope, NgTableParams, logger, $http,$rootScope) {
+
         //$scope.submitted = false;
         var self = this;
         var vm = this;
@@ -39,6 +40,12 @@
             $scope.projectmodel.projectCode = "";
             $scope.projectForm.projectCode.$pristine = true;
 
+
+            //clear validation messages for username
+            $scope.projectmodel.projectName = "";
+            $scope.projectForm.projectName.$pristine = true;
+
+
             //clear validation messages for username
             $scope.projectmodel.budgetSubHeadNumber = "";
             $scope.projectForm.budgetSubHeadNumber.$pristine = true;
@@ -57,7 +64,7 @@
             vm.riskyId = pid;
             getSingleProject(pid);
 
-            vm.title = "Edit Project Panel";
+
             vm.showCreatePanel = true;
         }
 
@@ -82,6 +89,7 @@
             var x = {
                 id: vm.riskyId,
                 projectCode: $scope.projectmodel.projectCode,
+                projectName: $scope.projectmodel.projectName,
                 aidOrganisation: $scope.projectmodel.aidOrganisation,
                 budget: $scope.projectmodel.budget,
                 budgetSubHeadNumber: $scope.projectmodel.budgetSubHeadNumber,
@@ -93,10 +101,24 @@
 
         }
 
-        $scope.deleteTheProject = function (pid) {
-            projectservice.deleteProject({id: pid}).$promise.then(function (data) {
-                findAll({fiscalYear: $scope.selectedItem});
+        $scope.deleteTheProject = function (pCode,pId) {
+
+            activityservice.findAllActivities({id:pCode}).$promise.then(function (data) {
+                if(data.length >0){
+                    alert("Cannot Delete. Is associated with activities");
+                }
+
+                else{
+                    if(confirm("Are you sure you want to delete ?"))
+                    projectservice.deleteProject({id: pId}).$promise.then(function (data) {
+                        findAll({fiscalYear: $scope.selectedItem});
+                    });
+
+                }
+
             });
+
+
         }
         function createOrEditProject(project) {
             projectservice.addProject(project).$promise.then(function (data) {
@@ -109,6 +131,7 @@
         function getSingleProject(pid) {
             projectservice.getProject({id: pid}).$promise.then(function (data) {
                 setProjectModels(data);
+                vm.title = "Edit Project Panel of ' Project Code ' : " + "' "+data.projectCode+" '" ;
             });
 
 
@@ -120,6 +143,7 @@
             $scope.projectmodel.budgetSubHeadNumber = data.budgetSubHeadNumber;
             $scope.projectmodel.budget = data.budget;
             $scope.projectmodel.fiscalYear = data.fiscalYear;
+            $scope.projectmodel.projectName = data.projectName;
 
         }
 
@@ -128,26 +152,13 @@
 
         function findAll(fYear) {
 
-            $http.get(fYear.fiscalYear + '-nationalization.json').then(function (response) {
-                //alert(response);
-                heroes = response.data;
+
                 projectservice.getProjectsByFiscalYear(fYear).$promise.then(function (data) {
-                    data.forEach(function (val) {
 
-                        heroes.forEach(function (loc) {
-                            if (loc.key == val.projectCode) {
-                                //  val.activityHead = loc.value;
-                                val.projectName = loc.value;
-                                //console.log("test")
-                            }
-
-                        });
-
-                    });
                     self.tableParams = new NgTableParams({}, {dataset: data});
                 });
 
-            });
+
 
 
         }

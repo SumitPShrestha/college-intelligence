@@ -380,13 +380,13 @@
                                 {{user.landlineNumber}}
                             </td>
                             <td style="width: auto;text-align: center" class="cursor-hands">
-                                <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(user.id)"></span>
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(user.id)"></button>
                             </td>
                             <td style="width: auto;text-align: center">
                                 <a data-toggle="tooltip" title="Delete !">
-                                    <span ng-click="deleteTheUser(user.id)"
-                                          class="glyphicon glyphicon-trash red"></span>
+                                    <button ng-click="deleteTheUser(user.id)"
+                                          class="glyphicon glyphicon-trash red"></button>
                                 </a>
                             </td>
 

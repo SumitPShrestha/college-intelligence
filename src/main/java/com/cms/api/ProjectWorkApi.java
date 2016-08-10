@@ -44,6 +44,7 @@ public class ProjectWorkApi implements IProjectWorkApi {
         project.setBudgetSubHeadNumber(dto.getBudgetSubHeadNumber());
         project.setProjectCode(dto.getProjectCode());
         project.setFiscalYear(dto.getFiscalYear());
+        project.setProjectName(dto.getProjectName());
         project = projectDAO.save(project);
         String projectCode = project.getProjectCode();
         return projectCode;
@@ -109,6 +110,7 @@ public class ProjectWorkApi implements IProjectWorkApi {
         activity.setBudget(dto.getBudget());
         activity.setUnit(dto.getUnit());
         activity.setExpenseHead(dto.getExpenseHead());
+        activity.setActivityName(dto.getActivityName());
         Project project = getProjectByProjectCode(dto.getProjectCode());
         activity.setProject(project);
 
@@ -177,6 +179,20 @@ public class ProjectWorkApi implements IProjectWorkApi {
     @Override
     public List<ProgressDTO> findProgressesByActivityId(Integer id) {
         return ConvertUtils.convertToProgressesDTO(progressActivityDAO.findProgressActivityByActivityId(id));
+    }
+
+    @Override
+    public String deleteActivityWithGoals(Integer id) {
+        List<GoalActivity> goalActivities = goalActivityDAO.findGoalActivityByActivityId(id);
+        if (goalActivities != null) {
+            goalActivityDAO.delete(goalActivities);
+            for (GoalActivity ga : goalActivities) {
+                goalDAO.delete(ga.getGoal().getId());
+
+            }
+        }
+        activityDAO.delete(id);
+        return id.toString();
     }
 
 

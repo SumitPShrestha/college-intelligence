@@ -8,6 +8,7 @@ import com.cms.service.RequestUrlToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,8 @@ import java.util.List;
 
 
 @Controller
-/*@Secured("ROLE_ADMIN")*/
+@Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
+
 
 @RequestMapping("/privileged")
 public class PrivilegedController {
@@ -55,9 +57,9 @@ public class PrivilegedController {
     @ResponseBody
     public String deleteActivity(@PathVariable Integer id)
             throws JsonProcessingException {
-        String goalId = privilegedService.deleteTraining(id);
+        String activityId = privilegedService.deleteActivityWithGoalsIfProgressIsNotUpdated(id);
         ObjectMapper mapper = new ObjectMapper();
-        String val = mapper.writeValueAsString("Training with " + goalId + "  deleted successfully");
+        String val = mapper.writeValueAsString("Activity with " + activityId + "  deleted successfully");
         return val;
     }
 

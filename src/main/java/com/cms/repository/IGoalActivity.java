@@ -2,7 +2,6 @@ package com.cms.repository;
 
 import com.cms.model.Goal;
 import com.cms.model.GoalActivity;
-import com.cms.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +18,9 @@ public interface IGoalActivity extends JpaRepository<GoalActivity, Integer>,
 
     @Query("SELECT u  FROM GoalActivity u WHERE u.activity.id=:activityId AND u.goal.id=:goalId")
     GoalActivity findGoalActivityByGoalIdAndActivityId(@Param("goalId")Integer goalId, @Param("activityId") Integer activityId);
+
+    @Query("SELECT u  FROM GoalActivity u WHERE u.activity.id=:activityId ")
+    List<GoalActivity> findGoalActivityByActivityId(@Param("activityId")Integer activityId );
 
 
 

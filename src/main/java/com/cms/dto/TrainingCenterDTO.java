@@ -16,6 +16,16 @@ public class TrainingCenterDTO {
 
     private String parentTrainingCenter;
 
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    private String count;
+
     public Integer getId() {
         return id;
     }

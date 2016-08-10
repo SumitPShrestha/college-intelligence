@@ -14,6 +14,8 @@ public class ProjectDTO {
     private String projectCode;
 
 
+    private String projectName;
+
 
     private String fiscalYear;
 
@@ -22,6 +24,14 @@ public class ProjectDTO {
     private double budget;
 
     private Activity activityDTO;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public Integer getId() {
         return id;

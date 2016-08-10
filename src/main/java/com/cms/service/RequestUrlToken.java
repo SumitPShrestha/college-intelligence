@@ -47,6 +47,8 @@ public class RequestUrlToken {
  public static final String GET_TC = "/trainingCenter/{id}";
  public static final String GET_TCS = "/trainingCenters";
  public static final String GET_PARENT_TCS = "/parentTrainingCenters";
+ public static final String GET_CHILD_TCS = "/childTrainingCenter/{id}";
+
 
 
 

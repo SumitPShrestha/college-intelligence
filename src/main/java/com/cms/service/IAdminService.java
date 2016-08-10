@@ -32,4 +32,6 @@ public interface IAdminService {
     List<TrainingReportDTO> getReportForTraining(String fiscalYear);
 
     List<ProgressDTO> getProgressReport(String fiscalYear);
+
+    String getChildTrainingCenter(Integer id);
 }

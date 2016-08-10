@@ -3,10 +3,15 @@
 
     angular.module('app.training')
         .controller('Member', Member);
-    Member.$inject = ['memberservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
+    Member.$inject = ['trainingservice','memberservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
 
-    function Member(memberservice, $scope, NgTableParams, logger, $routeParams) {
-        var trainingId = $routeParams.id
+    function Member(trainingservice,memberservice, $scope, NgTableParams, logger, $routeParams) {
+        var trainingId = $routeParams.id;
+
+
+        trainingservice.getTraining({id:trainingId}).$promise.then(function(data){
+            vm.mainTitle = "Edit Trainees View Panel of ' Training Center ' : " + "' "+data.name+" '" ;
+        });
         findAll(trainingId);
         $scope.submitted = false;
         var self = this;
@@ -166,7 +171,7 @@
 
         function createOrEditMember(x) {
             memberservice.addMembers(x).$promise.then(function (data) {
-                findAll();
+                findAll(trainingId);
                 $scope.closeThePanel();
             });
 

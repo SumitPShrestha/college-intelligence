@@ -10,6 +10,7 @@ public class ActivityDTO {
     private double budget;
 
     private String activityHead;
+    private String activityName;
 
     private String expenseHead;
     private String unit;
@@ -63,5 +64,13 @@ public class ActivityDTO {
 
     public void setProjectCode(String projectCode) {
         this.projectCode = projectCode;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 }

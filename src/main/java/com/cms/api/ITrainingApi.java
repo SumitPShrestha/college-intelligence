@@ -42,4 +42,6 @@ public interface ITrainingApi {
     int countNumberOfAttendeesInTraining(int id);
 
     int countNumberOfMale(int id);
+
+    String countChildTrainingCenter(Integer id);
 }
