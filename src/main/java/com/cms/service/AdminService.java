@@ -85,11 +85,11 @@ public class AdminService implements IAdminService {
             Goal g2 = null;
             Goal g3 = null;
             for (Goal g : ga) {
-                if (g.getTimeFrame() == TimeFrame.FIRST_QUARTER) {
+                if (g.getTimeFrame() == TimeFrame.FIRST_TRIMESTER) {
                     g1 = new Goal(g.getQty(), g.getWeightage(), g.getBudget());
-                } else if (g.getTimeFrame() == TimeFrame.SECOND_QUARTER) {
+                } else if (g.getTimeFrame() == TimeFrame.SECOND_TRIMESTER) {
                     g2 = new Goal(g.getQty(), g.getWeightage(), g.getBudget());
-                } else if (g.getTimeFrame() == TimeFrame.THIRD_QUARTER) {
+                } else if (g.getTimeFrame() == TimeFrame.THIRD_TRIMESTER) {
                     g3 = new Goal(g.getQty(), g.getWeightage(), g.getBudget());
                 }
 
@@ -100,22 +100,22 @@ public class AdminService implements IAdminService {
             int q2TotalProgressQty = 0;
             int q3TotalProgressQty = 0;
             for (Progress p : progressList) {
-                if (p.getTimeFrame() == TimeFrame.FIRST_QUARTER) {
+                if (p.getTimeFrame() == TimeFrame.FIRST_TRIMESTER) {
                     q1TotalProgressQty += p.getProgressQty();
-                } else if (p.getTimeFrame() == TimeFrame.SECOND_QUARTER) {
+                } else if (p.getTimeFrame() == TimeFrame.SECOND_TRIMESTER) {
                     q2TotalProgressQty += p.getProgressQty();
-                } else if (p.getTimeFrame() == TimeFrame.THIRD_QUARTER) {
+                } else if (p.getTimeFrame() == TimeFrame.THIRD_TRIMESTER) {
                     q3TotalProgressQty += p.getProgressQty();
                 }
             }
             int yearlyProgressQty = q1TotalProgressQty + q2TotalProgressQty + q3TotalProgressQty;
 
             q1.setProgressQty(q1TotalProgressQty);
-            q1.setTimeFrame(TimeFrame.FIRST_QUARTER);
+            q1.setTimeFrame(TimeFrame.FIRST_TRIMESTER);
             q2.setProgressQty(q2TotalProgressQty);
-            q2.setTimeFrame(TimeFrame.SECOND_QUARTER);
+            q2.setTimeFrame(TimeFrame.SECOND_TRIMESTER);
             q3.setProgressQty(q3TotalProgressQty);
-            q3.setTimeFrame(TimeFrame.THIRD_QUARTER);
+            q3.setTimeFrame(TimeFrame.THIRD_TRIMESTER);
             yearlyProgress.setProgressQty(yearlyProgressQty);
             yearlyProgress.setTimeFrame(TimeFrame.YEARLY);
 

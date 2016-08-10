@@ -140,7 +140,7 @@
                         qty: $scope.q1goalmodel.qty,
                         weightage: $scope.q1goalmodel.weightage,
                         budget: $scope.q1goalmodel.budget,
-                        timeFrame: "FIRST_QUARTER"
+                        timeFrame: "FIRST_TRIMESTER"
                     },
                     activityId: $scope.activityId
                 }
@@ -159,7 +159,7 @@
                         qty: $scope.q2goalmodel.qty,
                         weightage: $scope.q2goalmodel.weightage,
                         budget: $scope.q2goalmodel.budget,
-                        timeFrame: "SECOND_QUARTER"
+                        timeFrame: "SECOND_TRIMESTER"
 
                     },
                     activityId: $scope.activityId
@@ -180,7 +180,7 @@
                         qty: $scope.q3goalmodel.qty,
                         weightage: $scope.q3goalmodel.weightage,
                         budget: $scope.q3goalmodel.budget,
-                        timeFrame: "THIRD_QUARTER"
+                        timeFrame: "THIRD_TRIMESTER"
 
                     },
                     activityId: $scope.activityId
@@ -311,7 +311,7 @@
             $scope.clearForm();
             goalservice.getGoalsByActivityId({id: aid}).$promise.then(function (goals) {
                 goals.forEach(function (goal) {
-                    if (goal.timeFrame == "FIRST_QUARTER") {
+                    if (goal.timeFrame == "FIRST_TRIMESTER") {
                         $scope.q1goalmodel = {};
                         $scope.q1goalmodel.id = goal.id;
                         $scope.q1goalmodel.qty = goal.qty;
@@ -321,7 +321,7 @@
 
                     }
 
-                    if (goal.timeFrame == "SECOND_QUARTER") {
+                    if (goal.timeFrame == "SECOND_TRIMESTER") {
                         $scope.q2goalmodel = {};
                         $scope.q2goalmodel.id = goal.id;
                         $scope.q2goalmodel.qty = goal.qty;
@@ -331,7 +331,7 @@
 
                     }
 
-                    if (goal.timeFrame == "THIRD_QUARTER") {
+                    if (goal.timeFrame == "THIRD_TRIMESTER") {
                         $scope.q3goalmodel = {};
                         $scope.q3goalmodel.id = goal.id;
                         $scope.q3goalmodel.qty = goal.qty;

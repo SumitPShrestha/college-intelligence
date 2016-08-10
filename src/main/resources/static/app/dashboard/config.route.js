@@ -19,7 +19,7 @@
                 config: {
                     templateUrl: 'app/dashboard/dashboard.html',
                     controller: 'Dashboard',
-                    controllerAs: 'vm',
+                     controllerAs: 'vm',
                     title: 'dashboard',
                     sidebar:true,
 

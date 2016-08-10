@@ -20,7 +20,7 @@
                     controller: 'Demo',
                     controllerAs: 'vm',
                     title: 'demo',
-
+                    sidebar:true,
                     settings: {
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Application Users '

@@ -8,9 +8,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -45,10 +48,12 @@ public class AdminController {
         return val;
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = RequestUrlToken.GET_USERS, method = RequestMethod.GET)
     @ResponseBody
-    public List<UserDTO> showAllUsers()
+    public List<UserDTO> showAllUsers(Principal current)
             throws JsonProcessingException {
+        current.getName();
         List<UserDTO> ss = userService.getAllUsers();
         return ss;
     }

@@ -5,20 +5,21 @@
     'use strict';
 
     angular.module("blocks.security")
-        .run(['$rootScope', '$cookieStore', '$http', 'AUTH_EVENTS', 'ROLES', '$location', '$templateCache',
-            function ($rootScope, $cookieStore, $http, AUTH_EVENTS, ROLES, $location, $templateCache) {
+        .run(['$rootScope', '$cookieStore', '$http', 'AUTH_EVENTS', 'ROLES', '$location', '$templateCache', 'logger',
+            function ($rootScope, $cookieStore, $http, AUTH_EVENTS, ROLES, $location, $templateCache, logger) {
 
                 //   $rootScope.uiState = $state;
 
 
 
                 $rootScope.logout = function () {
-
+                    $rootScope.sideBar = false;
                     $http.get("/auth/logout")
 
                     delete $rootScope.userAuth;
                     delete $http.defaults.headers.common['x-auth-token'];
                     $cookieStore.remove('user');
+                    $location.url('/home');
                     //$rootScope.loadMenus();
 
 
@@ -54,7 +55,7 @@
 
                 };
 
-                $rootScope.userHasRole = function(role){
+                $rootScope.userHasRole = function (role) {
                     return $rootScope.userAuth.roles.indexOf(role) != -1
                 }
 
@@ -63,30 +64,27 @@
                 };
 
                 $rootScope.$on('$routeChangeStart', function (event, next) {
-                    $rootScope.sideBar = next.sidebar||false;
+                    $rootScope.sideBar = next.sidebar || false;
                     $rootScope.clearGlobalMessages();
-                    if (next.originalPath == '/logout') {
-                        $rootScope.logout()
-                        event.preventDefault();
-                    } else {
-
-                        if (next.templateUrl !== 'app/home/home.html') {
-                            if (!$rootScope.isAuthenticated()) {
-                                $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-                                event.preventDefault();
-                            } else {
-                                if (!$rootScope.isAuthorized(next.roles)) {
-                                    $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-                                    event.preventDefault();
-                                }
-                            }
+                    if (next.roles) {
+                        if (!$rootScope.isAuthenticated()) {
+                            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                            return false
+                        } else {
+                            if (!$rootScope.isAuthorized(next.roles)) {
+                                $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+                                return false                            }
                         }
                     }
+
                 });
 
-                $rootScope.$on(AUTH_EVENTS.loginSuccess, function () {
-                        $rootScope.success = AUTH_EVENTS.loginSuccess;
+                $rootScope.$on(AUTH_EVENTS.loginSuccess, function (event, user) {
+                        $rootScope.userAuth = user;
+                        $cookieStore.put('user', user);
+                        toastr.options.positionClass = 'toast-top-center';
                         $location.url('/Dashboard');
+                        logger.success("Welcome " + user.username + " !!")
                     }
                 );
 
@@ -95,7 +93,8 @@
                 });
 
                 $rootScope.$on(AUTH_EVENTS.notAuthenticated, function () {
-                    $rootScope.$broadcast("message", "you must be logged in to view this page")
+                    toastr.options.positionClass = 'toast-top-center';
+                    logger.warning("you are not authenticate")
                     $rootScope.logout();
                 });
 
