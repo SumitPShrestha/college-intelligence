@@ -224,7 +224,7 @@ public class ConvertUtils {
         dto.setBudget(oneTraining.getBudget());
         dto.setStartDate(oneTraining.getStartDate());
         dto.setEndDate(oneTraining.getEndDate());
-        dto.setDuration(dto.getDuration());
+        dto.setDuration(oneTraining.getDuration());
         dto.setTarget(oneTraining.getTarget());
         dto.setMaleFrequency(numberOfMale);
         dto.setFemaleFrequency(numberOfFemale);

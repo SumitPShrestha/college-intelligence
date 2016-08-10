@@ -17,8 +17,8 @@
                 addProject: {'url':'/admin/projects','method': 'POST'},
                 deleteProject: {'url':'/admin/project/:id','method': 'DELETE','params': {id: '@id'}},
                 getProject: {'url':'/all/project/pid/:id','method': 'GET','params': {id: '@id'}},
-                getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true}
-
+                getProjectsByFiscalYear: {'url':'/all/project/:fiscalYear','method': 'GET','params': {fiscalYear: '@fiscalYear'},isArray: true},
+                findProjectByCode: {'url':'/admin/project/code/:code','method': 'GET' ,'params': {id: '@code'}}
 
             }
         )

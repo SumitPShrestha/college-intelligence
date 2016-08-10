@@ -3,10 +3,13 @@
 
     angular.module('app.project')
         .controller('Activity', Activity);
-    Activity.$inject = ['progressservice', 'activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http'];
-    function Activity(progressservice, activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
+    Activity.$inject = ['projectservice','progressservice', 'activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http'];
+    function Activity(projectservice,progressservice, activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
         var pCode = $routeParams.code;
         var fYear = $routeParams.fiscalYear;
+        projectservice.findProjectByCode({code:pCode}).$promise.then(function(data){
+            vm.mainTitle = " Activity Panel of ' Project  ' : " + "' "+data.projectName+" '" ;
+        })
         findAllActivities(pCode, fYear);
 
         $scope.activitymodel = {};

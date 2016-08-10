@@ -167,6 +167,11 @@ public class AdminService implements IAdminService {
         return trainingApi.countChildTrainingCenter(id);
     }
 
+    @Override
+    public ProjectDTO getSingleProjectByCode(String code) {
+        return ConvertUtils.convertToProjectDTO(projectWorkApi.getProjectByProjectCode(code));
+    }
+
     private Goal calculateYearlyGoal(List<Goal> ga) {
         int qty = 0;
         int weightage = 0;

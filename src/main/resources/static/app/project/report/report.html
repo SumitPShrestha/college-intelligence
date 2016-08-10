@@ -67,6 +67,7 @@
                     <thead>
                     <tr>
                         <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Head</th>
+                        <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Name</th>
                         <th style="vertical-align: middle" bgcolor="#f0f8ff" rowspan="2">Project Code </th>
                         <th colspan="4" bgcolor="#faebd7">1st Quarter</th>
                         <th colspan="4" bgcolor="#f0f8ff">2nd Quarter</th>
@@ -99,6 +100,10 @@
                         <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.activityDTO.activityHead}} </span>
+                        </td>
+                        <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
+                            sortable="'goalQty'" >
+                            <span>   {{a.activityDTO.activityName}} </span>
                         </td>
                         <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                                    sortable="'goalQty'" >

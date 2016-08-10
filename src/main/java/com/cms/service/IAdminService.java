@@ -34,4 +34,7 @@ public interface IAdminService {
     List<ProgressDTO> getProgressReport(String fiscalYear);
 
     String getChildTrainingCenter(Integer id);
+
+    ProjectDTO getSingleProjectByCode(String code);
+    
 }

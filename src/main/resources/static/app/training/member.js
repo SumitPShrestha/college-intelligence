@@ -127,7 +127,7 @@
             vm.riskyId = memberId;
             getSingleMember(memberId);
 
-            vm.title = "Edit Trainee Panel";
+
             vm.showCreatePanel = true;
         }
 
@@ -186,6 +186,7 @@
         }
 
         function setmembermodels(data) {
+            vm.title = "Edit Trainee Panel of ' Trainee   ' : " + "' "+data.firstName+" "+data.middleName+" "+data.lastName+" '" ;
 
             $scope.membermodel.firstName = data.firstName;
             $scope.membermodel.middleName = data.middleName;

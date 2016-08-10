@@ -8,7 +8,6 @@
          * Feature areas
          */
         'app.home',
-        'app.avengers',
         'app.dashboard',
         'app.demo',
         'app.layout',

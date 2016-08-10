@@ -23,6 +23,7 @@ public class RequestUrlToken {
     public static final String DELETE_PROJECT = "/project/{id}";
     public static final String GET_PROJECTS = "/projects";
     public static final String GET_PROJECTS_BY_FISCAL_YEAR = "/project/{fiscalYear}";
+    public static final String GET_PROJECT_BY_CODE = "/project/code/{code}";
 
  /* CRUD for Activities*/
  public static final String CREATE_ACTIVITY = "/activity";

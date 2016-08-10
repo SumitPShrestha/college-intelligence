@@ -214,5 +214,14 @@ public class AdminController {
 
         return dto;
     }
+
+
+    @RequestMapping(value = RequestUrlToken.GET_PROJECT_BY_CODE, method = RequestMethod.GET)
+    @ResponseBody
+    public ProjectDTO getProjectByCode(@PathVariable String code)
+            throws JsonProcessingException {
+
+        return adminService.getSingleProjectByCode(code);
+    }
 }
 

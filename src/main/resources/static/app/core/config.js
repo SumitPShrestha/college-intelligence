@@ -13,7 +13,7 @@
 
     var config = {
         appErrorPrefix: '[NG-Modular Error] ', //Configure the exceptionHandler decorator
-        appTitle: 'Angular Modular Demo',
+        appTitle: 'NCED Training And Monitoring Application',
         version: '1.0.0'
     };
 
