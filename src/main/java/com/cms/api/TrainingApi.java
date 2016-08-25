@@ -112,6 +112,7 @@ public class TrainingApi implements ITrainingApi {
         member.setDistrict(dto.getDistrict());
         member.setStreetAddress(dto.getStreetAddress());
         member.setZone(dto.getZone());
+        member.setVdcOrMunicipality(dto.getVdcOrMunicipality());
         member.setCountry(dto.getCountry());
         member.setDob(dto.getDob());
         member.setEmail(dto.getEmail());

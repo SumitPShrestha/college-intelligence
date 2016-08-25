@@ -3,9 +3,9 @@
 
     angular.module('app.project')
         .controller('Progress', Progress);
-    Progress.$inject = ['activityservice', 'reportservice', 'progressservice', 'trainingcenterservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
+    Progress.$inject = ['activityservice', 'reportservice', 'progressservice', 'trainingcenterservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$rootScope'];
 
-    function Progress(activityservice, reportservice, progressservice, trainingcenterservice, $scope, NgTableParams, logger, $routeParams) {
+    function Progress(activityservice, reportservice, progressservice, trainingcenterservice, $scope, NgTableParams, logger, $routeParams, $rootScope) {
         var vm = this;
         var self = this;
         var activityId = $routeParams.activityId;
@@ -17,9 +17,8 @@
 
             });
 
-            $scope.timeFrame = ["FIRST_QUARTER", "SECOND_QUARTER", "THIRD_QUARTER", "SELECT"];
+            $scope.timeFrame = ["FIRST_TRIMESTER", "SECOND_TRIMESTER", "THIRD_TRIMESTER", "SELECT"];
             $scope.selectedTimeFrameItem = $scope.timeFrame[3];
-            $scope.timeFrame.pop();
             findAllTC();
             findAllActivitiesProgressByActivityId(activityId);
         }
@@ -51,7 +50,6 @@
             $scope.progressmodel.description = "";
             $scope.progressmodel.progressQty = "";
             $scope.progressmodel.goalQty = "";
-            $scope.timeFrame.push("SELECT");
             $scope.selectedTimeFrameItem = $scope.timeFrame[3];
 
 
@@ -75,10 +73,11 @@
         $scope.initEditPanel = function (pid) {
             $scope.btnText = "Update";
             vm.riskyId = pid;
+
             getSingleProgress(pid);
 
-            vm.title = "Edit User";
-            vm.showCreatePanel = true;
+
+            vm.title = "Progress View Panel";
         }
 
         $scope.submitFormss = function (isValid) {
@@ -90,13 +89,24 @@
             }
 
         }
-        $scope.deleteThisProgress = function (pid) {
-            if (confirm("Are you sure you want to delete this progress ?")) {
-                progressservice.deleteProgress({id: pid}).$promise.then(function (data) {
-                    findAllActivitiesProgressByActivityId(activityId);
-                })
+        $scope.deleteThisProgress = function (pid,submittedBy) {
+            if ($rootScope.userAuth.username==submittedBy | $rootScope.userHasRole("ROLE_ADMIN")) {
 
+
+                if (confirm("Are you sure you want to delete this progress ?")) {
+                    progressservice.deleteProgress({id: pid}).$promise.then(function (data) {
+                        findAllActivitiesProgressByActivityId(activityId);
+                    });
+
+                }
             }
+
+            else{
+                alert("Cannot delete !. You don't have permission to delete this progress.")
+            }
+
+
+
         }
         function showValidationErrors() {
             $scope.submitted = true;
@@ -162,6 +172,15 @@
         }
 
         function setProgressModel(progress) {
+            if ($rootScope.userAuth.username==progress.submittedBy | $rootScope.userHasRole("ROLE_ADMIN")) {
+                vm.showCreatePanel = true;
+            }
+            else {
+                vm.showCreatePanel = false;
+                alert("Cannot edit. You don't have permission to open this progress");
+
+
+            }
             $scope.progressmodel = {};
             $scope.selectedTimeFrameItem = progress.timeFrame;
             $scope.progressmodel.description = progress.description;

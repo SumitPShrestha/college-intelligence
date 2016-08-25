@@ -205,12 +205,12 @@
                                 <span> {{p.aidOrganisation}}</span>
                             </td>
 
-                            <td class="cursor-hands">
+                            <td data-ng-show="showMe" class="cursor-hands">
                                 <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(p.id)"></button>
                             </td>
                             <td>
-                                <a data-toggle="tooltip" title="Delete!">
+                                <a data-ng-show="showMe" data-toggle="tooltip" title="Delete!">
                                     <button ng-click="deleteTheProject(p.projectCode,p.id)"
                                           class="glyphicon glyphicon-trash red"></button>
                                 </a>

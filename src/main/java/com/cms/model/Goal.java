@@ -21,6 +21,7 @@ public class Goal implements Serializable {
     private double budget;
     private TimeFrame timeFrame;
 
+
 public  Goal(){
 
 }

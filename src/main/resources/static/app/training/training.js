@@ -53,6 +53,7 @@
 
 
         $scope.initEditPanel = function (pid) {
+            $scope.clearValidationMessages();
             $scope.btnText = "Update";
             vm.riskyId = pid;
             getSingleTraining(pid);
@@ -130,8 +131,10 @@
             $scope.tmodel.name = data.name;
             $scope.tmodel.budget = data.budget;
             $scope.tmodel.start = data.start;
+
             $scope.tmodel.end = data.end;
             $scope.tmodel.target = data.target;
+            $scope.tmodel.duration = data.duration ;
 
         }
 

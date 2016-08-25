@@ -18,6 +18,7 @@
                 config: {
                     templateUrl: 'app/project/project.html',
                     controller: 'Project',
+                    sidebar:true,
                     controllerAs: 'vm',
                     title: 'project',
 
@@ -25,7 +26,7 @@
                         nav: 1,
                         content: '<i class="fa fa-shield fa-rotate-270"></i> Project'
                     },
-                    roles:['ROLE_ADMIN']
+                    roles:['ROLE_ADMIN','ROLE_TRAINING_CENTER']
                 }
             },
            /* {
@@ -49,6 +50,7 @@
                     templateUrl: 'app/project/project-activity/activity.html',
                     controller: 'Activity',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'project-activity',
 
                    /* settings: {
@@ -64,6 +66,7 @@
                     templateUrl: 'app/project/activity-progress/progress.html',
                     controller: 'Progress',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'progress',
 
                    /* settings: {
@@ -79,6 +82,7 @@
                     templateUrl: 'app/project/activity-progress/progress.html',
                     controller: 'Progress',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'progress',
 
                     settings: {
@@ -94,6 +98,7 @@
                     templateUrl: 'app/project/report/report.html',
                     controller: 'Report',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'report',
 
                     settings: {

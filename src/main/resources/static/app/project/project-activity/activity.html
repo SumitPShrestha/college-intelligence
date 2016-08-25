@@ -153,7 +153,7 @@
                                 {{btnText}}
                             </button>
 
-                            {{activityForm.$valid}}
+
                         </form>
 
 
@@ -198,10 +198,10 @@
                                         </div>
                                         <p ng-show="q1GoalForm.qty.$invalid && !q1GoalForm.qty.$pristine "
                                            class="error-block">Enter
-                                            valid email.</p>
+                                            valid number.</p>
                                         <p class="error-block"
                                            ng-show="(q1GoalForm.qty.$error.required && !q1GoalForm.qty.$pristine) ||( submitted  && q1GoalForm.qty.$pristine)">
-                                            Project Code is required.</p>
+                                           Goal Qty is required.</p>
 
 
                                     </div>
@@ -240,7 +240,7 @@
                                         {{q1btnText}}
                                     </button>
 
-                                    {{q1GoalForm.$valid}}
+
                                 </div>
                             </div>
 
@@ -274,10 +274,10 @@
                                         </div>
                                         <p ng-show="q2GoalForm.qty.$invalid && !q2GoalForm.qty.$pristine "
                                            class="error-block">Enter
-                                            valid email.</p>
+                                            valid number.</p>
                                         <p class="error-block"
                                            ng-show="(q2GoalForm.qty.$error.required && !q2GoalForm.qty.$pristine) ||( submitted  && q2GoalForm.qty.$pristine)">
-                                            Project Code is required.</p>
+                                            Goal Qty is required.</p>
 
 
                                     </div>
@@ -316,7 +316,7 @@
                                         {{q2btnText}}
                                     </button>
 
-                                    {{projectForm.$valid}}
+                                  
                                 </div>
                             </div>
 
@@ -347,10 +347,10 @@
                                         </div>
                                         <p ng-show="q3GoalForm.qty.$invalid && !q3GoalForm.qty.$pristine "
                                            class="error-block">Enter
-                                            valid email.</p>
+                                            valid number.</p>
                                         <p class="error-block"
                                            ng-show="(q3GoalForm.qty.$error.required && !q3GoalForm.qty.$pristine) ||( submitted  && q3GoalForm.qty.$pristine)">
-                                            Project Code is required.</p>
+                                            Goal Qty is required.</p>
 
 
                                     </div>
@@ -389,8 +389,7 @@
                                         {{q3btnText}}
                                     </button>
 
-                                    {{q3GoalForm.$valid}}
-                                </div>
+                                 </div>
                             </div>
 
                         </form>
@@ -425,18 +424,18 @@
                                 <span> {{a.unit}}</span>
                             </td>
 
-                            <td class="cursor-hands">
+                            <td data-ng-show="showMe" class="cursor-hands">
                                 <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
                                       ng-click="initEditPanel(a.id)"></button>
                             </td>
-                            <td>
+                            <td data-ng-show="showMe">
                                 <a data-toggle="tooltip" title="Delete ">
                                     <button ng-click="deleteTheActivity(a.id)"
                                           class="glyphicon glyphicon-trash red"></button>
                                 </a>
                             </td>
                             <td>
-                                <a data-toggle="tooltip" title="Update Goal !">
+                                <a data-ng-show="showMe" data-toggle="tooltip" title="Update Goal !">
                                     <span ng-click="initializeGoalPanel(a.id,a.activityName)">
 
                               <i class="fa fa-wrench" style="font-size:24px"></i>

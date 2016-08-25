@@ -12,6 +12,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -25,14 +26,14 @@ public class PrivilegedController {
     @Autowired
     private IPrivilegedService privilegedService;
 
-
+    @Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_ACTIVITY_BY_PROJECT_ID, method = RequestMethod.GET)
     @ResponseBody
     public List<ActivityDTO> showAllActivities(@PathVariable String code) throws JsonProcessingException {
         List<ActivityDTO> pjs = privilegedService.getAllActivitiesByProjectCode(code);
         return pjs;
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.CREATE_ACTIVITY, method = RequestMethod.POST)
     @ResponseBody
     public String create(@RequestBody ActivityDTO dto)
@@ -42,7 +43,7 @@ public class PrivilegedController {
         String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.UPDATE_ACTIVITY, method = RequestMethod.PUT)
     @ResponseBody
     public String saveActivity(@RequestBody ActivityDTO dto)
@@ -52,7 +53,7 @@ public class PrivilegedController {
         String val = mapper.writeValueAsString(goalId + "  created successfully");
         return val;
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.DELETE_ACTIVITY, method = RequestMethod.DELETE)
     @ResponseBody
     public String deleteActivity(@PathVariable Integer id)
@@ -62,7 +63,7 @@ public class PrivilegedController {
         String val = mapper.writeValueAsString("Activity with " + activityId + "  deleted successfully");
         return val;
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_ACTIVITY, method = RequestMethod.GET)
     @ResponseBody
     public ActivityDTO getActivity(@PathVariable Integer id)
@@ -195,8 +196,9 @@ public class PrivilegedController {
 
     @RequestMapping(value = RequestUrlToken.CREATE_PROGRESS, method = RequestMethod.POST)
     @ResponseBody
-    public String createProgress(@RequestBody ProgressDTO dto)
+    public String createProgress(@RequestBody ProgressDTO dto, Principal principal)
             throws JsonProcessingException {
+         dto.setSubmittedBy(principal.getName());
         String progressId = privilegedService.createSubmittedProgress(dto);
         return progressId;
     }

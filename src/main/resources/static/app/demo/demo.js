@@ -174,7 +174,6 @@
         }
 
         $scope.roles = [{"id": "ROLE_ADMIN", "name": "ROLE_ADMIN"},
-            {"id": "ROLE_USER", "name": "ROLE_USER"},
             {"id": "ROLE_TRAINING_CENTER", "name": "ROLE_TRAINING_CENTER"}
         ];
 
@@ -234,9 +233,9 @@
                 if (val.role === "ROLE_ADMIN") {
                     xyz["ROLE_ADMIN"] = true;
                 }
-                if (val.role === "ROLE_USER") {
-                    xyz["ROLE_USER"] = true;
-                }
+                //if (val.role === "ROLE_USER") {
+                //    xyz["ROLE_USER"] = true;
+                //}
                 if (val.role === "ROLE_TRAINING_CENTER") {
                     xyz["ROLE_TRAINING_CENTER"] = true;
                 }

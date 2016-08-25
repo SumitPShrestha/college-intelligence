@@ -116,6 +116,7 @@ public class ConvertUtils {
         dto.setStart(t.getStartDate() );
         dto.setEnd(t.getEndDate());
         dto.setTarget(t.getTarget());
+        dto.setDuration(t.getDuration());
         return dto;
 
     }
@@ -198,7 +199,12 @@ public class ConvertUtils {
         dto.setTimeFrame(progress.getTimeFrame());
 
         dto.setTrainingCenter(tc.getName());
+        dto.setDate(progress.getDate());
+
+        dto.setSubmittedBy(progress.getSubmittedBy());
         dto.setActivityId(a.getId());
+        dto.setActivityName(a.getActivityName());
+        dto.setProjectName(ap.getActivity().getProject().getProjectName());
         return dto;
     }
 

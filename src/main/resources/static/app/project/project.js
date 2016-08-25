@@ -6,6 +6,9 @@
     Project.$inject = ['projectservice','activityservice', '$scope', 'NgTableParams', 'logger', '$http','$rootScope'];
 
     function Project(projectservice,activityservice, $scope, NgTableParams, logger, $http,$rootScope) {
+        if ($rootScope.userHasRole("ROLE_ADMIN")) {
+            $scope.showMe = true;
+        }
 
         //$scope.submitted = false;
         var self = this;

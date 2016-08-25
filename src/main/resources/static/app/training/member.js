@@ -3,14 +3,34 @@
 
     angular.module('app.training')
         .controller('Member', Member);
-    Member.$inject = ['trainingservice','memberservice', '$scope', 'NgTableParams', 'logger', '$routeParams'];
+    Member.$inject = ['trainingservice','memberservice', '$scope', 'NgTableParams', 'logger', '$routeParams','$filter','$rootScope'];
 
-    function Member(trainingservice,memberservice, $scope, NgTableParams, logger, $routeParams) {
+    function Member(trainingservice,memberservice, $scope, NgTableParams, logger, $routeParams,$filter,$rootScope ) {
         var trainingId = $routeParams.id;
 
 
+
+
+
         trainingservice.getTraining({id:trainingId}).$promise.then(function(data){
-            vm.mainTitle = "Edit Trainees View Panel of ' Training Center ' : " + "' "+data.name+" '" ;
+          /*  var hero=($filter('date')(new Date(), 'yyyy/MM/dd')) ;
+            var today   = parseInt(hero.substring(8,10));
+             var startDay= parseInt(data.start.substring(8,10));*/
+
+
+            var today= new Date();
+            var startDate=new Date(data.start);
+
+            if((today.getTime()-startDate.getTime())<1000*60*60*24*2  || ($rootScope.userHasRole("ROLE_ADMIN"))) {
+                vm.can=true;
+
+            }
+            else{
+                vm.can=false;
+
+            }
+
+            vm.mainTitle = "Edit Trainees View Panel of ' Training ' : " + "' "+data.name+" '" ;
         });
         findAll(trainingId);
         $scope.submitted = false;
@@ -113,9 +133,13 @@
             else {
                 x.male = false;
             }
-
+            if(vm.can){
 
             createOrEditMember(x);
+            }
+            else{
+                alert("Cannot be updated. Contact your administrator to change it !");
+            }
 
         }
         $scope.closeThePanel = function () {
@@ -145,11 +169,18 @@
 
 
         $scope.deleteTheMember = function (memberId) {
+            if(vm.can){
+
             if (confirm("Are you sure you want to delete trainee?")) {
                 memberservice.deleteMember({id: memberId}).$promise.then(function (data) {
                     findAll(trainingId);
                 });
             }
+            }
+            else{
+                alert("Cannot be deleted. Contact your administrator to delete this member")
+            }
+
 
         }
 

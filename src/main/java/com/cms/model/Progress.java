@@ -3,6 +3,7 @@ package com.cms.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +25,35 @@ public class Progress implements Serializable {
 
     private int goalQty;
 
+    private String date;
+
+    public String getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(String submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    private String submittedBy;
+
+    public String getWeightedProgress() {
+        return weightedProgress;
+    }
+
+    public void setWeightedProgress(double weightedProgress) {
+
+        Double toBeTruncated = new Double(weightedProgress);
+
+        Double truncatedDouble = new BigDecimal(toBeTruncated)
+                .setScale(4, BigDecimal.ROUND_HALF_UP)
+                .doubleValue();
+        this.weightedProgress = truncatedDouble.toString();
+
+    }
+
+    @Transient
+    private String weightedProgress;
 
 
 
@@ -81,5 +111,11 @@ public class Progress implements Serializable {
         this.goalQty = goalQty;
     }
 
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

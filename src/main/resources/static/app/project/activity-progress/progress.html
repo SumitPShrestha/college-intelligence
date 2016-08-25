@@ -53,7 +53,7 @@
                     </button>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li ng-repeat="oneYear in fYear"><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
+                        <li ng-repeat="oneYear in fYear  "><a ng-click="dropboxitemselected(oneYear)">{{oneYear}}</a></li>
                     </ul>
                 </div>
 
@@ -184,7 +184,7 @@
                         <span class="glyphicon glyphicon-remove red"></span> Close
                     </button>
                 </div>
-                <div class="widget wblue">
+                <div class="widget wblue report">
                     <div form-panel title="{{vm.goalTitle}}"></div>
                     <div class="widget-content user">
 
@@ -271,7 +271,18 @@
                     <table ng-table="vm.tableParams" class="table" show-filter="!vm.forReport">
                         <tr ng-repeat="a in $data">
 
-
+                            <td   title="'Activty '" filter="{ activityName: 'text'}"
+                                sortable="'activityName'">
+                                <span>   {{a.activityName}} </span>
+                            </td>
+                            <td      title="'Project '" filter="{ projectName: 'text'}"
+                                sortable="'projectName'">
+                                <span>   {{a.projectName}} </span>
+                            </td>
+                            <td title="'Submission date'" filter="{ goalQty: 'text'}"
+                                sortable="'goalQty'">
+                                <span>   {{a.date}} </span>
+                            </td>
 
                             <td title="'Goal Qty'" filter="{ goalQty: 'text'}"
                                 sortable="'goalQty'">
@@ -286,17 +297,20 @@
                             <td title="'Training Center'" filter="{ trainingCenter  : 'text'}" sortable="'trainingCenter'" >
                                 <span> {{a.trainingCenter}}</span>
                             </td>
+                            <td title="'Submitted By'" filter="{ submittedBy  : 'text'}" sortable="'submittedBy'" >
+                                <span> {{a.submittedBy}}</span>
+                            </td>
 
 
 
                             <td data-ng-show="vm.forReport" class="cursor-hands">
-                                <span data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
-                                      ng-click="initEditPanel(a.id)"></span>
+                                <button data-toggle="tooltip" title="Edit !" class="glyphicon glyphicon-pencil green"
+                                      ng-click="initEditPanel(a.id)"></button>
                             </td>
                             <td data-ng-show="vm.forReport">
                                 <a data-toggle="tooltip" title="Delete ">
-                                    <span ng-click="deleteThisProgress(a.id)"
-                                          class="glyphicon glyphicon-trash red"></span>
+                                    <button ng-click="deleteThisProgress(a.id,a.submittedBy)"
+                                          class="glyphicon glyphicon-trash red"></button>
                                 </a>
                             </td>
 

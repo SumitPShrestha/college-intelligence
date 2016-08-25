@@ -112,13 +112,52 @@ public class AdminService implements IAdminService {
 
             q1.setProgressQty(q1TotalProgressQty);
             q1.setTimeFrame(TimeFrame.FIRST_TRIMESTER);
+            if (g1 != null) {
+                if (g1.getQty() == 0) {
+
+                    q1.setWeightedProgress(0);
+                }
+                else{
+                    q1.setWeightedProgress(q1TotalProgressQty / g1.getQty() * g1.getWeightage());
+                }
+            }
+
             q2.setProgressQty(q2TotalProgressQty);
             q2.setTimeFrame(TimeFrame.SECOND_TRIMESTER);
+            if (g2 != null) {
+                if (g2.getQty() == 0) {
+
+                    q2.setWeightedProgress(0);
+                }
+                else{
+                    q2.setWeightedProgress(q2TotalProgressQty / g2.getQty() * g2.getWeightage());
+                }
+            }
+
             q3.setProgressQty(q3TotalProgressQty);
             q3.setTimeFrame(TimeFrame.THIRD_TRIMESTER);
+            if (g3 != null) {
+                if (g3.getQty() == 0) {
+
+                    q3.setWeightedProgress(0);
+                }
+                else{
+                    q3.setWeightedProgress(q3TotalProgressQty / g3.getQty() * g3.getWeightage());
+                }
+            }
+
             yearlyProgress.setProgressQty(yearlyProgressQty);
             yearlyProgress.setTimeFrame(TimeFrame.YEARLY);
+            if (yearlyGoal != null) {
+                if (yearlyGoal.getQty() == 0) {
 
+                    yearlyProgress.setWeightedProgress(0);
+                }
+                else{
+                    double val=(double) yearlyProgressQty / yearlyGoal.getQty();
+                    yearlyProgress.setWeightedProgress(val* yearlyGoal.getWeightage());
+                }
+            }
 
             ReportDTO dto = ConvertUtils.convertToReportDTO(a, g1, g2, g3, yearlyGoal, q1, q2, q3, yearlyProgress);
 

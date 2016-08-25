@@ -3,8 +3,11 @@
 
     angular.module('app.project')
         .controller('Activity', Activity);
-    Activity.$inject = ['projectservice','progressservice', 'activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http'];
-    function Activity(projectservice,progressservice, activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http) {
+    Activity.$inject = ['projectservice','progressservice', 'activityservice', 'goalservice', '$scope', 'NgTableParams', 'logger', '$routeParams', '$http','$rootScope'];
+    function Activity(projectservice,progressservice, activityservice, goalservice, $scope, NgTableParams, logger, $routeParams, $http,$rootScope) {
+        if ($rootScope.userHasRole("ROLE_ADMIN")) {
+            $scope.showMe = true;
+        }
         var pCode = $routeParams.code;
         var fYear = $routeParams.fiscalYear;
         projectservice.findProjectByCode({code:pCode}).$promise.then(function(data){
@@ -258,7 +261,15 @@
         function createOrEditGoal(goal) {
             goalservice.addGoal(goal).$promise.then(function (data) {
                 // findAll();
-                $scope.closeTheGoalPanel();
+               if(goal.goal.id==undefined){
+                   alert("Goal created successfully");
+
+               }
+                else{
+                   alert("Goal updated successfully")
+               }
+                getGoalsByActivityIdAndSetModels($scope.activityId);
+               // $scope.closeTheGoalPanel();
             });
 
         }

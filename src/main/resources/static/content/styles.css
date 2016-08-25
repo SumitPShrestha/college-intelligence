@@ -376,6 +376,7 @@ a {
 
 .avenger-name {
     font-size: 1.2em;
+
 }
 .avenger-thumb {
     margin: 0.1em !important;
@@ -385,9 +386,11 @@ a {
 .avenger-logo {
     height: 75px;
     width:80px;
-    background: url(images/avengersicon-xs.png) no-repeat left top !important;
+    background: url(images/logo.jpg) no-repeat left top !important;
 }
-
+.showMargin{
+    margin-left: 10px;
+}
 
 
 /*#region wrapper for angular ng-include and ng-view animations*/

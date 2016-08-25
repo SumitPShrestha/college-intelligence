@@ -5,11 +5,17 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['$q', 'dataservice', 'logger'];
+    Dashboard.$inject = ['$q', 'dataservice', 'logger','$rootScope','$scope'];
 
-    function Dashboard($q, dataservice, logger) {
+    function Dashboard($q, dataservice, logger,$rootScope,$scope) {
 
         /*jshint validthis: true */
+        if ($rootScope.userHasRole("ROLE_ADMIN")) {
+            $scope.showAdminDashboard = true;
+        }
+        if ($rootScope.userHasRole("ROLE_TRAINING_CENTER")) {
+            $scope.showTCDashboard = true;
+        }
         var vm = this;
 
         vm.news = {

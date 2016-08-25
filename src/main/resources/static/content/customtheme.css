@@ -1274,6 +1274,11 @@ form label span {
     font-size: 11px !important;
 }
 
+
+.report{
+    width:124%;
+}
+
 /* Users ends */
 
 /*#endregion */

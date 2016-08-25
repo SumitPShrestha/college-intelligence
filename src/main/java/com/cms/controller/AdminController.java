@@ -175,7 +175,7 @@ public class AdminController {
         List<TrainingCenterDTO> ss = adminService.getAllParentTrainingCenters();
         return ss;
     }
-
+    @Secured({"ROLE_ADMIN", "ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_TC, method = RequestMethod.GET)
     @ResponseBody
     public TrainingCenterDTO getSingleTC(@PathVariable Integer id)
@@ -202,8 +202,9 @@ public class AdminController {
 
     @RequestMapping(value = RequestUrlToken.VIEW_PROGRESS_REPORT, method = RequestMethod.GET)
     @ResponseBody
-    public List<ProgressDTO> getProgressReport(@PathVariable String fiscalYear)
+    public List<ProgressDTO> getProgressReport(@PathVariable String fiscalYear,Principal principal)
             throws JsonProcessingException {
+        System.out.println(principal.getName());
 
         List<ProgressDTO> dtos = adminService.getProgressReport(fiscalYear);
         return dtos;
@@ -220,7 +221,7 @@ public class AdminController {
         return dto;
     }
 
-
+    @Secured({"ROLE_ADMIN", "ROLE_TRAINING_CENTER"})
     @RequestMapping(value = RequestUrlToken.GET_PROJECT_BY_CODE, method = RequestMethod.GET)
     @ResponseBody
     public ProjectDTO getProjectByCode(@PathVariable String code)

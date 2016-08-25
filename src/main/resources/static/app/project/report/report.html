@@ -59,8 +59,8 @@
                 </div>
             </div>
             <!--<div class="row">-->
-            <div class="widget wblue">
-                <div data-cc-widget-header title="Project Activities Report Panel"></div>
+            <div class="widget wblue report">
+                <div data-cc-widget-header title="Project Activities Report Panel" style="width:auto"></div>
                 <!--Point to be noted show-filter can be set as either true or false-->
                 <table ng-table="vm.tableParams" class="table " show-filter="false">
 
@@ -69,10 +69,10 @@
                         <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Head</th>
                         <th style="vertical-align: middle" bgcolor="faebd7" rowspan="2">Activity Name</th>
                         <th style="vertical-align: middle" bgcolor="#f0f8ff" rowspan="2">Project Code </th>
-                        <th colspan="4" bgcolor="#faebd7">1st Trimester</th>
-                        <th colspan="4" bgcolor="#f0f8ff">2nd Trimester</th>
-                        <th colspan="4" bgcolor="#faebd7">3rd Trimester</th>
-                        <th colspan="4" bgcolor="f0f8ff">Yearly</th>
+                        <th colspan="5" bgcolor="#faebd7">1st Trimester</th>
+                        <th colspan="5" bgcolor="#f0f8ff">2nd Trimester</th>
+                        <th colspan="5" bgcolor="#faebd7">3rd Trimester</th>
+                        <th colspan="5" bgcolor="f0f8ff">Yearly</th>
 
                     </tr>
                     <tr>
@@ -80,18 +80,29 @@
                         <th bgcolor="#faebd7">Progress Qty</th>
                         <th bgcolor="#faebd7">Budget</th>
                         <th bgcolor="#faebd7">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
                         <th bgcolor="#f0f8ff">Goal Qty</th>
                         <th bgcolor="#f0f8ff">Progress Qty</th>
                         <th bgcolor="#f0f8ff">Budget</th>
                         <th bgcolor="#f0f8ff">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
                         <th bgcolor="#faebd7">Goal Qty</th>
                         <th bgcolor="#faebd7">Progress Qty</th>
                         <th bgcolor="#faebd7">Budget</th>
                         <th bgcolor="#faebd7">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
+
                         <th bgcolor="#f0f8ff">Goal Qty</th>
                         <th bgcolor="#f0f8ff">Progress Qty</th>
                         <th bgcolor="#f0f8ff">Budget</th>
                         <th bgcolor="#f0f8ff">Weightage</th>
+
+                        <th bgcolor="#eee">Weighted Progress</th>
 
                     </tr>
 
@@ -127,6 +138,10 @@
                             sortable="'goalQty'">
                             <span>   {{a.g1.weightage}} </span>
                         </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p1.weightedProgress}} </span>
+                        </td>
                         <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.g2.qty}} </span>
@@ -145,6 +160,10 @@
                             sortable="'weightage'">
                             <span>   {{a.g2.weightage}} </span>
                         </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p2.weightedProgress}} </span>
+                        </td>
                         <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'" >
                             <span>   {{a.g3.qty}} </span>
@@ -161,6 +180,10 @@
                         <td bgcolor="#faebd7" title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g3.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p3.weightedProgress}} </span>
                         </td>
 
                         <td bgcolor="#f0f8ff" title="'Goal Qty'" filter="{ goalQty: 'text'}"
@@ -180,6 +203,10 @@
                         <td bgcolor="#f0f8ff"  title="'Goal Qty'" filter="{ goalQty: 'text'}"
                             sortable="'goalQty'">
                             <span>   {{a.g.weightage}} </span>
+                        </td>
+                        <td bgcolor="#eee" title="'Goal Qty'" filter="{ weightage: 'text'}"
+                            sortable="'weightedProgress'">
+                            <span>   {{a.p.weightedProgress}} </span>
                         </td>
 
                     </tr>

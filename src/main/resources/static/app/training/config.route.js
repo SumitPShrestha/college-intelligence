@@ -19,6 +19,7 @@
                     templateUrl: 'app/training/trainingcenter.html',
                     controller: 'TrainingCenter',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'training',
 
                     settings: {
@@ -34,6 +35,7 @@
                     templateUrl: 'app/training/training.html',
                     controller: 'Training',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'training',
 
                    /* settings: {
@@ -48,6 +50,7 @@
                 config: {
                     templateUrl: 'app/training/member.html',
                     controller: 'Member',
+                    sidebar:true,
                     controllerAs: 'vm',
                     title: 'training',
 
@@ -64,6 +67,7 @@
                     templateUrl: 'app/training/report/trainingReport.html',
                     controller: 'TReport',
                     controllerAs: 'vm',
+                    sidebar:true,
                     title: 'treport',
 
                     settings: {
